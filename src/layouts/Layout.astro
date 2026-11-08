@@ -1,0 +1,187 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'Balance Chemical Equation - Free Stoichiometry & Reaction Balancer',
+  description = 'Instantly balance chemical equations with exact integer coefficients, interactive periodic table input, live bidirectional stoichiometry calculator, and reaction type classification.',
+  canonical = 'https://balancechemicalequation.com/'
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Google Fonts: Geist & Geist Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#fafafa] text-[#171717] font-sans antialiased selection:bg-[#171717] selection:text-white min-h-screen flex flex-col">
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-[#fafafa]/90 backdrop-blur-md border-b border-[#ebebeb]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <!-- Brand -->
+        <a href="/" class="flex items-center gap-2.5 group">
+          <div class="w-8 h-8 rounded-lg bg-[#171717] text-white flex items-center justify-center font-mono font-semibold text-sm shadow-sm group-hover:scale-105 transition-transform">
+            ⇌
+          </div>
+          <div class="flex flex-col">
+            <span class="font-semibold text-sm tracking-[-0.3px] text-[#171717] flex items-center gap-1.5">
+              BalanceChemicalEquation
+              <span class="text-[10px] uppercase font-mono font-medium px-1.5 py-0.5 rounded bg-[#f2f2f2] text-[#4d4d4d] border border-[#ebebeb]">v1.0</span>
+            </span>
+            <span class="text-[11px] text-[#8f8f8f] font-mono -mt-0.5">balancechemicalequation.com</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <nav class="hidden md:flex items-center gap-1 text-[13px] font-medium text-[#4d4d4d]">
+          <a href="#balancer" class="px-3 py-1.5 rounded-full hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors">
+            Equation Balancer
+          </a>
+          <a href="#stoichiometry" class="px-3 py-1.5 rounded-full hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors">
+            Stoichiometry Table
+          </a>
+          <a href="#limiting-reagent" class="px-3 py-1.5 rounded-full hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors">
+            Limiting Reagent
+          </a>
+          <a href="#periodic-table" class="px-3 py-1.5 rounded-full hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors">
+            Periodic Table
+          </a>
+          <a href="#examples" class="px-3 py-1.5 rounded-full hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors">
+            Examples
+          </a>
+          <a href="#faq" class="px-3 py-1.5 rounded-full hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors">
+            FAQ & Guide
+          </a>
+        </nav>
+
+        <!-- Right Quick Actions -->
+        <div class="flex items-center gap-2">
+          <a
+            href="#examples"
+            class="hidden sm:inline-flex items-center justify-center text-[13px] font-medium text-[#171717] bg-white border border-[#ebebeb] px-3.5 h-8 rounded-[6px] hover:border-[#d4d4d4] hover:bg-[#fafafa] transition-all shadow-[0px_1px_1px_rgba(0,0,0,0.04)]"
+          >
+            Explore Library
+          </a>
+          <a
+            href="#balancer"
+            class="inline-flex items-center justify-center text-[13px] font-medium text-white bg-[#171717] px-4 h-8 rounded-full hover:bg-[#333333] transition-all shadow-sm"
+          >
+            Balance Now
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Slot -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Geist System Footer -->
+    <footer class="bg-white border-t border-[#ebebeb] mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <!-- Col 1: Brand & Identity -->
+          <div class="md:col-span-1 space-y-3">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded bg-[#171717] text-white flex items-center justify-center font-mono font-semibold text-xs">
+                ⇌
+              </div>
+              <span class="font-semibold text-sm tracking-tight text-[#171717]">Balance Chemical Equation</span>
+            </div>
+            <p class="text-xs text-[#8f8f8f] leading-relaxed">
+              An engineering-grade chemical reaction balancing engine, live bidirectional stoichiometry calculator, and interactive periodic table suite designed for chemistry students, educators, and scientists.
+            </p>
+            <div class="text-[11px] font-mono text-[#a1a1a1]">
+              Domain: balancechemicalequation.com
+            </div>
+          </div>
+
+          <!-- Col 2: Capabilities -->
+          <div class="space-y-3">
+            <div class="text-xs font-mono font-medium uppercase text-[#8f8f8f] tracking-wider">
+              Solvers & Tools
+            </div>
+            <ul class="space-y-2 text-xs text-[#4d4d4d]">
+              <li><a href="#balancer" class="hover:text-[#171717] transition-colors">Instant Equation Balancer</a></li>
+              <li><a href="#stoichiometry" class="hover:text-[#171717] transition-colors">Bidirectional Stoichiometry</a></li>
+              <li><a href="#limiting-reagent" class="hover:text-[#171717] transition-colors">Limiting Reagent & Yield</a></li>
+              <li><a href="#periodic-table" class="hover:text-[#171717] transition-colors">Periodic Table Keypad</a></li>
+              <li><a href="#balancer" class="hover:text-[#171717] transition-colors">Redox & Ionic Balancing</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Reaction Types -->
+          <div class="space-y-3">
+            <div class="text-xs font-mono font-medium uppercase text-[#8f8f8f] tracking-wider">
+              Reaction Types
+            </div>
+            <ul class="space-y-2 text-xs text-[#4d4d4d]">
+              <li><a href="#examples" class="hover:text-[#171717] transition-colors">Combustion Reactions</a></li>
+              <li><a href="#examples" class="hover:text-[#171717] transition-colors">Synthesis & Combination</a></li>
+              <li><a href="#examples" class="hover:text-[#171717] transition-colors">Decomposition Reactions</a></li>
+              <li><a href="#examples" class="hover:text-[#171717] transition-colors">Single & Double Displacement</a></li>
+              <li><a href="#examples" class="hover:text-[#171717] transition-colors">Acid-Base Neutralization</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Reference & Standards -->
+          <div class="space-y-3">
+            <div class="text-xs font-mono font-medium uppercase text-[#8f8f8f] tracking-wider">
+              Standards & Science
+            </div>
+            <p class="text-xs text-[#8f8f8f] leading-relaxed">
+              Standard IUPAC atomic weights (2024 update). Exact rational Gaussian matrix reduction eliminates floating-point rounding errors.
+            </p>
+            <div class="pt-2">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-mono text-[#0070f3] bg-[#d3e5ff]/50 px-2.5 py-1 rounded-full border border-[#0070f3]/20">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#0070f3] animate-pulse"></span>
+                100% Client-Side Engine
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8f8f8f]">
+          <div>
+            © {new Date().getFullYear()} <span class="font-medium text-[#171717]">balancechemicalequation.com</span>. All rights reserved.
+          </div>
+          <div class="flex items-center gap-4 font-mono text-[11px]">
+            <span>Conservation of Mass (Lavoisier)</span>
+            <span>•</span>
+            <a href="#balancer" class="hover:text-[#171717] transition-colors">Back to top ↑</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

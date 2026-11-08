@@ -1,0 +1,126 @@
+---
+const faqs = [
+  {
+    q: 'Why do chemical equations need to be balanced?',
+    a: 'According to the Law of Conservation of Mass established by Antoine Lavoisier in 1789, matter can neither be created nor destroyed in a chemical reaction. Therefore, the total number of atoms of each element on the reactant side (left) must strictly equal the total number of atoms on the product side (right).'
+  },
+  {
+    q: 'How does our algebraic balancing solver work?',
+    a: 'Unlike naive trial-and-error inspection, our engine sets up a system of linear homogeneous equations using conservation of mass and electrical charge matrices (A · c = 0). It performs exact rational Gaussian elimination to identify the null space basis, then scales the rational values by their Least Common Multiple (LCM) to produce the smallest whole-number integers.'
+  },
+  {
+    q: 'How does the interactive stoichiometric table work?',
+    a: 'Stoichiometry calculates the quantitative relationships between reactants and products. In our live table, entering an amount for any single substance (in grams, moles, liters at STP, or molecules) immediately computes the proportional stoichiometric amounts of all other substances using exact mole-to-mole ratios.'
+  },
+  {
+    q: 'What is a limiting reactant (or limiting reagent)?',
+    a: 'In real chemical reactions, reactants are rarely present in exact stoichiometric proportions. The limiting reactant is the chemical species that is completely consumed first, dictating the maximum theoretical yield of products. All other reactants that have leftover unreacted mass are classified as excess reagents.'
+  },
+  {
+    q: 'Can this balancer solve redox and ionic equations with charges?',
+    a: 'Yes! You can balance ionic equations with charges such as Fe²⁺ + Cr₂O₇²⁻ + H⁺ → Fe³⁺ + Cr³⁺ + H₂O. The solver guarantees both conservation of mass for every chemical element and net conservation of electrical charge.'
+  },
+  {
+    q: 'How do I input hydrates like copper sulfate pentahydrate?',
+    a: 'You can use an asterisk (*) or middle dot (·). For example, typing CuSO4*5H2O or FeSO4·7H2O will correctly parse the 5 water molecules of hydration and calculate the complete compound molar mass.'
+  }
+];
+
+const reactionTypesGuide = [
+  {
+    name: 'Synthesis (Combination)',
+    formula: 'A + B → AB',
+    desc: 'Two or more elements or simpler compounds unite to produce a single product.',
+    example: '2H₂ + O₂ → 2H₂O'
+  },
+  {
+    name: 'Decomposition',
+    formula: 'AB → A + B',
+    desc: 'A single complex compound breaks down into two or more elements or simpler substances.',
+    example: '2H₂O₂ → 2H₂O + O₂'
+  },
+  {
+    name: 'Single Replacement',
+    formula: 'A + BC → B + AC',
+    desc: 'A more reactive elemental metal or halogen displaces another from a compound.',
+    example: 'Zn + 2HCl → ZnCl₂ + H₂'
+  },
+  {
+    name: 'Double Replacement',
+    formula: 'AB + CD → AD + CB',
+    desc: 'Two ionic compounds in solution exchange cations and anions to form a precipitate or gas.',
+    example: 'AgNO₃ + NaCl → AgCl + NaNO₃'
+  },
+  {
+    name: 'Combustion',
+    formula: 'Fuel + O₂ → CO₂ + H₂O',
+    desc: 'Exothermic oxidation of hydrocarbons releasing thermal energy, light, carbon dioxide, and water.',
+    example: 'CH₄ + 2O₂ → CO₂ + 2H₂O'
+  },
+  {
+    name: 'Acid-Base Neutralization',
+    formula: 'HA + BOH → BA + H₂O',
+    desc: 'Proton transfer between acid and base forming water and an ionic salt.',
+    example: 'HCl + NaOH → NaCl + H₂O'
+  }
+];
+---
+
+<section id="faq" class="mt-24 scroll-mt-20">
+  <!-- Educational Reaction Guide Grid -->
+  <div class="mb-16">
+    <div class="flex items-center gap-2 mb-1.5">
+      <span class="w-2 h-2 rounded-full bg-[#171717]"></span>
+      <span class="text-xs font-mono font-medium uppercase text-[#8f8f8f] tracking-wider">
+        Chemistry Guide
+      </span>
+    </div>
+    <h2 class="text-2xl sm:text-3xl font-semibold text-[#171717] tracking-[-1.28px]">
+      Major Types of Chemical Reactions
+    </h2>
+    <p class="text-xs sm:text-sm text-[#4d4d4d] mt-1 max-w-xl">
+      Reference guide for the fundamental reaction types recognized and classified by our engine.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+      {reactionTypesGuide.map((t) => (
+        <div class="p-5 rounded-xl bg-white border border-[#ebebeb] shadow-[0px_1px_1px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+          <div>
+            <div class="text-[11px] font-mono font-medium text-[#0070f3] bg-[#d3e5ff]/50 px-2 py-0.5 rounded-full inline-block mb-2 border border-[#0070f3]/20">
+              {t.formula}
+            </div>
+            <h3 class="text-sm font-semibold text-[#171717]">{t.name}</h3>
+            <p class="text-xs text-[#8f8f8f] mt-1.5 leading-relaxed">{t.desc}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-[#ebebeb]/60 flex items-center justify-between text-xs font-mono text-[#4d4d4d]">
+            <span class="text-[10px] text-[#a1a1a1] uppercase">Example:</span>
+            <span>{t.example}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Frequently Asked Questions -->
+  <div>
+    <div class="flex items-center gap-2 mb-1.5">
+      <span class="w-2 h-2 rounded-full bg-[#171717]"></span>
+      <span class="text-xs font-mono font-medium uppercase text-[#8f8f8f] tracking-wider">
+        Frequently Asked Questions
+      </span>
+    </div>
+    <h2 class="text-2xl sm:text-3xl font-semibold text-[#171717] tracking-[-1.28px]">
+      Everything You Need to Know
+    </h2>
+
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+      {faqs.map((faq) => (
+        <div class="p-5 rounded-xl bg-white border border-[#ebebeb] shadow-[0px_1px_1px_rgba(0,0,0,0.03)]">
+          <h3 class="text-sm font-semibold text-[#171717] mb-2">{faq.q}</h3>
+          <p class="text-xs text-[#4d4d4d] leading-relaxed">{faq.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+

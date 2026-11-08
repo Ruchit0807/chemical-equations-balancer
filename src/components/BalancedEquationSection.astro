@@ -1,0 +1,143 @@
+---
+import StoichiometryPlayground from './StoichiometryPlayground.astro';
+---
+
+<div id="results-wrapper" class="hidden mt-8 space-y-6">
+  <!-- 1. Primary Balanced Equation Hero Card -->
+  <div class="p-6 sm:p-8 bg-white border border-[#ebebeb] rounded-2xl shadow-[0px_2px_4px_rgba(0,0,0,0.02)] transition-all">
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#ebebeb]">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#171717]">
+          Balanced Chemical Equation
+        </span>
+      </div>
+
+      <!-- Quick Copy & Share Actions -->
+      <div class="flex items-center gap-1.5">
+        <button
+          type="button"
+          id="copy-equation-btn"
+          class="text-xs font-medium text-[#171717] bg-[#fafafa] hover:bg-[#f2f2f2] border border-[#ebebeb] px-3 py-1.5 rounded-[6px] transition-colors flex items-center gap-1.5 shadow-[0px_1px_1px_rgba(0,0,0,0.03)]"
+          title="Copy plain text equation"
+        >
+          <svg class="w-3.5 h-3.5 text-[#8f8f8f]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+          </svg>
+          <span id="copy-btn-text">Copy Formula</span>
+        </button>
+
+        <button
+          type="button"
+          id="copy-latex-btn"
+          class="text-xs font-medium text-[#171717] bg-[#fafafa] hover:bg-[#f2f2f2] border border-[#ebebeb] px-3 py-1.5 rounded-[6px] transition-colors flex items-center gap-1.5 shadow-[0px_1px_1px_rgba(0,0,0,0.03)]"
+          title="Copy LaTeX format"
+        >
+          <span class="font-mono text-[11px] text-[#8f8f8f]">TeX</span>
+          <span>Copy LaTeX</span>
+        </button>
+
+        <button
+          type="button"
+          id="share-link-btn"
+          class="text-xs font-medium text-[#171717] bg-[#fafafa] hover:bg-[#f2f2f2] border border-[#ebebeb] px-3 py-1.5 rounded-[6px] transition-colors flex items-center gap-1.5 shadow-[0px_1px_1px_rgba(0,0,0,0.03)]"
+          title="Share direct URL"
+        >
+          <svg class="w-3.5 h-3.5 text-[#8f8f8f]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+          </svg>
+          <span id="share-btn-text">Share</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Big Equation Display -->
+    <div class="py-8 text-center overflow-x-auto">
+      <div id="equation-display-container" class="inline-block text-2xl sm:text-3xl md:text-4xl font-mono font-medium tracking-tight text-[#171717] leading-relaxed select-all">
+        <!-- Formatted equation goes here -->
+      </div>
+    </div>
+
+    <!-- Reaction Type & Chemistry Intelligence Banner -->
+    <div id="reaction-type-banner" class="mt-4 p-4 rounded-xl bg-[#fafafa] border border-[#ebebeb] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <div class="flex items-start sm:items-center gap-3">
+        <span class="text-xs font-mono uppercase text-[#8f8f8f]">Reaction Type:</span>
+        <span id="reaction-type-badge" class="px-3 py-1 rounded-full text-xs font-semibold bg-[#171717] text-white">
+          Combustion
+        </span>
+      </div>
+      <p id="reaction-type-explanation" class="text-xs text-[#4d4d4d] sm:text-right max-w-xl">
+        <!-- Rationale -->
+      </p>
+    </div>
+  </div>
+
+  <!-- 2. Interactive Stoichiometry Matrix Playground -->
+  <StoichiometryPlayground />
+
+  <!-- 3. Atom Count & Mass Conservation Audit Table -->
+  <div class="p-6 bg-white border border-[#ebebeb] rounded-xl shadow-[0px_1px_1px_rgba(0,0,0,0.04)]">
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#ebebeb]">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <h3 class="text-xs font-mono font-semibold uppercase text-[#171717] tracking-wider">
+            Law of Conservation of Mass Verification
+          </h3>
+        </div>
+        <p class="text-xs text-[#8f8f8f] mt-0.5">
+          Atom inventory comparison proving reactants equal products (&Sigma; Atoms LHS = &Sigma; Atoms RHS).
+        </p>
+      </div>
+
+      <div id="mass-balance-pill" class="text-xs font-mono font-medium px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+        Mass Balanced ✓ (0.00% difference)
+      </div>
+    </div>
+
+    <div class="overflow-x-auto mt-4">
+      <table class="w-full text-left text-xs">
+        <thead>
+          <tr class="border-b border-[#ebebeb] text-[#8f8f8f] font-mono uppercase text-[11px]">
+            <th class="pb-3 font-medium">Element</th>
+            <th class="pb-3 font-medium">Element Name</th>
+            <th class="pb-3 font-medium text-center">Reactant Atoms</th>
+            <th class="pb-3 font-medium text-center"></th>
+            <th class="pb-3 font-medium text-center">Product Atoms</th>
+            <th class="pb-3 font-medium">Standard Weight</th>
+            <th class="pb-3 font-medium text-right">Status</th>
+          </tr>
+        </thead>
+        <tbody id="atom-audit-tbody" class="divide-y divide-[#ebebeb]/70">
+          <!-- Populated dynamically via JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 4. Step-by-Step Balancing Method (Algebraic Matrix) Accordion -->
+  <div class="border border-[#ebebeb] bg-white rounded-xl shadow-[0px_1px_1px_rgba(0,0,0,0.04)] overflow-hidden">
+    <button
+      type="button"
+      id="toggle-steps-accordion-btn"
+      class="w-full px-6 py-4 bg-[#fafafa] flex items-center justify-between text-left hover:bg-[#f2f2f2] transition-colors"
+    >
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[#171717]"></span>
+        <span class="text-xs font-mono font-semibold uppercase text-[#171717] tracking-wider">
+          Step-by-Step Mathematical Derivation (Algebraic Method)
+        </span>
+      </div>
+      <svg id="steps-chevron" class="w-4 h-4 text-[#8f8f8f] transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    <div id="steps-accordion-content" class="hidden p-6 space-y-5 border-t border-[#ebebeb] text-xs">
+      <div id="steps-list" class="space-y-4">
+        <!-- Steps rendered via JS -->
+      </div>
+    </div>
+  </div>
+</div>
+
