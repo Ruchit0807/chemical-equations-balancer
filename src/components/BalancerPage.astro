@@ -1,0 +1,876 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PeriodicTableKeypad from './PeriodicTableKeypad.astro';
+import BalancedEquationSection from './BalancedEquationSection.astro';
+import ReactionExamplesSection from './ReactionExamplesSection.astro';
+import ChemicalEquationGuide from './ChemicalEquationGuide.astro';
+import ChemistryGuideAndFaq from './ChemistryGuideAndFaq.astro';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang?: Lang;
+  currentPath?: string;
+}
+
+const { lang = 'en', currentPath = '/' } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang} currentPath={currentPath}>
+  <!-- Hero Section with Primary Equation Input First -->
+  <section id="balancer" class="relative pt-6 pb-12 md:pt-10 md:pb-16 overflow-hidden border-b border-[#ebebeb] dark:border-[#262626] transition-colors">
+    <!-- Hero Mesh Gradient Background Glow -->
+    <div class="absolute inset-0 hero-mesh-gradient pointer-events-none opacity-80"></div>
+
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 1. Header & Technical Eyebrow -->
+      <div class="text-center mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] text-[#171717] dark:text-[#ededed] text-xs font-mono font-medium mb-3 shadow-[0px_1px_1px_rgba(0,0,0,0.04)]">
+          <span class="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse"></span>
+          <span>{t('hero.eyebrow1')}</span>
+          <span class="text-[#8f8f8f] dark:text-[#737373]">|</span>
+          <span class="text-[#8f8f8f] dark:text-[#737373]">{t('hero.eyebrow2')}</span>
+        </div>
+
+        <h1 class="text-2xl sm:text-4xl md:text-5xl font-semibold text-[#171717] dark:text-white tracking-[-1.5px] sm:tracking-[-2px] leading-tight">
+          {t('hero.title')}
+        </h1>
+        <p class="mt-2 text-xs sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] max-w-2xl mx-auto leading-relaxed">
+          {t('hero.subtitle')}
+        </p>
+      </div>
+
+      <!-- 2. Primary Equation Input Field (Prominent & Front-and-Center) -->
+      <div class="max-w-3xl mx-auto">
+        <form id="equation-form" class="relative">
+          <div class="p-2 sm:p-2.5 rounded-2xl bg-white dark:bg-[#121212] border-2 border-[#171717] dark:border-[#ededed] shadow-[0px_4px_20px_rgba(0,0,0,0.06)] dark:shadow-[0px_4px_20px_rgba(255,255,255,0.04)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 transition-all">
+            <div class="relative flex-1 flex items-center">
+              <span class="pl-3.5 pr-1.5 text-[#0070f3] font-mono text-base font-bold select-none">⇌</span>
+              <input
+                type="text"
+                id="equation-input"
+                name="equation"
+                placeholder={t('hero.inputPlaceholder')}
+                autocomplete="off"
+                spellcheck="false"
+                autofocus
+                class="w-full h-11 px-2 text-base sm:text-lg font-mono font-medium text-[#171717] dark:text-white placeholder:text-[#a1a1a1] dark:placeholder:text-[#525252] bg-transparent focus:outline-none"
+              />
+              <button
+                type="button"
+                id="clear-input-btn"
+                class="hidden mr-2 p-1.5 text-[#8f8f8f] dark:text-[#737373] hover:text-[#171717] dark:hover:text-white rounded-full hover:bg-[#f2f2f2] dark:hover:bg-[#252525] transition-colors cursor-pointer"
+                title={t('hero.clearInput')}
+              >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <button
+              type="submit"
+              id="submit-balance-btn"
+              class="h-11 px-6 rounded-full bg-[#171717] dark:bg-white hover:bg-[#333333] dark:hover:bg-[#e5e5e5] text-white dark:text-black font-semibold text-sm flex items-center justify-center gap-2 transition-all shadow-sm active:scale-[0.98] cursor-pointer"
+            >
+              <span>{t('hero.balanceBtn')}</span>
+              <span class="font-mono text-xs">↵</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Quick Demo Reaction Pills -->
+        <div class="mt-3 flex flex-wrap items-center justify-center gap-1.5 text-xs text-[#4d4d4d] dark:text-[#a1a1a1]">
+          <span class="font-mono text-[11px] text-[#8f8f8f] dark:text-[#737373] mr-1">{t('hero.quickExamples')}</span>
+          <button type="button" class="quick-pill-btn px-2.5 py-1 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="H2 + O2 -> H2O">
+            H2 + O2
+          </button>
+          <button type="button" class="quick-pill-btn px-2.5 py-1 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="CH4 + O2 -> CO2 + H2O">
+            CH4 + O2 ({t('hero.combustionLabel')})
+          </button>
+          <button type="button" class="quick-pill-btn px-2.5 py-1 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="Al + Fe2O3 -> Al2O3 + Fe">
+            {t('hero.thermiteLabel')}
+          </button>
+          <button type="button" class="quick-pill-btn px-2.5 py-1 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="KMnO4 + HCl -> KCl + MnCl2 + Cl2 + H2O">
+            KMnO4 + HCl ({t('hero.redoxLabel')})
+          </button>
+          <button type="button" class="quick-pill-btn px-2.5 py-1 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="Fe^2+ + Cr2O7^2- + H+ -> Fe^3+ + Cr^3+ + H2O">
+            {t('hero.ionicLabel')}
+          </button>
+        </div>
+
+        <!-- Error Notification Toast/Card -->
+        <div id="error-card" class="hidden mt-3 p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-left flex items-start gap-3 text-xs text-rose-800 dark:text-rose-200">
+          <svg class="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <div id="error-message" class="flex-1 font-mono">
+            <!-- Dynamic error message -->
+          </div>
+        </div>
+
+        <!-- 3. Authentic 18-Column Periodic Table & Chemical Keypad Structure -->
+        <PeriodicTableKeypad lang={lang} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Initial State Hint (Shown before user balances an equation) -->
+  <section id="initial-state-hint" class="max-w-3xl mx-auto px-4 py-8 text-center">
+    <div class="p-6 rounded-2xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.02)]">
+      <div class="w-10 h-10 rounded-full bg-[#f2f2f2] dark:bg-[#1a1a1a] text-[#171717] dark:text-[#ededed] flex items-center justify-center mx-auto mb-3 text-lg font-mono">
+        💡
+      </div>
+      <h3 class="text-sm font-semibold text-[#171717] dark:text-white mb-1">
+        {t('initialState.title')}
+      </h3>
+      <p class="text-xs text-[#8f8f8f] dark:text-[#737373] max-w-lg mx-auto leading-relaxed">
+        {t('initialState.description')}
+      </p>
+    </div>
+  </section>
+
+  <!-- Results Section: Balanced Equation, Stoichiometry, Atom Audit, Steps -->
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <BalancedEquationSection lang={lang} />
+    <ReactionExamplesSection lang={lang} />
+    <ChemicalEquationGuide lang={lang} />
+    <ChemistryGuideAndFaq lang={lang} />
+  </div>
+</Layout>
+
+<script>
+  import { balanceEquation, type BalancedResult } from '../lib/chemistry/solver';
+  import { classifyReaction } from '../lib/chemistry/classifier';
+  import {
+    buildStoichiometricProfiles,
+    calculateReactionQuantitiesFromMoles,
+    calculateLimitingReagent,
+    convertToMoles,
+    type CompoundStoichProfile,
+    type StoichiometryUnit
+  } from '../lib/chemistry/stoichiometry';
+  import { ELEMENTS_DATA } from '../lib/chemistry/elements';
+  import { localizedReactionTypeMap } from '../i18n/reactions';
+  import { ui, type Lang } from '../i18n/ui';
+
+  // Get current active language from main tag
+  const mainEl = document.querySelector('main');
+  const activeLang: Lang = (mainEl?.getAttribute('data-lang') || 'en') as Lang;
+  const langStrings = ui[activeLang] || ui.en;
+
+  // State
+  let currentResult: BalancedResult | null = null;
+  let currentProfiles: CompoundStoichProfile[] = [];
+  let stoichActiveIndex = 0;
+  let stoichActiveAmount = 100;
+  let stoichActiveUnit: StoichiometryUnit = 'g';
+
+  // DOM Elements
+  const equationForm = document.getElementById('equation-form') as HTMLFormElement;
+  const equationInput = document.getElementById('equation-input') as HTMLInputElement;
+  const clearInputBtn = document.getElementById('clear-input-btn') as HTMLButtonElement;
+  const errorCard = document.getElementById('error-card') as HTMLDivElement;
+  const errorMessage = document.getElementById('error-message') as HTMLDivElement;
+  const initialStateHint = document.getElementById('initial-state-hint') as HTMLElement | null;
+  const resultsWrapper = document.getElementById('results-wrapper') as HTMLDivElement;
+
+  // Primary Output Elements
+  const equationDisplay = document.getElementById('equation-display-container') as HTMLDivElement;
+  const reactionTypeBadge = document.getElementById('reaction-type-badge') as HTMLSpanElement;
+  const reactionTypeExplanation = document.getElementById('reaction-type-explanation') as HTMLParagraphElement;
+  const atomAuditTbody = document.getElementById('atom-audit-tbody') as HTMLTableSectionElement;
+  const massBalancePill = document.getElementById('mass-balance-pill') as HTMLDivElement;
+  const stepsList = document.getElementById('steps-list') as HTMLDivElement;
+
+  // Stoichiometry Elements
+  const modeProportionalBtn = document.getElementById('mode-proportional-btn') as HTMLButtonElement;
+  const modeLimitingBtn = document.getElementById('mode-limiting-btn') as HTMLButtonElement;
+  const proportionalView = document.getElementById('proportional-view') as HTMLDivElement;
+  const limitingView = document.getElementById('limiting-view') as HTMLDivElement;
+  const stoichiometryTbody = document.getElementById('stoichiometry-tbody') as HTMLTableSectionElement;
+  const limitingReactantsGrid = document.getElementById('limiting-reactants-grid') as HTMLDivElement;
+  const limitingResultsContainer = document.getElementById('limiting-results-container') as HTMLDivElement;
+  const actualYieldInput = document.getElementById('actual-yield-input') as HTMLInputElement;
+  const percentYieldBadge = document.getElementById('percent-yield-badge') as HTMLDivElement;
+
+  // Periodic Table Controls
+  const viewTableBtn = document.getElementById('view-table-btn') as HTMLButtonElement;
+  const viewCompactBtn = document.getElementById('view-compact-btn') as HTMLButtonElement;
+  const fullPtView = document.getElementById('full-periodic-table-view') as HTMLDivElement;
+  const compactKeypadView = document.getElementById('compact-keypad-view') as HTMLDivElement;
+  const ptBackspaceBtn = document.getElementById('pt-backspace-btn') as HTMLButtonElement;
+  const ptClearBtn = document.getElementById('pt-clear-btn') as HTMLButtonElement;
+  const elementTableFilter = document.getElementById('element-table-filter') as HTMLInputElement;
+  const insertToast = document.getElementById('insert-toast') as HTMLSpanElement;
+
+  // Copy & Action Buttons
+  const copyEquationBtn = document.getElementById('copy-equation-btn') as HTMLButtonElement;
+  const copyBtnText = document.getElementById('copy-btn-text') as HTMLSpanElement;
+  const copyLatexBtn = document.getElementById('copy-latex-btn') as HTMLButtonElement;
+  const shareLinkBtn = document.getElementById('share-link-btn') as HTMLButtonElement;
+  const shareBtnText = document.getElementById('share-btn-text') as HTMLSpanElement;
+  const toggleStepsBtn = document.getElementById('toggle-steps-accordion-btn') as HTMLButtonElement;
+  const stepsContent = document.getElementById('steps-accordion-content') as HTMLDivElement;
+  const stepsChevron = document.getElementById('steps-chevron') as unknown as SVGElement;
+
+  // Toast feedback when inserting
+  let toastTimer: any = null;
+  function showInsertFeedback(symbol: string) {
+    if (!insertToast) return;
+    insertToast.textContent = `+${symbol}`;
+    insertToast.classList.remove('hidden');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      insertToast.classList.add('hidden');
+    }, 1200);
+  }
+
+  // Core Function: Insert Text at Cursor Position
+  function insertAtCursor(text: string) {
+    if (!equationInput) return;
+    const start = equationInput.selectionStart ?? equationInput.value.length;
+    const end = equationInput.selectionEnd ?? equationInput.value.length;
+    const val = equationInput.value;
+
+    equationInput.value = val.substring(0, start) + text + val.substring(end);
+    const newPos = start + text.length;
+    equationInput.focus();
+    equationInput.setSelectionRange(newPos, newPos);
+
+    if (clearInputBtn) clearInputBtn.classList.remove('hidden');
+    showInsertFeedback(text.trim());
+  }
+
+  function backspaceAtCursor() {
+    if (!equationInput) return;
+    const start = equationInput.selectionStart ?? equationInput.value.length;
+    const end = equationInput.selectionEnd ?? equationInput.value.length;
+    const val = equationInput.value;
+
+    if (start === end && start > 0) {
+      equationInput.value = val.substring(0, start - 1) + val.substring(end);
+      equationInput.focus();
+      equationInput.setSelectionRange(start - 1, start - 1);
+    } else if (start !== end) {
+      equationInput.value = val.substring(0, start) + val.substring(end);
+      equationInput.focus();
+      equationInput.setSelectionRange(start, start);
+    }
+    if (!equationInput.value && clearInputBtn) clearInputBtn.classList.add('hidden');
+  }
+
+  // Delegated Click Listener
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const insertBtn = target.closest('[data-insert]') as HTMLElement | null;
+    if (insertBtn) {
+      const val = insertBtn.getAttribute('data-insert');
+      if (val !== null) {
+        e.preventDefault();
+        insertAtCursor(val);
+      }
+    }
+  });
+
+  // Execute Balancing
+  function runBalance(rawQuery?: string) {
+    const query = (rawQuery !== undefined ? rawQuery : equationInput.value).trim();
+    if (!query) {
+      equationInput.focus();
+      return;
+    }
+
+    equationInput.value = query;
+    if (clearInputBtn) clearInputBtn.classList.remove('hidden');
+
+    const result = balanceEquation(query);
+
+    if (!result.success) {
+      errorCard.classList.remove('hidden');
+      errorMessage.textContent = result.error || langStrings.client?.errorDefault || 'Failed to balance equation.';
+      resultsWrapper.classList.add('hidden');
+      return;
+    }
+
+    // Success: hide error & initial hint, show results
+    errorCard.classList.add('hidden');
+    if (initialStateHint) initialStateHint.classList.add('hidden');
+    resultsWrapper.classList.remove('hidden');
+    currentResult = result;
+
+    // 1. Render primary equation
+    renderPrimaryEquation(result);
+
+    // 2. Render classification
+    const classification = classifyReaction(
+      result.reactants.map((r) => r.compound),
+      result.products.map((p) => p.compound)
+    );
+    const localizedTypeName = localizedReactionTypeMap[activeLang]?.[classification.primaryType] || classification.primaryType;
+    reactionTypeBadge.textContent = localizedTypeName;
+    reactionTypeExplanation.textContent = classification.explanation;
+
+    // 3. Render Atom Audit table & mass conservation
+    renderAtomAudit(result);
+
+    // 4. Render Step-by-Step explanation
+    renderSteps(result);
+
+    // 5. Initialize Stoichiometry Profiles
+    currentProfiles = buildStoichiometricProfiles(result.reactants, result.products);
+    stoichActiveIndex = 0;
+    stoichActiveAmount = 100;
+    stoichActiveUnit = 'g';
+
+    renderStoichiometryTable();
+    renderLimitingReagentView();
+
+    // Smooth scroll to results
+    resultsWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Update URL query param without reload
+    const url = new URL(window.location.href);
+    url.searchParams.set('eq', query);
+    window.history.replaceState({}, '', url.toString());
+  }
+
+  function renderPrimaryEquation(res: BalancedResult) {
+    const formatTerms = (list: typeof res.reactants) => {
+      return list
+        .map((item) => {
+          const coeffSpan =
+            item.coefficient > 1
+              ? `<span class="inline-block px-2 py-0.5 rounded font-bold text-[#0070f3] dark:text-[#60a5fa] bg-[#d3e5ff]/50 dark:bg-[#1e3a8a]/40 border border-[#0070f3]/20 dark:border-[#3b82f6]/30 mr-1">${item.coefficient}</span>`
+              : '';
+          const phaseSpan = item.compound.phase
+            ? `<span class="text-xs text-[#8f8f8f] dark:text-[#737373] font-normal ml-0.5">(${item.compound.phase})</span>`
+            : '';
+          return `<span class="inline-flex items-baseline">${coeffSpan}<span>${item.htmlFormula}</span>${phaseSpan}</span>`;
+        })
+        .join('<span class="mx-2 text-[#8f8f8f] dark:text-[#737373] font-normal">+</span>');
+    };
+
+    const lhsHtml = formatTerms(res.reactants);
+    const rhsHtml = formatTerms(res.products);
+
+    equationDisplay.innerHTML = `${lhsHtml} <span class="mx-3 text-[#171717] dark:text-white font-semibold">→</span> ${rhsHtml}`;
+  }
+
+  function renderAtomAudit(res: BalancedResult) {
+    let rowsHtml = '';
+    let totalLhsMass = 0;
+    let totalRhsMass = 0;
+    const statusEqualText = langStrings.balancedEquation?.statusEqual || '✓ Equal';
+
+    for (const elem of res.allElements) {
+      const elData = ELEMENTS_DATA.find((e) => e.symbol === elem);
+      const name = elData ? elData.name : elem;
+      const mass = elData ? elData.mass : 0;
+
+      let lhsCount = 0;
+      for (const r of res.reactants) {
+        lhsCount += (r.compound.elementCounts[elem] || 0) * r.coefficient;
+      }
+
+      let rhsCount = 0;
+      for (const p of res.products) {
+        rhsCount += (p.compound.elementCounts[elem] || 0) * p.coefficient;
+      }
+
+      totalLhsMass += lhsCount * mass;
+      totalRhsMass += rhsCount * mass;
+
+      rowsHtml += `
+        <tr class="hover:bg-[#fafafa] dark:hover:bg-[#171717] transition-colors">
+          <td class="py-2.5 font-mono font-semibold text-[#171717] dark:text-white">${elem}</td>
+          <td class="py-2.5 text-[#4d4d4d] dark:text-[#a1a1a1]">${name}</td>
+          <td class="py-2.5 font-mono text-center font-medium text-[#171717] dark:text-white">${lhsCount}</td>
+          <td class="py-2.5 text-center text-[#8f8f8f] dark:text-[#737373] font-mono">=</td>
+          <td class="py-2.5 font-mono text-center font-medium text-[#171717] dark:text-white">${rhsCount}</td>
+          <td class="py-2.5 font-mono text-[#4d4d4d] dark:text-[#a1a1a1]">${mass.toFixed(3)} g/mol</td>
+          <td class="py-2.5 text-right font-mono text-emerald-600 dark:text-emerald-400 font-medium">${statusEqualText}</td>
+        </tr>
+      `;
+    }
+
+    atomAuditTbody.innerHTML = rowsHtml;
+    massBalancePill.innerHTML = `LHS: ${totalLhsMass.toFixed(2)} g/mol = RHS: ${totalRhsMass.toFixed(2)} g/mol ✓`;
+  }
+
+  function renderSteps(res: BalancedResult) {
+    let stepsHtml = '';
+    res.steps.forEach((step) => {
+      stepsHtml += `
+        <div class="p-4 rounded-lg bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#262626]">
+          <h4 class="font-semibold text-[#171717] dark:text-white mb-1">${step.title}</h4>
+          <p class="text-[#4d4d4d] dark:text-[#a1a1a1] mb-2 leading-relaxed">${step.description}</p>
+          ${
+            step.math
+              ? `<pre class="p-2.5 rounded bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] font-mono text-xs text-[#171717] dark:text-white overflow-x-auto whitespace-pre-wrap">${step.math}</pre>`
+              : ''
+          }
+        </div>
+      `;
+    });
+    stepsList.innerHTML = stepsHtml;
+  }
+
+  // Stoichiometry Table Rendering (Proportional View)
+  function renderStoichiometryTable() {
+    if (!currentProfiles.length) return;
+
+    const activeProfile = currentProfiles[stoichActiveIndex];
+    const activeMoles = convertToMoles(stoichActiveAmount, stoichActiveUnit, activeProfile.molarMass);
+    const calculated = calculateReactionQuantitiesFromMoles(currentProfiles, stoichActiveIndex, activeMoles);
+    const reactantRoleLabel = langStrings.stoichiometry?.reactantRole || 'Reactant';
+    const productRoleLabel = langStrings.stoichiometry?.productRole || 'Product';
+
+    let html = '';
+    calculated.forEach((item, index) => {
+      const p = item.profile;
+      const isSelected = index === stoichActiveIndex;
+      const isReactant = p.isReactant;
+
+      html += `
+        <tr class="hover:bg-[#fafafa] dark:hover:bg-[#171717] transition-colors ${isSelected ? 'bg-[#0070f3]/5 dark:bg-[#0070f3]/10' : ''}">
+          <td class="py-3 font-mono">
+            <span class="px-2 py-0.5 rounded text-[10px] uppercase font-semibold ${
+              isReactant
+                ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800'
+                : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
+            }">
+              ${isReactant ? reactantRoleLabel : productRoleLabel}
+            </span>
+          </td>
+          <td class="py-3 font-mono font-semibold text-[#171717] dark:text-white text-sm">
+            ${p.coefficient > 1 ? `<span class="text-[#0070f3] dark:text-[#60a5fa]">${p.coefficient}</span> ` : ''}${p.cleanFormula}
+          </td>
+          <td class="py-3 font-mono text-[#4d4d4d] dark:text-[#a1a1a1]">
+            ${p.coefficient} mol
+          </td>
+          <td class="py-3 font-mono text-[#4d4d4d] dark:text-[#a1a1a1]">
+            ${p.molarMass.toFixed(3)} g/mol
+          </td>
+          <td class="py-3">
+            <div class="flex items-center gap-1.5">
+              <input
+                type="number"
+                step="any"
+                data-stoich-index="${index}"
+                value="${isSelected ? stoichActiveAmount : (stoichActiveUnit === 'g' ? item.massGrams.toFixed(2) : (stoichActiveUnit === 'mol' ? item.moles.toFixed(3) : item.massGrams.toFixed(2)))}"
+                class="stoich-amount-input w-24 h-7 px-2 text-xs font-mono bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] rounded text-[#171717] dark:text-white focus:outline-none focus:border-[#171717] dark:focus:border-white ${isSelected ? 'border-[#0070f3] dark:border-[#60a5fa] ring-1 ring-[#0070f3]' : ''}"
+              />
+              <select
+                data-stoich-unit-index="${index}"
+                class="stoich-unit-select h-7 px-1.5 text-xs font-mono bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] rounded text-[#4d4d4d] dark:text-[#ededed] focus:outline-none"
+              >
+                <option value="g" ${stoichActiveUnit === 'g' ? 'selected' : ''}>g</option>
+                <option value="kg" ${stoichActiveUnit === 'kg' ? 'selected' : ''}>kg</option>
+                <option value="mg" ${stoichActiveUnit === 'mg' ? 'selected' : ''}>mg</option>
+                <option value="mol" ${stoichActiveUnit === 'mol' ? 'selected' : ''}>mol</option>
+                <option value="mmol" ${stoichActiveUnit === 'mmol' ? 'selected' : ''}>mmol</option>
+                <option value="L" ${stoichActiveUnit === 'L' ? 'selected' : ''}>L (STP)</option>
+              </select>
+            </div>
+          </td>
+          <td class="py-3 font-mono text-[#171717] dark:text-white font-medium">
+            ${item.moles.toFixed(4)}
+          </td>
+          <td class="py-3 font-mono text-[#171717] dark:text-white font-medium">
+            ${item.massGrams.toFixed(2)}
+          </td>
+          <td class="py-3 font-mono text-[#4d4d4d] dark:text-[#a1a1a1]">
+            ${item.volumeStpLiters.toFixed(2)}
+          </td>
+        </tr>
+      `;
+    });
+
+    stoichiometryTbody.innerHTML = html;
+
+    // Attach listeners
+    stoichiometryTbody.querySelectorAll('.stoich-amount-input').forEach((input) => {
+      input.addEventListener('input', (e) => {
+        const target = e.target as HTMLInputElement;
+        const idx = parseInt(target.getAttribute('data-stoich-index') || '0', 10);
+        const val = parseFloat(target.value);
+        if (!isNaN(val) && val >= 0) {
+          stoichActiveIndex = idx;
+          stoichActiveAmount = val;
+          renderStoichiometryTable();
+        }
+      });
+    });
+
+    stoichiometryTbody.querySelectorAll('.stoich-unit-select').forEach((sel) => {
+      sel.addEventListener('change', (e) => {
+        const target = e.target as HTMLSelectElement;
+        const idx = parseInt(target.getAttribute('data-stoich-unit-index') || '0', 10);
+        stoichActiveIndex = idx;
+        stoichActiveUnit = target.value as StoichiometryUnit;
+        renderStoichiometryTable();
+      });
+    });
+  }
+
+  // Limiting Reagent View Rendering
+  function renderLimitingReagentView() {
+    const reactants = currentProfiles.filter((p) => p.isReactant);
+    if (!reactants.length) return;
+
+    let inputsHtml = '';
+    reactants.forEach((r, i) => {
+      inputsHtml += `
+        <div class="p-4 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.02)]">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono font-semibold text-[#171717] dark:text-white">${r.cleanFormula}</span>
+            <span class="text-[11px] font-mono text-[#8f8f8f] dark:text-[#737373]">${r.molarMass.toFixed(2)} g/mol</span>
+          </div>
+          <label class="block text-[11px] text-[#8f8f8f] dark:text-[#737373] mb-1">Available Quantity:</label>
+          <div class="flex items-center gap-1.5">
+            <input
+              type="number"
+              step="any"
+              data-limiting-input-index="${i}"
+              value="${(i + 1) * 25}"
+              class="limiting-amount-field w-full h-8 px-2.5 bg-[#fafafa] dark:bg-[#1a1a1a] border border-[#ebebeb] dark:border-[#333333] rounded text-xs font-mono text-[#171717] dark:text-white focus:outline-none focus:border-[#171717] dark:focus:border-white"
+            />
+            <select
+              data-limiting-unit-index="${i}"
+              class="limiting-unit-field h-8 px-2 bg-[#fafafa] dark:bg-[#1a1a1a] border border-[#ebebeb] dark:border-[#333333] rounded text-xs font-mono text-[#4d4d4d] dark:text-[#ededed] focus:outline-none"
+            >
+              <option value="g">g</option>
+              <option value="mol">mol</option>
+              <option value="kg">kg</option>
+            </select>
+          </div>
+        </div>
+      `;
+    });
+
+    limitingReactantsGrid.innerHTML = inputsHtml;
+
+    limitingReactantsGrid.querySelectorAll('.limiting-amount-field, .limiting-unit-field').forEach((el) => {
+      el.addEventListener('input', updateLimitingCalculations);
+      el.addEventListener('change', updateLimitingCalculations);
+    });
+
+    updateLimitingCalculations();
+  }
+
+  function updateLimitingCalculations() {
+    const amountInputs = limitingReactantsGrid.querySelectorAll('.limiting-amount-field') as NodeListOf<HTMLInputElement>;
+    const unitSelects = limitingReactantsGrid.querySelectorAll('.limiting-unit-field') as NodeListOf<HTMLSelectElement>;
+
+    const inputs: { amount: number; unit: StoichiometryUnit }[] = [];
+    amountInputs.forEach((inp, i) => {
+      inputs.push({
+        amount: parseFloat(inp.value) || 0,
+        unit: (unitSelects[i].value as StoichiometryUnit) || 'g'
+      });
+    });
+
+    const result = calculateLimitingReagent(currentProfiles, inputs);
+    if (!result) {
+      limitingResultsContainer.innerHTML = `
+        <div class="p-4 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 text-xs text-amber-800 dark:text-amber-200 font-mono">
+          Please enter positive available amounts for all reactants to calculate the limiting reactant.
+        </div>
+      `;
+      return;
+    }
+
+    const limitingTitle = langStrings.stoichiometry?.limitingReagentIs || 'Limiting Reagent:';
+
+    let resultsHtml = `
+      <div class="p-4 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.03)]">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+          <span class="text-xs font-mono font-semibold uppercase text-[#171717] dark:text-white">
+            ${limitingTitle}
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 text-xs font-mono font-bold">
+            ${result.limitingProfile.cleanFormula}
+          </span>
+        </div>
+        <p class="text-xs text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed mb-4">
+          <strong>${result.limitingProfile.cleanFormula}</strong> produces the least amount of product and will be 100% consumed first. It limits the theoretical yield.
+        </p>
+
+        <!-- Status Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left">
+            <thead>
+              <tr class="border-b border-[#ebebeb] dark:border-[#262626] text-[#8f8f8f] dark:text-[#737373] font-mono text-[11px]">
+                <th class="pb-2 font-medium">Reactant</th>
+                <th class="pb-2 font-medium">Initial Mass</th>
+                <th class="pb-2 font-medium">Consumed</th>
+                <th class="pb-2 font-medium">Excess Leftover</th>
+                <th class="pb-2 font-medium">% Consumed</th>
+                <th class="pb-2 font-medium text-right">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#ebebeb]/60 dark:divide-[#262626] font-mono">
+              ${result.reactantsStatus
+                .map(
+                  (s) => `
+                <tr class="hover:bg-[#fafafa] dark:hover:bg-[#171717]">
+                  <td class="py-2.5 font-bold text-[#171717] dark:text-white">${s.profile.cleanFormula}</td>
+                  <td class="py-2.5 text-[#4d4d4d] dark:text-[#a1a1a1]">${s.initialGrams.toFixed(2)} g</td>
+                  <td class="py-2.5 text-[#4d4d4d] dark:text-[#a1a1a1]">${s.consumedGrams.toFixed(2)} g</td>
+                  <td class="py-2.5 ${s.isLimiting ? 'text-[#8f8f8f] dark:text-[#737373]' : 'text-amber-700 dark:text-amber-400 font-semibold'}">
+                    ${s.isLimiting ? '0.00 g (None)' : `${s.remainingGrams.toFixed(2)} g`}
+                  </td>
+                  <td class="py-2.5 text-[#4d4d4d] dark:text-[#a1a1a1]">${s.percentConsumed.toFixed(1)}%</td>
+                  <td class="py-2.5 text-right font-semibold ${s.isLimiting ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400'}">
+                    ${s.isLimiting ? 'Limiting Reagent' : 'Excess Reagent'}
+                  </td>
+                </tr>
+              `
+                )
+                .join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Theoretical Yield Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        ${result.theoreticalYields
+          .map(
+            (y) => `
+          <div class="p-4 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.02)]">
+            <div class="text-[11px] font-mono text-[#8f8f8f] dark:text-[#737373] uppercase">Theoretical Yield (${y.profile.cleanFormula})</div>
+            <div class="text-xl font-bold font-mono text-[#171717] dark:text-white mt-1">
+              ${y.theoreticalGrams.toFixed(2)} <span class="text-sm font-normal text-[#8f8f8f] dark:text-[#737373]">grams</span>
+            </div>
+            <div class="text-xs font-mono text-[#4d4d4d] dark:text-[#a1a1a1] mt-1 flex items-center gap-3">
+              <span>${y.theoreticalMoles.toFixed(4)} mol</span>
+              <span>•</span>
+              <span>${y.theoreticalLiters.toFixed(2)} L (STP)</span>
+            </div>
+          </div>
+        `
+          )
+          .join('')}
+      </div>
+    `;
+
+    limitingResultsContainer.innerHTML = resultsHtml;
+    calcPercentYield(result.theoreticalYields[0]?.theoreticalGrams || 0);
+  }
+
+  function calcPercentYield(theoreticalGrams: number) {
+    const actual = parseFloat(actualYieldInput.value);
+    if (!isNaN(actual) && actual > 0 && theoreticalGrams > 0) {
+      const pct = (actual / theoreticalGrams) * 100;
+      percentYieldBadge.textContent = `Yield: ${pct.toFixed(1)}%`;
+      percentYieldBadge.classList.remove('hidden');
+    } else {
+      percentYieldBadge.classList.add('hidden');
+    }
+  }
+
+  // Event Listeners
+  equationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    runBalance();
+  });
+
+  equationInput.addEventListener('input', () => {
+    if (equationInput.value) {
+      if (clearInputBtn) clearInputBtn.classList.remove('hidden');
+    } else {
+      if (clearInputBtn) clearInputBtn.classList.add('hidden');
+    }
+  });
+
+  if (clearInputBtn) {
+    clearInputBtn.addEventListener('click', () => {
+      equationInput.value = '';
+      clearInputBtn.classList.add('hidden');
+      equationInput.focus();
+    });
+  }
+
+  if (ptBackspaceBtn) ptBackspaceBtn.addEventListener('click', backspaceAtCursor);
+  if (ptClearBtn) {
+    ptClearBtn.addEventListener('click', () => {
+      equationInput.value = '';
+      if (clearInputBtn) clearInputBtn.classList.add('hidden');
+      equationInput.focus();
+    });
+  }
+
+  // Periodic Table View Toggles
+  if (viewTableBtn && viewCompactBtn) {
+    viewTableBtn.addEventListener('click', () => {
+      fullPtView.classList.remove('hidden');
+      compactKeypadView.classList.add('hidden');
+      viewTableBtn.classList.add('bg-white', 'dark:bg-[#121212]', 'text-[#171717]', 'dark:text-white', 'shadow-[0px_1px_1px_rgba(0,0,0,0.04)]');
+      viewTableBtn.classList.remove('text-[#4d4d4d]', 'dark:text-[#a1a1a1]');
+      viewCompactBtn.classList.remove('bg-white', 'dark:bg-[#121212]', 'text-[#171717]', 'dark:text-white', 'shadow-[0px_1px_1px_rgba(0,0,0,0.04)]');
+      viewCompactBtn.classList.add('text-[#4d4d4d]', 'dark:text-[#a1a1a1]');
+    });
+
+    viewCompactBtn.addEventListener('click', () => {
+      compactKeypadView.classList.remove('hidden');
+      fullPtView.classList.add('hidden');
+      viewCompactBtn.classList.add('bg-white', 'dark:bg-[#121212]', 'text-[#171717]', 'dark:text-white', 'shadow-[0px_1px_1px_rgba(0,0,0,0.04)]');
+      viewCompactBtn.classList.remove('text-[#4d4d4d]', 'dark:text-[#a1a1a1]');
+      viewTableBtn.classList.remove('bg-white', 'dark:bg-[#121212]', 'text-[#171717]', 'dark:text-white', 'shadow-[0px_1px_1px_rgba(0,0,0,0.04)]');
+      viewTableBtn.classList.add('text-[#4d4d4d]', 'dark:text-[#a1a1a1]');
+    });
+  }
+
+  // Element Search in Periodic Table
+  if (elementTableFilter) {
+    elementTableFilter.addEventListener('input', () => {
+      const q = elementTableFilter.value.toLowerCase().trim();
+      const cells = document.querySelectorAll('.element-cell');
+      cells.forEach((cell) => {
+        const sym = cell.getAttribute('data-symbol') || '';
+        const name = cell.getAttribute('data-name') || '';
+        const num = cell.getAttribute('data-number') || '';
+        if (!q || sym.includes(q) || name.includes(q) || num === q) {
+          (cell as HTMLElement).style.opacity = '1';
+          (cell as HTMLElement).style.transform = 'scale(1)';
+        } else {
+          (cell as HTMLElement).style.opacity = '0.2';
+          (cell as HTMLElement).style.transform = 'scale(0.95)';
+        }
+      });
+    });
+  }
+
+  // Mode Switch (Proportional vs Limiting)
+  modeProportionalBtn.addEventListener('click', () => {
+    modeProportionalBtn.classList.add('bg-white', 'dark:bg-[#121212]', 'text-[#171717]', 'dark:text-white', 'shadow-[0px_1px_1px_rgba(0,0,0,0.04)]');
+    modeProportionalBtn.classList.remove('text-[#4d4d4d]', 'dark:text-[#a1a1a1]');
+    modeLimitingBtn.classList.remove('bg-white', 'dark:bg-[#121212]', 'text-[#171717]', 'dark:text-white', 'shadow-[0px_1px_1px_rgba(0,0,0,0.04)]');
+    modeLimitingBtn.classList.add('text-[#4d4d4d]', 'dark:text-[#a1a1a1]');
+
+    proportionalView.classList.remove('hidden');
+    limitingView.classList.add('hidden');
+  });
+
+  modeLimitingBtn.addEventListener('click', () => {
+    modeLimitingBtn.classList.add('bg-white', 'dark:bg-[#121212]', 'text-[#171717]', 'dark:text-white', 'shadow-[0px_1px_1px_rgba(0,0,0,0.04)]');
+    modeLimitingBtn.classList.remove('text-[#4d4d4d]', 'dark:text-[#a1a1a1]');
+    modeProportionalBtn.classList.remove('bg-white', 'dark:bg-[#121212]', 'text-[#171717]', 'dark:text-white', 'shadow-[0px_1px_1px_rgba(0,0,0,0.04)]');
+    modeProportionalBtn.classList.add('text-[#4d4d4d]', 'dark:text-[#a1a1a1]');
+
+    limitingView.classList.remove('hidden');
+    proportionalView.classList.add('hidden');
+  });
+
+  actualYieldInput.addEventListener('input', () => {
+    const theoretical = currentProfiles.find((p) => !p.isReactant)?.molarMass || 100;
+    calcPercentYield(theoretical);
+  });
+
+  // Quick Demo Pills
+  document.querySelectorAll('.quick-pill-btn').forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const eq = pill.getAttribute('data-eq') || '';
+      runBalance(eq);
+    });
+  });
+
+  // Load Example from Library
+  document.querySelectorAll('.load-example-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const eq = btn.getAttribute('data-load-equation') || '';
+      runBalance(eq);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Library Category Tabs
+  document.querySelectorAll('.example-category-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cat = btn.getAttribute('data-category');
+      document.querySelectorAll('.example-category-btn').forEach((b) => {
+        b.classList.remove('bg-[#171717]', 'dark:bg-white', 'text-white', 'dark:text-black', 'shadow-sm');
+        b.classList.add('bg-white', 'dark:bg-[#171717]', 'text-[#4d4d4d]', 'dark:text-[#a1a1a1]', 'border', 'border-[#ebebeb]', 'dark:border-[#2b2b2b]');
+      });
+      btn.classList.add('bg-[#171717]', 'dark:bg-white', 'text-white', 'dark:text-black', 'shadow-sm');
+      btn.classList.remove('bg-white', 'dark:bg-[#171717]', 'text-[#4d4d4d]', 'dark:text-[#a1a1a1]', 'border', 'border-[#ebebeb]', 'dark:border-[#2b2b2b]');
+
+      document.querySelectorAll('.example-card').forEach((card) => {
+        const cardCat = card.getAttribute('data-category');
+        if (cat === 'All' || cardCat === cat) {
+          (card as HTMLElement).style.display = 'flex';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Copy Formula Button
+  copyEquationBtn.addEventListener('click', async () => {
+    if (!currentResult) return;
+    try {
+      await navigator.clipboard.writeText(currentResult.balancedEquationString);
+      const originalText = copyBtnText.textContent;
+      copyBtnText.textContent = langStrings.client?.copied || 'Copied!';
+      setTimeout(() => {
+        copyBtnText.textContent = originalText;
+      }, 2000);
+    } catch {
+      copyBtnText.textContent = langStrings.client?.copied || 'Copied!';
+    }
+  });
+
+  // Copy LaTeX Button
+  copyLatexBtn.addEventListener('click', async () => {
+    if (!currentResult) return;
+    try {
+      await navigator.clipboard.writeText(currentResult.balancedEquationLatex);
+      copyLatexBtn.innerHTML = '<span class="font-mono text-[11px] text-emerald-600 dark:text-emerald-400">✓</span><span>Copied TeX</span>';
+      setTimeout(() => {
+        copyLatexBtn.innerHTML = '<span class="font-mono text-[11px] text-[#8f8f8f] dark:text-[#737373]">TeX</span><span>Copy LaTeX</span>';
+      }, 2000);
+    } catch {}
+  });
+
+  // Share Link Button
+  shareLinkBtn.addEventListener('click', async () => {
+    const url = window.location.href;
+    try {
+      await navigator.clipboard.writeText(url);
+      const originalText = shareBtnText.textContent;
+      shareBtnText.textContent = langStrings.client?.shareCopied || 'Link Copied!';
+      setTimeout(() => {
+        shareBtnText.textContent = originalText;
+      }, 2000);
+    } catch {}
+  });
+
+  // Toggle Steps Accordion
+  toggleStepsBtn.addEventListener('click', () => {
+    const isHidden = stepsContent.classList.contains('hidden');
+    if (isHidden) {
+      stepsContent.classList.remove('hidden');
+      stepsChevron.classList.add('rotate-180');
+    } else {
+      stepsContent.classList.add('hidden');
+      stepsChevron.classList.remove('rotate-180');
+    }
+  });
+
+  // Initial load check: if URL has ?eq=..., balance it
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const eqParam = params.get('eq');
+    if (eqParam) {
+      runBalance(eqParam);
+    } else {
+      equationInput.focus();
+    }
+  });
+</script>
+

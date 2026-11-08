@@ -1,0 +1,90 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { languages, defaultLang, type Lang } from '../../i18n/ui';
+import { useTranslatedPath } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return (Object.keys(languages) as Lang[])
+    .filter((l) => l !== defaultLang)
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const translatePath = useTranslatedPath(lang);
+---
+
+<Layout
+  title={`Privacy Policy - Balance Chemical Equation (${languages[lang]})`}
+  description="Read our Privacy Policy. Learn how Balance Chemical Equation protects your privacy with 100% client-side reaction computing and transparent data practices."
+  currentPath="/privacy-policy"
+  lang={lang}
+>
+  <div class="relative py-12 md:py-20 border-b border-[#ebebeb] dark:border-[#262626] overflow-hidden">
+    <!-- Hero Mesh Glow -->
+    <div class="absolute inset-0 hero-mesh-gradient pointer-events-none opacity-60"></div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs font-mono text-[#8f8f8f] dark:text-[#737373] mb-6">
+        <a href={translatePath('/')} class="hover:text-[#171717] dark:hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-[#171717] dark:text-[#ededed] font-medium">Privacy Policy</span>
+      </nav>
+
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] text-[#171717] dark:text-[#ededed] text-xs font-mono font-medium mb-4 shadow-[0px_1px_1px_rgba(0,0,0,0.04)]">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>EFFECTIVE DATE: NOVEMBER 2026</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-1.5px] text-[#171717] dark:text-white leading-tight">
+        Privacy Policy
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed">
+        At <strong>balancechemicalequation.com</strong>, we are deeply committed to protecting your personal privacy. Our chemistry computation tools are engineered from the ground up to respect user autonomy and minimize data collection.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12 text-sm sm:text-base leading-relaxed text-[#4d4d4d] dark:text-[#a1a1a1]">
+    <!-- Key Guarantee Banner -->
+    <div class="p-6 rounded-xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/20 text-[#171717] dark:text-[#ededed] space-y-2">
+      <div class="font-semibold text-base text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+        <span>🔒</span> Core Privacy Guarantee: 100% Client-Side Engine
+      </div>
+      <p class="text-xs sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1]">
+        All chemical equations, reaction inputs, stoichiometry conversions, molar mass calculations, and limiting reagent simulations you enter are executed strictly within your local web browser. Your formulas and scientific work are never uploaded to our servers, logged in databases, or sold to third parties.
+      </p>
+    </div>
+
+    <!-- 1. Introduction -->
+    <section class="space-y-3">
+      <h2 class="text-xl sm:text-2xl font-semibold text-[#171717] dark:text-white tracking-tight">
+        1. Introduction and Scope
+      </h2>
+      <p>
+        This Privacy Policy explains how Balance Chemical Equation ("we", "our", or "the Service") handles information when you visit and interact with balancechemicalequation.com. We operate under a strict privacy-first principle: we do not collect personal identities, require user accounts, or store user calculations.
+      </p>
+    </section>
+
+    <!-- 2. Data Collection -->
+    <section class="space-y-3">
+      <h2 class="text-xl sm:text-2xl font-semibold text-[#171717] dark:text-white tracking-tight">
+        2. Information We Do Not Collect
+      </h2>
+      <p>
+        Unlike many online platforms, we do not require account creation or personal profile setup. We do not collect names, phone numbers, postal addresses, or payment card information.
+      </p>
+    </section>
+
+    <!-- 3. Contact -->
+    <section class="space-y-3">
+      <h2 class="text-xl sm:text-2xl font-semibold text-[#171717] dark:text-white tracking-tight">
+        3. Contact Information
+      </h2>
+      <p>
+        If you have any questions about this Privacy Policy, please email us at <a href="mailto:support@balancechemicalequation.com" class="font-mono text-[#0070f3] hover:underline">support@balancechemicalequation.com</a>.
+      </p>
+    </section>
+  </div>
+</Layout>
+

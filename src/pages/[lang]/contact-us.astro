@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { languages, defaultLang, type Lang } from '../../i18n/ui';
+import { useTranslatedPath } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return (Object.keys(languages) as Lang[])
+    .filter((l) => l !== defaultLang)
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const translatePath = useTranslatedPath(lang);
+---
+
+<Layout
+  title={`Contact Us - Chemical Equation Balancer (${languages[lang]})`}
+  description="Contact the Balance Chemical Equation team for feedback, bug reports, equation balancing inquiries, or academic collaborations."
+  currentPath="/contact-us"
+  lang={lang}
+>
+  <div class="relative py-12 md:py-20 border-b border-[#ebebeb] dark:border-[#262626] overflow-hidden">
+    <!-- Hero Mesh Glow -->
+    <div class="absolute inset-0 hero-mesh-gradient pointer-events-none opacity-60"></div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs font-mono text-[#8f8f8f] dark:text-[#737373] mb-6">
+        <a href={translatePath('/')} class="hover:text-[#171717] dark:hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-[#171717] dark:text-[#ededed] font-medium">Contact Us</span>
+      </nav>
+
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] text-[#171717] dark:text-[#ededed] text-xs font-mono font-medium mb-4 shadow-[0px_1px_1px_rgba(0,0,0,0.04)]">
+        <span class="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse"></span>
+        <span>SUPPORT & INQUIRIES</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-1.5px] text-[#171717] dark:text-white leading-tight">
+        We're Here to Help
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed">
+        Have questions about an equation, suggestions for new stoichiometry capabilities, or want to report an unexpected reaction edge case? We welcome feedback from educators, students, and chemistry researchers.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <!-- Left Contact Info -->
+      <div class="md:col-span-1 space-y-6">
+        <div class="p-6 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] space-y-4">
+          <div class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0070f3]">
+            Direct Contact
+          </div>
+          
+          <div class="space-y-3 text-xs sm:text-sm">
+            <div>
+              <div class="font-medium text-[#171717] dark:text-white">General & Support</div>
+              <a href="mailto:support@balancechemicalequation.com" class="font-mono text-[#0070f3] hover:underline break-all">
+                support@balancechemicalequation.com
+              </a>
+            </div>
+            <div>
+              <div class="font-medium text-[#171717] dark:text-white">Response Time</div>
+              <p class="text-[#8f8f8f] dark:text-[#737373]">Typically within 24-48 business hours.</p>
+            </div>
+            <div>
+              <div class="font-medium text-[#171717] dark:text-white">Location</div>
+              <p class="text-[#8f8f8f] dark:text-[#737373]">Available Worldwide (Online)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right FAQ / Quick Help -->
+      <div class="md:col-span-2 space-y-6">
+        <div class="p-8 rounded-2xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] space-y-4">
+          <h2 class="text-xl font-semibold text-[#171717] dark:text-white">
+            Common Inquiries
+          </h2>
+          <div class="space-y-4 text-xs sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed">
+            <div>
+              <h3 class="font-semibold text-[#171717] dark:text-white mb-1">How do I report an incorrect balancing result?</h3>
+              <p>Email us the exact equation string and expected result at support@balancechemicalequation.com. Our engineering team investigates all chemical edge cases.</p>
+            </div>
+            <div>
+              <h3 class="font-semibold text-[#171717] dark:text-white mb-1">Can educators use this balancer for classroom instruction?</h3>
+              <p>Yes! Balance Chemical Equation is completely free for students, teachers, and university courses.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+

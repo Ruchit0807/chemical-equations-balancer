@@ -1,40 +1,49 @@
 ---
 // StoichiometryPlayground component
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
 ---
 
-<div id="stoichiometry-section" class="mt-8 border border-[#ebebeb] bg-white rounded-xl shadow-[0px_1px_1px_rgba(0,0,0,0.04)] overflow-hidden">
+<div id="stoichiometry" class="mt-8 border border-[#ebebeb] dark:border-[#262626] bg-white dark:bg-[#121212] rounded-xl shadow-[0px_1px_1px_rgba(0,0,0,0.04)] overflow-hidden transition-colors">
   <!-- Section Header -->
-  <div class="px-6 py-4 bg-[#fafafa] border-b border-[#ebebeb] flex flex-wrap items-center justify-between gap-4">
+  <div class="px-6 py-4 bg-[#fafafa] dark:bg-[#171717] border-b border-[#ebebeb] dark:border-[#262626] flex flex-wrap items-center justify-between gap-4">
     <div>
       <div class="flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-[#0070f3]"></span>
-        <h3 class="text-xs font-mono font-semibold uppercase text-[#171717] tracking-wider">
-          Interactive Stoichiometric Matrix
+        <h3 class="text-xs font-mono font-semibold uppercase text-[#171717] dark:text-[#ededed] tracking-wider">
+          {t('stoichiometry.title')}
         </h3>
-        <span class="text-[11px] font-mono text-[#0070f3] bg-[#d3e5ff]/60 px-2 py-0.5 rounded-full border border-[#0070f3]/20">
-          Live Proportional Engine
+        <span class="text-[11px] font-mono text-[#0070f3] dark:text-[#60a5fa] bg-[#d3e5ff]/60 dark:bg-[#1e3a8a]/40 px-2 py-0.5 rounded-full border border-[#0070f3]/20 dark:border-[#3b82f6]/30">
+          {t('stoichiometry.badge')}
         </span>
       </div>
-      <p class="text-xs text-[#8f8f8f] mt-0.5">
-        Change the quantity or unit for any compound below. All other reactants and products will instantly recalculate in stoichiometric balance.
+      <p class="text-xs text-[#8f8f8f] dark:text-[#737373] mt-0.5">
+        {t('stoichiometry.subtitle')}
       </p>
     </div>
 
     <!-- Mode Switch: Proportional vs Limiting Reagent -->
-    <div class="flex items-center gap-1 bg-[#f2f2f2] p-1 rounded-[8px] border border-[#ebebeb]">
+    <div class="flex items-center gap-1 bg-[#f2f2f2] dark:bg-[#1f1f1f] p-1 rounded-[8px] border border-[#ebebeb] dark:border-[#333333]">
       <button
         type="button"
         id="mode-proportional-btn"
-        class="stoich-mode-tab text-xs font-medium px-3 py-1 rounded-[6px] bg-white text-[#171717] shadow-[0px_1px_1px_rgba(0,0,0,0.04)] transition-all"
+        class="stoich-mode-tab text-xs font-medium px-3 py-1 rounded-[6px] bg-white dark:bg-[#121212] text-[#171717] dark:text-white shadow-[0px_1px_1px_rgba(0,0,0,0.04)] transition-all cursor-pointer"
       >
-        Proportional Solver
+        {t('stoichiometry.tabProportional')}
       </button>
       <button
         type="button"
         id="mode-limiting-btn"
-        class="stoich-mode-tab text-xs font-medium px-3 py-1 rounded-[6px] text-[#4d4d4d] hover:text-[#171717] transition-all"
+        class="stoich-mode-tab text-xs font-medium px-3 py-1 rounded-[6px] text-[#4d4d4d] dark:text-[#a1a1a1] hover:text-[#171717] dark:hover:text-white transition-all cursor-pointer"
       >
-        Limiting Reagent & % Yield
+        {t('stoichiometry.tabLimiting')}
       </button>
     </div>
   </div>
@@ -44,41 +53,41 @@
     <div class="overflow-x-auto">
       <table class="w-full text-left text-xs">
         <thead>
-          <tr class="border-b border-[#ebebeb] text-[#8f8f8f] font-mono uppercase text-[11px]">
-            <th class="pb-3 font-medium">Role</th>
-            <th class="pb-3 font-medium">Compound</th>
-            <th class="pb-3 font-medium">Mole Ratio</th>
-            <th class="pb-3 font-medium">Molar Mass</th>
-            <th class="pb-3 font-medium min-w-48">Input / Calculated Amount</th>
-            <th class="pb-3 font-medium">Moles (mol)</th>
-            <th class="pb-3 font-medium">Mass (g)</th>
-            <th class="pb-3 font-medium">Gas at STP (L)</th>
+          <tr class="border-b border-[#ebebeb] dark:border-[#262626] text-[#8f8f8f] dark:text-[#737373] font-mono uppercase text-[11px]">
+            <th class="pb-3 font-medium">{t('stoichiometry.colRole')}</th>
+            <th class="pb-3 font-medium">{t('stoichiometry.colCompound')}</th>
+            <th class="pb-3 font-medium">{t('stoichiometry.colRatio')}</th>
+            <th class="pb-3 font-medium">{t('stoichiometry.colMolarMass')}</th>
+            <th class="pb-3 font-medium min-w-48">{t('stoichiometry.colInput')}</th>
+            <th class="pb-3 font-medium">{t('stoichiometry.colMoles')}</th>
+            <th class="pb-3 font-medium">{t('stoichiometry.colMass')}</th>
+            <th class="pb-3 font-medium">{t('stoichiometry.colGas')}</th>
           </tr>
         </thead>
-        <tbody id="stoichiometry-tbody" class="divide-y divide-[#ebebeb]/70">
+        <tbody id="stoichiometry-tbody" class="divide-y divide-[#ebebeb]/70 dark:divide-[#262626]">
           <!-- Populated dynamically via JS -->
         </tbody>
       </table>
     </div>
 
-    <div class="mt-4 pt-3 border-t border-[#ebebeb] flex flex-wrap items-center justify-between text-xs text-[#8f8f8f] font-mono">
+    <div class="mt-4 pt-3 border-t border-[#ebebeb] dark:border-[#262626] flex flex-wrap items-center justify-between text-xs text-[#8f8f8f] dark:text-[#737373] font-mono">
       <div>
-        <span>Standard Temperature & Pressure (STP): 0°C, 1 atm • 1 mol ideal gas = 22.414 L</span>
+        <span>{t('stoichiometry.stpNote')}</span>
       </div>
       <div>
-        <span>Avogadro's constant: 6.022 × 10²³ particles/mol</span>
+        <span>{t('stoichiometry.avogadroNote')}</span>
       </div>
     </div>
   </div>
 
   <!-- Mode 2: Limiting Reagent & % Yield View -->
-  <div id="limiting-view" class="hidden p-6 bg-[#fafafa]/50">
-    <div class="mb-5">
-      <h4 class="text-sm font-semibold text-[#171717]">
-        Limiting Reactant & Theoretical Yield Calculator
+  <div id="limiting-view" class="hidden p-6 bg-[#fafafa]/50 dark:bg-[#0a0a0a]/50">
+    <div id="limiting-reagent" class="mb-5 scroll-mt-20">
+      <h4 class="text-sm font-semibold text-[#171717] dark:text-[#ededed]">
+        {t('stoichiometry.limitingTitle')}
       </h4>
-      <p class="text-xs text-[#8f8f8f] mt-0.5">
-        Enter the available quantities for multiple reactants. The algorithm determines which substance will be completely consumed first and calculates excess unreacted reagents.
+      <p class="text-xs text-[#8f8f8f] dark:text-[#737373] mt-0.5">
+        {t('stoichiometry.limitingSubtitle')}
       </p>
     </div>
 
@@ -93,36 +102,42 @@
     </div>
 
     <!-- Optional Percent Yield Calculator Box -->
-    <div class="mt-6 p-4 rounded-xl bg-white border border-[#ebebeb] shadow-[0px_1px_1px_rgba(0,0,0,0.03)]">
+    <div class="mt-6 p-4 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.03)] transition-colors">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span class="text-xs font-mono uppercase font-semibold text-[#171717] tracking-wider">
-            Percent Yield Calculator (%)
+          <span class="text-xs font-mono uppercase font-semibold text-[#171717] dark:text-[#ededed] tracking-wider">
+            {t('stoichiometry.percentYieldTitle')}
           </span>
-          <p class="text-xs text-[#8f8f8f] mt-0.5">
-            If you conducted this lab experiment, enter your actual isolated mass of product to compute the reaction efficiency.
+          <p class="text-xs text-[#8f8f8f] dark:text-[#737373] mt-0.5">
+            {t('stoichiometry.percentYieldSubtitle')}
           </p>
         </div>
 
-        <div class="flex items-center gap-3">
-          <div class="flex items-center gap-2">
-            <label for="actual-yield-input" class="text-xs font-mono text-[#4d4d4d]">Actual Yield:</label>
-            <input
-              type="number"
-              id="actual-yield-input"
-              step="any"
-              placeholder="e.g. 18.5"
-              class="w-24 h-8 px-2.5 bg-[#fafafa] border border-[#ebebeb] rounded-[6px] text-xs font-mono text-[#171717] focus:outline-none focus:border-[#171717]"
-            />
-            <span class="text-xs text-[#8f8f8f] font-mono">grams</span>
-          </div>
-
-          <div id="percent-yield-badge" class="hidden text-xs font-mono font-semibold px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-            Yield: --%
-          </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <label for="actual-yield-input" class="text-xs text-[#4d4d4d] dark:text-[#a1a1a1] font-mono">
+            {t('stoichiometry.actualYieldLabel')}
+          </label>
+          <input
+            type="number"
+            id="actual-yield-input"
+            step="any"
+            min="0"
+            placeholder="e.g. 85.5"
+            class="w-28 h-8 px-2.5 rounded-[6px] border border-[#ebebeb] dark:border-[#333333] bg-white dark:bg-[#171717] text-xs font-mono text-[#171717] dark:text-[#ededed] focus:outline-none focus:border-[#171717] dark:focus:border-white"
+          />
+          <button
+            type="button"
+            id="calculate-yield-btn"
+            class="h-8 px-3 rounded-[6px] bg-[#171717] dark:bg-white text-white dark:text-black text-xs font-medium hover:bg-[#333333] dark:hover:bg-[#e5e5e5] transition-all cursor-pointer shadow-sm"
+          >
+            {t('stoichiometry.calcYieldBtn')}
+          </button>
         </div>
+      </div>
+
+      <div id="percent-yield-badge" class="hidden mt-3 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs font-mono text-emerald-800 dark:text-emerald-300">
+        <!-- Result filled dynamically -->
       </div>
     </div>
   </div>
 </div>
-

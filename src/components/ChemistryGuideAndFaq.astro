@@ -1,126 +1,128 @@
 ---
-const faqs = [
-  {
-    q: 'Why do chemical equations need to be balanced?',
-    a: 'According to the Law of Conservation of Mass established by Antoine Lavoisier in 1789, matter can neither be created nor destroyed in a chemical reaction. Therefore, the total number of atoms of each element on the reactant side (left) must strictly equal the total number of atoms on the product side (right).'
-  },
-  {
-    q: 'How does our algebraic balancing solver work?',
-    a: 'Unlike naive trial-and-error inspection, our engine sets up a system of linear homogeneous equations using conservation of mass and electrical charge matrices (A · c = 0). It performs exact rational Gaussian elimination to identify the null space basis, then scales the rational values by their Least Common Multiple (LCM) to produce the smallest whole-number integers.'
-  },
-  {
-    q: 'How does the interactive stoichiometric table work?',
-    a: 'Stoichiometry calculates the quantitative relationships between reactants and products. In our live table, entering an amount for any single substance (in grams, moles, liters at STP, or molecules) immediately computes the proportional stoichiometric amounts of all other substances using exact mole-to-mole ratios.'
-  },
-  {
-    q: 'What is a limiting reactant (or limiting reagent)?',
-    a: 'In real chemical reactions, reactants are rarely present in exact stoichiometric proportions. The limiting reactant is the chemical species that is completely consumed first, dictating the maximum theoretical yield of products. All other reactants that have leftover unreacted mass are classified as excess reagents.'
-  },
-  {
-    q: 'Can this balancer solve redox and ionic equations with charges?',
-    a: 'Yes! You can balance ionic equations with charges such as Fe²⁺ + Cr₂O₇²⁻ + H⁺ → Fe³⁺ + Cr³⁺ + H₂O. The solver guarantees both conservation of mass for every chemical element and net conservation of electrical charge.'
-  },
-  {
-    q: 'How do I input hydrates like copper sulfate pentahydrate?',
-    a: 'You can use an asterisk (*) or middle dot (·). For example, typing CuSO4*5H2O or FeSO4·7H2O will correctly parse the 5 water molecules of hydration and calculate the complete compound molar mass.'
-  }
-];
+// ChemistryGuideAndFaq.astro
+// Educational chemical reaction classifications and SEO-optimized FAQ with JSON-LD FAQPage schema.
+import { reactionGuideTranslations } from '../i18n/reactions';
+import { faqTranslations, getFaqJsonLd } from '../i18n/faq';
+import type { Lang } from '../i18n/ui';
 
-const reactionTypesGuide = [
-  {
-    name: 'Synthesis (Combination)',
-    formula: 'A + B → AB',
-    desc: 'Two or more elements or simpler compounds unite to produce a single product.',
-    example: '2H₂ + O₂ → 2H₂O'
-  },
-  {
-    name: 'Decomposition',
-    formula: 'AB → A + B',
-    desc: 'A single complex compound breaks down into two or more elements or simpler substances.',
-    example: '2H₂O₂ → 2H₂O + O₂'
-  },
-  {
-    name: 'Single Replacement',
-    formula: 'A + BC → B + AC',
-    desc: 'A more reactive elemental metal or halogen displaces another from a compound.',
-    example: 'Zn + 2HCl → ZnCl₂ + H₂'
-  },
-  {
-    name: 'Double Replacement',
-    formula: 'AB + CD → AD + CB',
-    desc: 'Two ionic compounds in solution exchange cations and anions to form a precipitate or gas.',
-    example: 'AgNO₃ + NaCl → AgCl + NaNO₃'
-  },
-  {
-    name: 'Combustion',
-    formula: 'Fuel + O₂ → CO₂ + H₂O',
-    desc: 'Exothermic oxidation of hydrocarbons releasing thermal energy, light, carbon dioxide, and water.',
-    example: 'CH₄ + 2O₂ → CO₂ + 2H₂O'
-  },
-  {
-    name: 'Acid-Base Neutralization',
-    formula: 'HA + BOH → BA + H₂O',
-    desc: 'Proton transfer between acid and base forming water and an ionic salt.',
-    example: 'HCl + NaOH → NaCl + H₂O'
-  }
-];
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+const reactionGuide = reactionGuideTranslations[lang] || reactionGuideTranslations.en;
+const faqSection = faqTranslations[lang] || faqTranslations.en;
+const faqJsonLd = getFaqJsonLd(lang);
 ---
 
 <section id="faq" class="mt-24 scroll-mt-20">
+  <!-- JSON-LD FAQPage Schema Markup for SEO in current language -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqJsonLd, null, 2)} />
+
   <!-- Educational Reaction Guide Grid -->
-  <div class="mb-16">
+  <div class="mb-20">
     <div class="flex items-center gap-2 mb-1.5">
-      <span class="w-2 h-2 rounded-full bg-[#171717]"></span>
-      <span class="text-xs font-mono font-medium uppercase text-[#8f8f8f] tracking-wider">
-        Chemistry Guide
+      <span class="w-2 h-2 rounded-full bg-[#171717] dark:bg-white"></span>
+      <span class="text-xs font-mono font-medium uppercase text-[#8f8f8f] dark:text-[#737373] tracking-wider">
+        {reactionGuide.eyebrow}
       </span>
     </div>
-    <h2 class="text-2xl sm:text-3xl font-semibold text-[#171717] tracking-[-1.28px]">
-      Major Types of Chemical Reactions
+    <h2 class="text-2xl sm:text-3xl font-semibold text-[#171717] dark:text-[#ededed] tracking-[-1.28px]">
+      {reactionGuide.title}
     </h2>
-    <p class="text-xs sm:text-sm text-[#4d4d4d] mt-1 max-w-xl">
-      Reference guide for the fundamental reaction types recognized and classified by our engine.
+    <p class="text-xs sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] mt-1 max-w-xl">
+      {reactionGuide.subtitle}
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-      {reactionTypesGuide.map((t) => (
-        <div class="p-5 rounded-xl bg-white border border-[#ebebeb] shadow-[0px_1px_1px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+      {reactionGuide.items.map((t) => (
+        <div class="p-5 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-colors">
           <div>
-            <div class="text-[11px] font-mono font-medium text-[#0070f3] bg-[#d3e5ff]/50 px-2 py-0.5 rounded-full inline-block mb-2 border border-[#0070f3]/20">
+            <div class="text-[11px] font-mono font-medium text-[#0070f3] dark:text-[#60a5fa] bg-[#d3e5ff]/50 dark:bg-[#1e3a8a]/40 px-2 py-0.5 rounded-full inline-block mb-2 border border-[#0070f3]/20 dark:border-[#3b82f6]/30">
               {t.formula}
             </div>
-            <h3 class="text-sm font-semibold text-[#171717]">{t.name}</h3>
-            <p class="text-xs text-[#8f8f8f] mt-1.5 leading-relaxed">{t.desc}</p>
+            <h3 class="text-sm font-semibold text-[#171717] dark:text-[#ededed]">{t.name}</h3>
+            <p class="text-xs text-[#8f8f8f] dark:text-[#737373] mt-1.5 leading-relaxed">{t.desc}</p>
           </div>
-          <div class="mt-4 pt-3 border-t border-[#ebebeb]/60 flex items-center justify-between text-xs font-mono text-[#4d4d4d]">
-            <span class="text-[10px] text-[#a1a1a1] uppercase">Example:</span>
-            <span>{t.example}</span>
+          <div class="mt-4 pt-3 border-t border-[#ebebeb]/60 dark:border-[#262626] flex items-center justify-between text-xs font-mono text-[#4d4d4d] dark:text-[#a1a1a1]">
+            <span class="text-[11px] text-[#8f8f8f] dark:text-[#737373]">Example:</span>
+            <span class="font-semibold text-[#171717] dark:text-white">{t.example}</span>
           </div>
         </div>
       ))}
     </div>
   </div>
 
-  <!-- Frequently Asked Questions -->
+  <!-- Primary Chemistry FAQ Section -->
   <div>
     <div class="flex items-center gap-2 mb-1.5">
-      <span class="w-2 h-2 rounded-full bg-[#171717]"></span>
-      <span class="text-xs font-mono font-medium uppercase text-[#8f8f8f] tracking-wider">
-        Frequently Asked Questions
+      <span class="w-2 h-2 rounded-full bg-[#171717] dark:bg-white"></span>
+      <span class="text-xs font-mono font-medium uppercase text-[#8f8f8f] dark:text-[#737373] tracking-wider">
+        {faqSection.eyebrow}
       </span>
     </div>
-    <h2 class="text-2xl sm:text-3xl font-semibold text-[#171717] tracking-[-1.28px]">
-      Everything You Need to Know
+    <h2 class="text-2xl sm:text-3xl font-semibold text-[#171717] dark:text-[#ededed] tracking-[-1.28px]">
+      {faqSection.title}
     </h2>
+    <p class="text-xs sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] mt-1 max-w-xl">
+      {faqSection.subtitle}
+    </p>
 
-    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-      {faqs.map((faq) => (
-        <div class="p-5 rounded-xl bg-white border border-[#ebebeb] shadow-[0px_1px_1px_rgba(0,0,0,0.03)]">
-          <h3 class="text-sm font-semibold text-[#171717] mb-2">{faq.q}</h3>
-          <p class="text-xs text-[#4d4d4d] leading-relaxed">{faq.a}</p>
+    <!-- FAQ Accordion List -->
+    <div class="mt-8 space-y-3">
+      {faqSection.faqs.map((faq, index) => (
+        <div class="faq-card border border-[#ebebeb] dark:border-[#262626] bg-white dark:bg-[#121212] rounded-xl overflow-hidden transition-all shadow-[0px_1px_1px_rgba(0,0,0,0.02)]">
+          <button
+            type="button"
+            class="faq-question-btn w-full px-5 py-4 text-left flex items-center justify-between gap-4 hover:bg-[#fafafa] dark:hover:bg-[#171717] transition-colors cursor-pointer"
+            aria-expanded="false"
+            data-index={index}
+          >
+            <div class="flex items-center gap-3">
+              <span class="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-[#f2f2f2] dark:bg-[#1f1f1f] text-[#4d4d4d] dark:text-[#a1a1a1] border border-[#ebebeb] dark:border-[#333333]">
+                {faq.category}
+              </span>
+              <span class="text-sm font-semibold text-[#171717] dark:text-[#ededed]">
+                {faq.question}
+              </span>
+            </div>
+            <svg class="faq-chevron w-4 h-4 text-[#8f8f8f] dark:text-[#737373] shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5 pt-1 text-xs text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed border-t border-[#ebebeb]/60 dark:border-[#262626] prose prose-xs dark:prose-invert max-w-none">
+            <Fragment set:html={faq.acceptedAnswer} />
+          </div>
         </div>
       ))}
     </div>
   </div>
 </section>
 
+<script>
+  function setupFaqAccordion() {
+    const btns = document.querySelectorAll('.faq-question-btn');
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.faq-card');
+        if (!card) return;
+        const answer = card.querySelector('.faq-answer');
+        const chevron = card.querySelector('.faq-chevron');
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+        if (isExpanded) {
+          btn.setAttribute('aria-expanded', 'false');
+          answer?.classList.add('hidden');
+          chevron?.classList.remove('rotate-180');
+        } else {
+          btn.setAttribute('aria-expanded', 'true');
+          answer?.classList.remove('hidden');
+          chevron?.classList.add('rotate-180');
+        }
+      });
+    });
+  }
+
+  setupFaqAccordion();
+  document.addEventListener('astro:page-load', setupFaqAccordion);
+</script>

@@ -1,0 +1,213 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Contact Us - Chemical Equation Balancer Support & Inquiries"
+  description="Contact the Balance Chemical Equation team for feedback, bug reports, equation balancing inquiries, or academic collaborations."
+  currentPath="/contact-us"
+  lang="en"
+>
+  <div class="relative py-12 md:py-20 border-b border-[#ebebeb] dark:border-[#262626] overflow-hidden">
+    <!-- Hero Mesh Glow -->
+    <div class="absolute inset-0 hero-mesh-gradient pointer-events-none opacity-60"></div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs font-mono text-[#8f8f8f] dark:text-[#737373] mb-6">
+        <a href="/" class="hover:text-[#171717] dark:hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-[#171717] dark:text-[#ededed] font-medium">Contact Us</span>
+      </nav>
+
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] text-[#171717] dark:text-[#ededed] text-xs font-mono font-medium mb-4 shadow-[0px_1px_1px_rgba(0,0,0,0.04)]">
+        <span class="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse"></span>
+        <span>SUPPORT & INQUIRIES</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-1.5px] text-[#171717] dark:text-white leading-tight">
+        We're Here to Help
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed">
+        Have questions about an equation, suggestions for new stoichiometry capabilities, or want to report an unexpected reaction edge case? We welcome feedback from educators, students, and chemistry researchers.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <!-- Left Contact Info & Direct Links (1 col) -->
+      <div class="md:col-span-1 space-y-6">
+        <div class="p-6 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] space-y-4">
+          <div class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0070f3]">
+            Direct Contact
+          </div>
+          
+          <div class="space-y-3 text-xs sm:text-sm">
+            <div>
+              <div class="font-medium text-[#171717] dark:text-white">General & Support</div>
+              <a href="mailto:support@balancechemicalequation.com" class="font-mono text-[#0070f3] hover:underline break-all">
+                support@balancechemicalequation.com
+              </a>
+            </div>
+
+            <div class="pt-2 border-t border-[#f2f2f2] dark:border-[#262626]">
+              <div class="font-medium text-[#171717] dark:text-white">Academic Partnerships</div>
+              <a href="mailto:contact@balancechemicalequation.com" class="font-mono text-[#0070f3] hover:underline break-all">
+                contact@balancechemicalequation.com
+              </a>
+            </div>
+
+            <div class="pt-2 border-t border-[#f2f2f2] dark:border-[#262626]">
+              <div class="font-medium text-[#171717] dark:text-white">Response Time</div>
+              <div class="text-xs text-[#8f8f8f] dark:text-[#737373]">
+                Typically within 24–48 hours on weekdays.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Tips Callout -->
+        <div class="p-5 rounded-xl bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#2e2e2e] space-y-2">
+          <h4 class="text-xs font-mono font-semibold text-[#171717] dark:text-white uppercase tracking-wider flex items-center gap-1.5">
+            <span>💡</span> Fast Equation Tip
+          </h4>
+          <p class="text-xs text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed">
+            Ensure element symbols use correct capitalization. For instance, write <code class="font-mono text-[#0070f3]">Co</code> for Cobalt, but <code class="font-mono text-[#0070f3]">CO</code> for Carbon Monoxide.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Interactive Contact Form (2 cols) -->
+      <div class="md:col-span-2">
+        <div class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]">
+          <h2 class="text-xl font-semibold text-[#171717] dark:text-white mb-2">
+            Send Us a Message
+          </h2>
+          <p class="text-xs sm:text-sm text-[#8f8f8f] dark:text-[#737373] mb-6">
+            Fill in the form below and our team will get back to you promptly.
+          </p>
+
+          <form id="contact-form" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Name -->
+              <div>
+                <label for="contact-name" class="block text-xs font-medium text-[#171717] dark:text-[#ededed] mb-1">
+                  Full Name <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  required
+                  placeholder="e.g. Marie Curie"
+                  class="w-full px-3 py-2 text-sm rounded-lg bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] text-[#171717] dark:text-white placeholder:text-[#a1a1a1] dark:placeholder:text-[#525252] focus:outline-none focus:border-[#0070f3] dark:focus:border-[#0070f3] transition-colors"
+                />
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label for="contact-email" class="block text-xs font-medium text-[#171717] dark:text-[#ededed] mb-1">
+                  Email Address <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  required
+                  placeholder="name@institution.edu"
+                  class="w-full px-3 py-2 text-sm rounded-lg bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] text-[#171717] dark:text-white placeholder:text-[#a1a1a1] dark:placeholder:text-[#525252] focus:outline-none focus:border-[#0070f3] dark:focus:border-[#0070f3] transition-colors"
+                />
+              </div>
+            </div>
+
+            <!-- Category / Subject -->
+            <div>
+              <label for="contact-category" class="block text-xs font-medium text-[#171717] dark:text-[#ededed] mb-1">
+                Subject Category <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="contact-category"
+                name="category"
+                required
+                class="w-full px-3 py-2 text-sm rounded-lg bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] text-[#171717] dark:text-white focus:outline-none focus:border-[#0070f3] dark:focus:border-[#0070f3] transition-colors"
+              >
+                <option value="equation-feedback">Equation Balancer Feedback or Bug Report</option>
+                <option value="stoichiometry-feature">Stoichiometry / Feature Request</option>
+                <option value="periodic-table">Periodic Table Keypad Question</option>
+                <option value="academic-collaboration">Academic or Classroom Usage</option>
+                <option value="general">General Inquiries</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label for="contact-message" class="block text-xs font-medium text-[#171717] dark:text-[#ededed] mb-1">
+                Your Message <span class="text-red-500">*</span>
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="5"
+                required
+                placeholder="Include any chemical formulas, steps observed, or details of your request..."
+                class="w-full px-3 py-2 text-sm rounded-lg bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] text-[#171717] dark:text-white placeholder:text-[#a1a1a1] dark:placeholder:text-[#525252] focus:outline-none focus:border-[#0070f3] dark:focus:border-[#0070f3] transition-colors resize-y"
+              ></textarea>
+            </div>
+
+            <!-- Success Alert (Hidden by default) -->
+            <div id="contact-success" class="hidden p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-xs sm:text-sm">
+              <div class="font-semibold flex items-center gap-1.5 mb-1">
+                <span>✓</span> Message Prepared!
+              </div>
+              <p>
+                Opening your email client to dispatch your message to <span class="font-mono">support@balancechemicalequation.com</span>. Thank you for helping us improve our chemistry engine!
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              id="contact-submit-btn"
+              class="w-full sm:w-auto px-6 py-2.5 rounded-full bg-[#171717] dark:bg-white text-white dark:text-black font-medium text-xs sm:text-sm hover:bg-[#333333] dark:hover:bg-[#e5e5e5] transition-all shadow-sm cursor-pointer"
+            >
+              Send Message →
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const successBox = document.getElementById('contact-success');
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nameInput = document.getElementById('contact-name') as HTMLInputElement | null;
+        const emailInput = document.getElementById('contact-email') as HTMLInputElement | null;
+        const catInput = document.getElementById('contact-category') as HTMLSelectElement | null;
+        const msgInput = document.getElementById('contact-message') as HTMLTextAreaElement | null;
+
+        const name = nameInput?.value || '';
+        const email = emailInput?.value || '';
+        const category = catInput?.value || 'General Inquiry';
+        const message = msgInput?.value || '';
+
+        const subject = encodeURIComponent(`[${category}] Balance Chemical Equation inquiry from ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCategory: ${category}\n\nMessage:\n${message}`);
+
+        if (successBox) {
+          successBox.classList.remove('hidden');
+        }
+
+        // Open mailto link with pre-filled parameters
+        setTimeout(() => {
+          window.location.href = `mailto:support@balancechemicalequation.com?subject=${subject}&body=${body}`;
+        }, 300);
+      });
+    }
+  </script>
+</Layout>
+

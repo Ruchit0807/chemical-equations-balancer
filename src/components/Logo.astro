@@ -1,0 +1,42 @@
+---
+interface Props {
+  class?: string;
+  themeAdaptive?: boolean;
+}
+
+const {
+  class: className = "w-8 h-8",
+  themeAdaptive = true
+} = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 600 600"
+  class={className}
+  fill="none"
+  role="img"
+  aria-label="Balance Chemical Equation Logo"
+>
+  <rect
+    x="36"
+    y="36"
+    width="528"
+    height="528"
+    rx="86"
+    ry="86"
+    class={themeAdaptive ? "fill-[#000000] dark:fill-white transition-colors" : "fill-[#000000]"}
+  />
+  <g
+    transform="translate(111.5, 111.5) scale(15.708333)"
+    class={themeAdaptive ? "stroke-white dark:stroke-[#000000] transition-colors" : "stroke-white"}
+    stroke-width="1.59"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M7 10h10" />
+    <path d="M7 14h10" />
+    <circle cx="12" cy="12" r="10" />
+  </g>
+</svg>
+

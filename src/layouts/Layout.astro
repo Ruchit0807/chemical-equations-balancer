@@ -1,39 +1,149 @@
 ---
 import '../styles/global.css';
+import Logo from '../components/Logo.astro';
+import LanguagePicker from '../components/LanguagePicker.astro';
+import { languages, defaultLang, type Lang } from '../i18n/ui';
+import { getLangFromUrl, useTranslations, useTranslatedPath, getAbsoluteLocaleUrl, getOgLocale } from '../i18n/utils';
 
 interface Props {
   title?: string;
   description?: string;
   canonical?: string;
+  ogImage?: string;
+  lang?: Lang;
+  currentPath?: string;
+  keywords?: string;
 }
 
-const {
-  title = 'Balance Chemical Equation - Free Stoichiometry & Reaction Balancer',
-  description = 'Instantly balance chemical equations with exact integer coefficients, interactive periodic table input, live bidirectional stoichiometry calculator, and reaction type classification.',
-  canonical = 'https://balancechemicalequation.com/'
-} = Astro.props;
+const currentLang: Lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const currentPath: string = Astro.props.currentPath || Astro.url.pathname;
+const t = useTranslations(currentLang);
+const translatePath = useTranslatedPath(currentLang);
+
+const siteUrl = 'https://balancechemicalequation.com';
+
+const title = Astro.props.title || t('seo.title');
+const description = Astro.props.description || t('seo.description');
+const keywords = Astro.props.keywords || t('seo.keywords');
+const canonical = Astro.props.canonical || getAbsoluteLocaleUrl(siteUrl, currentLang, currentPath);
+const ogImage = Astro.props.ogImage || 'https://balancechemicalequation.com/og-image.png';
+const ogLocale = getOgLocale(currentLang);
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={currentLang} class="scroll-smooth">
   <head>
+    <!-- Google Tag Manager / Google Analytics (GTM-5PMP95X6) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-5PMP95X6"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon & PWA Icons -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Balance Chemical Equation" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <!-- Open Graph / Meta -->
+    <!-- Hreflang Alternate Links for Multilingual SEO -->
+    <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl(siteUrl, defaultLang, currentPath)} />
+    {(Object.keys(languages) as Lang[]).map((l) => (
+      <link
+        rel="alternate"
+        hreflang={l}
+        href={getAbsoluteLocaleUrl(siteUrl, l, currentPath)}
+      />
+    ))}
+
+    <!-- Search Engine Directives -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="Balance Chemical Equation" />
+    <meta name="application-name" content="Balance Chemical Equation" />
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Balance Chemical Equation" />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Chemical Equation Balancer and Stoichiometry Calculator" />
+    <meta property="og:locale" content={ogLocale} />
+
+    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Chemical Equation Balancer and Stoichiometry Calculator" />
+
+    <!-- Mobile Theme Color -->
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+
+    <!-- Schema.org JSON-LD Structured Data for Enhanced Rich Snippets -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": `${canonical}#app`,
+          "name": title,
+          "url": canonical,
+          "inLanguage": currentLang,
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript",
+          "description": description,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "Chemical equation balancer with steps",
+            "Chemical equation balancer with phases (s, l, g, aq)",
+            "Online stoichiometry calculator with mass and mole conversions",
+            "Limiting reagent and percent yield calculator",
+            "Atom inventory audit and Law of Conservation of Mass verification",
+            "Interactive 18-column periodic table keypad",
+            "Practice chemical equations library with 1-click solver"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://balancechemicalequation.com/#website",
+          "name": "Balance Chemical Equation",
+          "alternateName": "Chemical Equation Balancer",
+          "url": "https://balancechemicalequation.com/",
+          "inLanguage": currentLang,
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://balancechemicalequation.com/?eq={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    })} />
 
     <!-- Google Fonts: Geist & Geist Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,146 +152,216 @@ const {
       href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Theme Toggle Anti-Flash Script -->
+    <script is:inline>
+      const savedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
   </head>
-  <body class="bg-[#fafafa] text-[#171717] font-sans antialiased selection:bg-[#171717] selection:text-white min-h-screen flex flex-col">
+  <body class="bg-[#fafafa] dark:bg-[#0a0a0a] text-[#171717] dark:text-[#ededed] font-sans antialiased selection:bg-[#171717] selection:text-white dark:selection:bg-white dark:selection:text-black min-h-screen flex flex-col transition-colors duration-200">
     <!-- Top Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-[#fafafa]/90 backdrop-blur-md border-b border-[#ebebeb]">
+    <header class="sticky top-0 z-50 bg-[#fafafa]/90 dark:bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#ebebeb] dark:border-[#262626] transition-colors">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <!-- Brand -->
-        <a href="/" class="flex items-center gap-2.5 group">
-          <div class="w-8 h-8 rounded-lg bg-[#171717] text-white flex items-center justify-center font-mono font-semibold text-sm shadow-sm group-hover:scale-105 transition-transform">
-            ⇌
+        <a href={translatePath('/')} class="flex items-center gap-2.5 group">
+          <div class="w-8 h-8 flex items-center justify-center shadow-sm rounded-lg overflow-hidden group-hover:scale-105 transition-transform">
+            <Logo class="w-8 h-8" />
           </div>
           <div class="flex flex-col">
-            <span class="font-semibold text-sm tracking-[-0.3px] text-[#171717] flex items-center gap-1.5">
+            <span class="font-semibold text-sm tracking-[-0.3px] text-[#171717] dark:text-[#ededed] flex items-center gap-1.5">
               BalanceChemicalEquation
-              <span class="text-[10px] uppercase font-mono font-medium px-1.5 py-0.5 rounded bg-[#f2f2f2] text-[#4d4d4d] border border-[#ebebeb]">v1.0</span>
+              <span class="text-[10px] uppercase font-mono font-medium px-1.5 py-0.5 rounded bg-[#f2f2f2] dark:bg-[#1f1f1f] text-[#4d4d4d] dark:text-[#a1a1a1] border border-[#ebebeb] dark:border-[#333333]">v1.0</span>
             </span>
-            <span class="text-[11px] text-[#8f8f8f] font-mono -mt-0.5">balancechemicalequation.com</span>
+            <span class="text-[11px] text-[#8f8f8f] dark:text-[#737373] font-mono -mt-0.5">balancechemicalequation.com</span>
           </div>
         </a>
 
         <!-- Desktop Nav Links -->
-        <nav class="hidden md:flex items-center gap-1 text-[13px] font-medium text-[#4d4d4d]">
-          <a href="#balancer" class="px-3 py-1.5 rounded-full hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors">
-            Equation Balancer
+        <nav class="hidden lg:flex items-center gap-1 text-[13px] font-medium text-[#4d4d4d] dark:text-[#a1a1a1]">
+          <a href={translatePath('/#balancer')} class="px-2.5 py-1.5 rounded-full hover:text-[#171717] dark:hover:text-white hover:bg-[#f2f2f2] dark:hover:bg-[#1f1f1f] transition-colors">
+            {t('nav.balancer')}
           </a>
-          <a href="#stoichiometry" class="px-3 py-1.5 rounded-full hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors">
-            Stoichiometry Table
+          <a href={translatePath('/#periodic-table-section')} class="px-2.5 py-1.5 rounded-full hover:text-[#171717] dark:hover:text-white hover:bg-[#f2f2f2] dark:hover:bg-[#1f1f1f] transition-colors">
+            {t('nav.periodicTable')}
           </a>
-          <a href="#limiting-reagent" class="px-3 py-1.5 rounded-full hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors">
-            Limiting Reagent
+          <a href={translatePath('/#stoichiometry')} class="px-2.5 py-1.5 rounded-full hover:text-[#171717] dark:hover:text-white hover:bg-[#f2f2f2] dark:hover:bg-[#1f1f1f] transition-colors">
+            {t('nav.stoichiometry')}
           </a>
-          <a href="#periodic-table" class="px-3 py-1.5 rounded-full hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors">
-            Periodic Table
+          <a href={translatePath('/#limiting-reagent')} class="px-2.5 py-1.5 rounded-full hover:text-[#171717] dark:hover:text-white hover:bg-[#f2f2f2] dark:hover:bg-[#1f1f1f] transition-colors">
+            {t('nav.limitingReagent')}
           </a>
-          <a href="#examples" class="px-3 py-1.5 rounded-full hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors">
-            Examples
+          <a href={translatePath('/#examples')} class="px-2.5 py-1.5 rounded-full hover:text-[#171717] dark:hover:text-white hover:bg-[#f2f2f2] dark:hover:bg-[#1f1f1f] transition-colors">
+            {t('nav.examples')}
           </a>
-          <a href="#faq" class="px-3 py-1.5 rounded-full hover:text-[#171717] hover:bg-[#f2f2f2] transition-colors">
-            FAQ & Guide
+          <a href={translatePath('/#faq')} class="px-2.5 py-1.5 rounded-full hover:text-[#171717] dark:hover:text-white hover:bg-[#f2f2f2] dark:hover:bg-[#1f1f1f] transition-colors">
+            {t('nav.faq')}
+          </a>
+          <a href={translatePath('/about-us')} class="px-2.5 py-1.5 rounded-full hover:text-[#171717] dark:hover:text-white hover:bg-[#f2f2f2] dark:hover:bg-[#1f1f1f] transition-colors">
+            {t('nav.about')}
           </a>
         </nav>
 
-        <!-- Right Quick Actions -->
+        <!-- Right Quick Actions: Language Picker + Theme Toggle -->
         <div class="flex items-center gap-2">
-          <a
-            href="#examples"
-            class="hidden sm:inline-flex items-center justify-center text-[13px] font-medium text-[#171717] bg-white border border-[#ebebeb] px-3.5 h-8 rounded-[6px] hover:border-[#d4d4d4] hover:bg-[#fafafa] transition-all shadow-[0px_1px_1px_rgba(0,0,0,0.04)]"
+          <!-- Language Dropdown -->
+          <LanguagePicker currentLang={currentLang} currentPath={currentPath} variant="header" />
+
+          <!-- Light/Dark Mode Switcher -->
+          <button
+            type="button"
+            id="theme-toggle-btn"
+            class="w-8 h-8 rounded-[6px] border border-[#ebebeb] dark:border-[#333333] bg-white dark:bg-[#171717] text-[#4d4d4d] dark:text-[#ededed] hover:border-[#171717] dark:hover:border-white flex items-center justify-center transition-all shadow-[0px_1px_1px_rgba(0,0,0,0.04)] cursor-pointer"
+            title="Toggle theme (Light / Dark)"
+            aria-label="Toggle theme"
           >
-            Explore Library
+            <!-- Sun icon (shown in dark mode) -->
+            <svg id="theme-sun-icon" class="w-4 h-4 hidden dark:block text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <!-- Moon icon (shown in light mode) -->
+            <svg id="theme-moon-icon" class="w-4 h-4 block dark:hidden text-[#4d4d4d]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+
+          <a
+            href={translatePath('/#examples')}
+            class="hidden sm:inline-flex items-center justify-center text-[13px] font-medium text-[#171717] dark:text-[#ededed] bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] px-3.5 h-8 rounded-[6px] hover:border-[#171717] dark:hover:border-white transition-all shadow-[0px_1px_1px_rgba(0,0,0,0.04)]"
+          >
+            {t('nav.examplesBtn')}
           </a>
+
           <a
-            href="#balancer"
-            class="inline-flex items-center justify-center text-[13px] font-medium text-white bg-[#171717] px-4 h-8 rounded-full hover:bg-[#333333] transition-all shadow-sm"
+            href={translatePath('/#balancer')}
+            class="inline-flex items-center justify-center text-[13px] font-medium text-white dark:text-black bg-[#171717] dark:bg-white px-4 h-8 rounded-full hover:bg-[#333333] dark:hover:bg-[#e5e5e5] transition-all shadow-sm"
           >
-            Balance Now
+            {t('nav.balanceBtn')}
           </a>
         </div>
       </div>
     </header>
 
     <!-- Main Content Slot -->
-    <main class="flex-1">
+    <main class="flex-1" data-lang={currentLang}>
       <slot />
     </main>
 
     <!-- Geist System Footer -->
-    <footer class="bg-white border-t border-[#ebebeb] mt-24">
+    <footer class="bg-white dark:bg-[#0f0f0f] border-t border-[#ebebeb] dark:border-[#262626] mt-24 transition-colors">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
           <!-- Col 1: Brand & Identity -->
           <div class="md:col-span-1 space-y-3">
             <div class="flex items-center gap-2">
-              <div class="w-6 h-6 rounded bg-[#171717] text-white flex items-center justify-center font-mono font-semibold text-xs">
-                ⇌
+              <div class="w-6 h-6 flex items-center justify-center shadow-sm rounded-[6px] overflow-hidden">
+                <Logo class="w-6 h-6" />
               </div>
-              <span class="font-semibold text-sm tracking-tight text-[#171717]">Balance Chemical Equation</span>
+              <span class="font-semibold text-sm tracking-tight text-[#171717] dark:text-[#ededed]">Balance Chemical Equation</span>
             </div>
-            <p class="text-xs text-[#8f8f8f] leading-relaxed">
-              An engineering-grade chemical reaction balancing engine, live bidirectional stoichiometry calculator, and interactive periodic table suite designed for chemistry students, educators, and scientists.
+            <p class="text-xs text-[#8f8f8f] dark:text-[#737373] leading-relaxed">
+              {t('footer.brandDesc')}
             </p>
-            <div class="text-[11px] font-mono text-[#a1a1a1]">
+            <div class="text-[11px] font-mono text-[#a1a1a1] dark:text-[#525252]">
               Domain: balancechemicalequation.com
             </div>
           </div>
 
           <!-- Col 2: Capabilities -->
           <div class="space-y-3">
-            <div class="text-xs font-mono font-medium uppercase text-[#8f8f8f] tracking-wider">
-              Solvers & Tools
+            <div class="text-xs font-mono font-medium uppercase text-[#8f8f8f] dark:text-[#737373] tracking-wider">
+              {t('footer.solversTitle')}
             </div>
-            <ul class="space-y-2 text-xs text-[#4d4d4d]">
-              <li><a href="#balancer" class="hover:text-[#171717] transition-colors">Instant Equation Balancer</a></li>
-              <li><a href="#stoichiometry" class="hover:text-[#171717] transition-colors">Bidirectional Stoichiometry</a></li>
-              <li><a href="#limiting-reagent" class="hover:text-[#171717] transition-colors">Limiting Reagent & Yield</a></li>
-              <li><a href="#periodic-table" class="hover:text-[#171717] transition-colors">Periodic Table Keypad</a></li>
-              <li><a href="#balancer" class="hover:text-[#171717] transition-colors">Redox & Ionic Balancing</a></li>
+            <ul class="space-y-2 text-xs text-[#4d4d4d] dark:text-[#a1a1a1]">
+              <li><a href={translatePath('/#balancer')} class="hover:text-[#171717] dark:hover:text-white transition-colors">{t('footer.solversBalancer')}</a></li>
+              <li><a href={translatePath('/#periodic-table-section')} class="hover:text-[#171717] dark:hover:text-white transition-colors">{t('footer.solversPeriodicTable')}</a></li>
+              <li><a href={translatePath('/#stoichiometry')} class="hover:text-[#171717] dark:hover:text-white transition-colors">{t('footer.solversStoichiometry')}</a></li>
+              <li><a href={translatePath('/#limiting-reagent')} class="hover:text-[#171717] dark:hover:text-white transition-colors">{t('footer.solversLimitingReagent')}</a></li>
+              <li><a href={translatePath('/#balancer')} class="hover:text-[#171717] dark:hover:text-white transition-colors">{t('footer.solversRedox')}</a></li>
             </ul>
           </div>
 
           <!-- Col 3: Reaction Types -->
           <div class="space-y-3">
-            <div class="text-xs font-mono font-medium uppercase text-[#8f8f8f] tracking-wider">
-              Reaction Types
+            <div class="text-xs font-mono font-medium uppercase text-[#8f8f8f] dark:text-[#737373] tracking-wider">
+              {t('footer.reactionTypesTitle')}
             </div>
-            <ul class="space-y-2 text-xs text-[#4d4d4d]">
-              <li><a href="#examples" class="hover:text-[#171717] transition-colors">Combustion Reactions</a></li>
-              <li><a href="#examples" class="hover:text-[#171717] transition-colors">Synthesis & Combination</a></li>
-              <li><a href="#examples" class="hover:text-[#171717] transition-colors">Decomposition Reactions</a></li>
-              <li><a href="#examples" class="hover:text-[#171717] transition-colors">Single & Double Displacement</a></li>
-              <li><a href="#examples" class="hover:text-[#171717] transition-colors">Acid-Base Neutralization</a></li>
+            <ul class="space-y-2 text-xs text-[#4d4d4d] dark:text-[#a1a1a1]">
+              <li><a href={translatePath('/#examples')} class="hover:text-[#171717] dark:hover:text-white transition-colors">Combustion</a></li>
+              <li><a href={translatePath('/#examples')} class="hover:text-[#171717] dark:hover:text-white transition-colors">Synthesis & Combination</a></li>
+              <li><a href={translatePath('/#examples')} class="hover:text-[#171717] dark:hover:text-white transition-colors">Decomposition</a></li>
+              <li><a href={translatePath('/#examples')} class="hover:text-[#171717] dark:hover:text-white transition-colors">Single & Double Displacement</a></li>
+              <li><a href={translatePath('/#examples')} class="hover:text-[#171717] dark:hover:text-white transition-colors">Acid-Base Neutralization</a></li>
             </ul>
           </div>
 
           <!-- Col 4: Reference & Standards -->
           <div class="space-y-3">
-            <div class="text-xs font-mono font-medium uppercase text-[#8f8f8f] tracking-wider">
-              Standards & Science
+            <div class="text-xs font-mono font-medium uppercase text-[#8f8f8f] dark:text-[#737373] tracking-wider">
+              {t('footer.standardsTitle')}
             </div>
-            <p class="text-xs text-[#8f8f8f] leading-relaxed">
-              Standard IUPAC atomic weights (2024 update). Exact rational Gaussian matrix reduction eliminates floating-point rounding errors.
+            <p class="text-xs text-[#8f8f8f] dark:text-[#737373] leading-relaxed">
+              {t('footer.standardsDesc')}
             </p>
             <div class="pt-2">
-              <span class="inline-flex items-center gap-1.5 text-[11px] font-mono text-[#0070f3] bg-[#d3e5ff]/50 px-2.5 py-1 rounded-full border border-[#0070f3]/20">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-mono text-[#0070f3] bg-[#d3e5ff]/50 dark:bg-[#0070f3]/20 px-2.5 py-1 rounded-full border border-[#0070f3]/20">
                 <span class="w-1.5 h-1.5 rounded-full bg-[#0070f3] animate-pulse"></span>
-                100% Client-Side Engine
+                {t('footer.clientEngine')}
               </span>
             </div>
           </div>
         </div>
 
-        <div class="mt-12 pt-8 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8f8f8f]">
+        <!-- Footer Language Selector Row -->
+        <div class="mt-10 pt-6 border-t border-[#f2f2f2] dark:border-[#1f1f1f]">
+          <LanguagePicker currentLang={currentLang} currentPath={currentPath} variant="footer" />
+        </div>
+
+        <!-- Legal & Company Links row -->
+        <div class="mt-6 pt-6 border-t border-[#f2f2f2] dark:border-[#1f1f1f] flex flex-wrap items-center justify-between gap-4 text-xs text-[#8f8f8f] dark:text-[#737373]">
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 font-medium">
+            <a href={translatePath('/about-us')} class="hover:text-[#171717] dark:hover:text-white transition-colors">{t('footer.aboutUs')}</a>
+            <a href={translatePath('/contact-us')} class="hover:text-[#171717] dark:hover:text-white transition-colors">{t('footer.contactUs')}</a>
+            <a href={translatePath('/privacy-policy')} class="hover:text-[#171717] dark:hover:text-white transition-colors">{t('footer.privacyPolicy')}</a>
+            <a href={translatePath('/terms-and-conditions')} class="hover:text-[#171717] dark:hover:text-white transition-colors">{t('footer.termsConditions')}</a>
+          </div>
+          <div class="font-mono text-[11px] text-[#a1a1a1] dark:text-[#525252]">
+            {t('footer.iupacRef')}
+          </div>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-[#ebebeb] dark:border-[#262626] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8f8f8f] dark:text-[#737373]">
           <div>
-            © {new Date().getFullYear()} <span class="font-medium text-[#171717]">balancechemicalequation.com</span>. All rights reserved.
+            © {new Date().getFullYear()} <span class="font-medium text-[#171717] dark:text-[#ededed]">balancechemicalequation.com</span>. {t('footer.allRightsReserved')}
           </div>
           <div class="flex items-center gap-4 font-mono text-[11px]">
-            <span>Conservation of Mass (Lavoisier)</span>
+            <span>{t('footer.massLaw')}</span>
             <span>•</span>
-            <a href="#balancer" class="hover:text-[#171717] transition-colors">Back to top ↑</a>
+            <a href={translatePath('/#balancer')} class="hover:text-[#171717] dark:hover:text-white transition-colors">{t('footer.backToTop')}</a>
           </div>
         </div>
       </div>
     </footer>
+
+    <!-- Theme Toggle Client Logic -->
+    <script>
+      const themeBtn = document.getElementById('theme-toggle-btn');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+          const isDark = document.documentElement.classList.contains('dark');
+          if (isDark) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+          } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+          }
+        });
+      }
+    </script>
   </body>
 </html>
