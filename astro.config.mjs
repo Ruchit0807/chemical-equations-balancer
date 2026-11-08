@@ -29,14 +29,18 @@ export default defineConfig({
         },
       },
       filter: (page) => {
-        // Exclude redirect aliases so only canonical pages appear in search index
+        // Exclude redirect aliases and error pages so only indexable content appears in search index
         const excluded = [
           'https://balancechemicalequation.com/about/',
           'https://balancechemicalequation.com/contact/',
           'https://balancechemicalequation.com/privacy/',
           'https://balancechemicalequation.com/terms/',
         ];
-        return !excluded.includes(page);
+        return (
+          !excluded.includes(page) &&
+          !page.includes('/404') &&
+          !page.includes('/500')
+        );
       },
     }),
   ],

@@ -13,10 +13,12 @@ interface Props {
   lang?: Lang;
   currentPath?: string;
   keywords?: string;
+  noindex?: boolean;
 }
 
 const currentLang: Lang = Astro.props.lang || getLangFromUrl(Astro.url);
 const currentPath: string = Astro.props.currentPath || Astro.url.pathname;
+const noindex = Astro.props.noindex || false;
 const t = useTranslations(currentLang);
 const translatePath = useTranslatedPath(currentLang);
 
@@ -58,19 +60,28 @@ const ogLocale = getOgLocale(currentLang);
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <!-- Hreflang Alternate Links for Multilingual SEO -->
-    <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl(siteUrl, defaultLang, currentPath)} />
-    {(Object.keys(languages) as Lang[]).map((l) => (
-      <link
-        rel="alternate"
-        hreflang={l}
-        href={getAbsoluteLocaleUrl(siteUrl, l, currentPath)}
-      />
-    ))}
+    {noindex ? (
+      <>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
+      </>
+    ) : (
+      <>
+        <!-- Hreflang Alternate Links for Multilingual SEO -->
+        <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl(siteUrl, defaultLang, currentPath)} />
+        {(Object.keys(languages) as Lang[]).map((l) => (
+          <link
+            rel="alternate"
+            hreflang={l}
+            href={getAbsoluteLocaleUrl(siteUrl, l, currentPath)}
+          />
+        ))}
 
-    <!-- Search Engine Directives -->
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <!-- Search Engine Directives -->
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      </>
+    )}
     <meta name="author" content="Balance Chemical Equation" />
     <meta name="application-name" content="Balance Chemical Equation" />
 
@@ -172,13 +183,9 @@ const ogLocale = getOgLocale(currentLang);
           <div class="w-8 h-8 flex items-center justify-center shadow-sm rounded-lg overflow-hidden group-hover:scale-105 transition-transform">
             <Logo class="w-8 h-8" />
           </div>
-          <div class="flex flex-col">
-            <span class="font-semibold text-sm tracking-[-0.3px] text-[#171717] dark:text-[#ededed] flex items-center gap-1.5">
-              BalanceChemicalEquation
-              <span class="text-[10px] uppercase font-mono font-medium px-1.5 py-0.5 rounded bg-[#f2f2f2] dark:bg-[#1f1f1f] text-[#4d4d4d] dark:text-[#a1a1a1] border border-[#ebebeb] dark:border-[#333333]">v1.0</span>
-            </span>
-            <span class="text-[11px] text-[#8f8f8f] dark:text-[#737373] font-mono -mt-0.5">balancechemicalequation.com</span>
-          </div>
+          <span class="font-semibold text-sm tracking-[-0.3px] text-[#171717] dark:text-[#ededed]">
+            BalanceChemicalEquation
+          </span>
         </a>
 
         <!-- Desktop Nav Links -->
