@@ -11,26 +11,26 @@ const { lang = 'en' } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<div id="results-wrapper" class="hidden mt-8 space-y-6">
+<div id="results-wrapper" class="hidden mt-6 sm:mt-8 space-y-5 sm:space-y-6">
   <!-- 1. Primary Balanced Equation Hero Card -->
-  <div class="p-6 sm:p-8 bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] rounded-2xl shadow-[0px_2px_4px_rgba(0,0,0,0.02)] transition-colors">
-    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#ebebeb] dark:border-[#262626]">
+  <div class="p-4 sm:p-6 md:p-8 bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] rounded-2xl shadow-[0px_2px_4px_rgba(0,0,0,0.02)] transition-colors">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#ebebeb] dark:border-[#262626]">
       <div class="flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
         <span class="text-xs font-mono font-semibold uppercase tracking-wider text-[#171717] dark:text-[#ededed]">
           {t('balancedEquation.title')}
         </span>
       </div>
 
       <!-- Quick Copy & Share Actions -->
-      <div class="flex items-center gap-1.5">
+      <div class="flex flex-wrap items-center gap-1.5">
         <button
           type="button"
           id="copy-equation-btn"
-          class="text-xs font-medium text-[#171717] dark:text-[#ededed] bg-[#fafafa] dark:bg-[#1a1a1a] hover:bg-[#f2f2f2] dark:hover:bg-[#252525] border border-[#ebebeb] dark:border-[#333333] px-3 py-1.5 rounded-[6px] transition-colors flex items-center gap-1.5 shadow-[0px_1px_1px_rgba(0,0,0,0.03)] cursor-pointer"
+          class="text-xs font-medium text-[#171717] dark:text-[#ededed] bg-[#fafafa] dark:bg-[#1a1a1a] hover:bg-[#f2f2f2] dark:hover:bg-[#252525] border border-[#ebebeb] dark:border-[#333333] px-3 py-2 sm:py-1.5 rounded-[6px] transition-colors flex items-center gap-1.5 shadow-[0px_1px_1px_rgba(0,0,0,0.03)] cursor-pointer whitespace-nowrap"
           title="Copy plain text equation"
         >
-          <svg class="w-3.5 h-3.5 text-[#8f8f8f] dark:text-[#737373]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="w-3.5 h-3.5 text-[#8f8f8f] dark:text-[#737373] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
           </svg>
           <span id="copy-btn-text">{t('balancedEquation.copyFormula')}</span>
@@ -39,7 +39,7 @@ const t = useTranslations(lang);
         <button
           type="button"
           id="copy-latex-btn"
-          class="text-xs font-medium text-[#171717] dark:text-[#ededed] bg-[#fafafa] dark:bg-[#1a1a1a] hover:bg-[#f2f2f2] dark:hover:bg-[#252525] border border-[#ebebeb] dark:border-[#333333] px-3 py-1.5 rounded-[6px] transition-colors flex items-center gap-1.5 shadow-[0px_1px_1px_rgba(0,0,0,0.03)] cursor-pointer"
+          class="text-xs font-medium text-[#171717] dark:text-[#ededed] bg-[#fafafa] dark:bg-[#1a1a1a] hover:bg-[#f2f2f2] dark:hover:bg-[#252525] border border-[#ebebeb] dark:border-[#333333] px-3 py-2 sm:py-1.5 rounded-[6px] transition-colors flex items-center gap-1.5 shadow-[0px_1px_1px_rgba(0,0,0,0.03)] cursor-pointer whitespace-nowrap"
           title="Copy LaTeX format"
         >
           <span class="font-mono text-[11px] text-[#8f8f8f] dark:text-[#737373]">TeX</span>
@@ -49,10 +49,10 @@ const t = useTranslations(lang);
         <button
           type="button"
           id="share-link-btn"
-          class="text-xs font-medium text-[#171717] dark:text-[#ededed] bg-[#fafafa] dark:bg-[#1a1a1a] hover:bg-[#f2f2f2] dark:hover:bg-[#252525] border border-[#ebebeb] dark:border-[#333333] px-3 py-1.5 rounded-[6px] transition-colors flex items-center gap-1.5 shadow-[0px_1px_1px_rgba(0,0,0,0.03)] cursor-pointer"
+          class="text-xs font-medium text-[#171717] dark:text-[#ededed] bg-[#fafafa] dark:bg-[#1a1a1a] hover:bg-[#f2f2f2] dark:hover:bg-[#252525] border border-[#ebebeb] dark:border-[#333333] px-3 py-2 sm:py-1.5 rounded-[6px] transition-colors flex items-center gap-1.5 shadow-[0px_1px_1px_rgba(0,0,0,0.03)] cursor-pointer whitespace-nowrap"
           title="Share direct URL"
         >
-          <svg class="w-3.5 h-3.5 text-[#8f8f8f] dark:text-[#737373]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="w-3.5 h-3.5 text-[#8f8f8f] dark:text-[#737373] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
           </svg>
           <span id="share-btn-text">{t('balancedEquation.share')}</span>
@@ -61,21 +61,21 @@ const t = useTranslations(lang);
     </div>
 
     <!-- Big Equation Display -->
-    <div class="py-8 text-center overflow-x-auto">
-      <div id="equation-display-container" class="inline-block text-2xl sm:text-3xl md:text-4xl font-mono font-medium tracking-tight text-[#171717] dark:text-white leading-relaxed select-all">
+    <div class="py-5 sm:py-8 text-center overflow-x-auto">
+      <div id="equation-display-container" class="inline-flex flex-wrap items-baseline justify-center gap-x-1 gap-y-2 text-lg sm:text-3xl md:text-4xl font-mono font-medium tracking-tight text-[#171717] dark:text-white leading-relaxed select-all">
         <!-- Formatted equation goes here -->
       </div>
     </div>
 
     <!-- Reaction Type & Chemistry Intelligence Banner -->
-    <div id="reaction-type-banner" class="mt-4 p-4 rounded-xl bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#262626] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 transition-colors">
-      <div class="flex items-start sm:items-center gap-3">
+    <div id="reaction-type-banner" class="mt-3 sm:mt-4 p-3.5 sm:p-4 rounded-xl bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#262626] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3 transition-colors">
+      <div class="flex flex-wrap items-center gap-2 sm:gap-3">
         <span class="text-xs font-mono uppercase text-[#8f8f8f] dark:text-[#737373]">{t('balancedEquation.reactionTypeLabel')}</span>
         <span id="reaction-type-badge" class="px-3 py-1 rounded-full text-xs font-semibold bg-[#171717] dark:bg-white text-white dark:text-black">
           Combustion
         </span>
       </div>
-      <p id="reaction-type-explanation" class="text-xs text-[#4d4d4d] dark:text-[#a1a1a1] sm:text-right max-w-xl">
+      <p id="reaction-type-explanation" class="text-xs text-[#4d4d4d] dark:text-[#a1a1a1] sm:text-right max-w-xl leading-relaxed">
         <!-- Rationale -->
       </p>
     </div>
@@ -85,11 +85,11 @@ const t = useTranslations(lang);
   <StoichiometryPlayground lang={lang} />
 
   <!-- 3. Atom Count & Mass Conservation Audit Table -->
-  <div class="p-6 bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] rounded-xl shadow-[0px_1px_1px_rgba(0,0,0,0.04)] transition-colors">
+  <div class="p-4 sm:p-6 bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] rounded-xl shadow-[0px_1px_1px_rgba(0,0,0,0.04)] transition-colors">
     <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#ebebeb] dark:border-[#262626]">
       <div>
         <div class="flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
           <h3 class="text-xs font-mono font-semibold uppercase text-[#171717] dark:text-[#ededed] tracking-wider">
             {t('balancedEquation.auditTitle')}
           </h3>
@@ -99,22 +99,28 @@ const t = useTranslations(lang);
         </p>
       </div>
 
-      <div id="mass-balance-pill" class="text-xs font-mono font-medium px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+      <div id="mass-balance-pill" class="text-[11px] sm:text-xs font-mono font-medium px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 max-w-full text-center">
         {t('balancedEquation.massBalancedPill')}
       </div>
     </div>
 
-    <div class="overflow-x-auto mt-4">
+    <!-- Mobile Atom Audit Cards (< sm) -->
+    <div id="atom-audit-mobile" class="sm:hidden mt-4 space-y-2.5">
+      <!-- Populated dynamically via JS -->
+    </div>
+
+    <!-- Desktop Atom Audit Table (>= sm) -->
+    <div class="hidden sm:block overflow-x-auto mt-4">
       <table class="w-full text-left text-xs">
         <thead>
           <tr class="border-b border-[#ebebeb] dark:border-[#262626] text-[#8f8f8f] dark:text-[#737373] font-mono uppercase text-[11px]">
-            <th class="pb-3 font-medium">{t('balancedEquation.colElement')}</th>
-            <th class="pb-3 font-medium">{t('balancedEquation.colElementName')}</th>
-            <th class="pb-3 font-medium text-center">{t('balancedEquation.colReactantAtoms')}</th>
-            <th class="pb-3 font-medium text-center"></th>
-            <th class="pb-3 font-medium text-center">{t('balancedEquation.colProductAtoms')}</th>
-            <th class="pb-3 font-medium">{t('balancedEquation.colStandardWeight')}</th>
-            <th class="pb-3 font-medium text-right">{t('balancedEquation.colStatus')}</th>
+            <th class="pb-3 pr-3 font-medium whitespace-nowrap">{t('balancedEquation.colElement')}</th>
+            <th class="pb-3 px-3 font-medium whitespace-nowrap">{t('balancedEquation.colElementName')}</th>
+            <th class="pb-3 px-3 font-medium text-center whitespace-nowrap">{t('balancedEquation.colReactantAtoms')}</th>
+            <th class="pb-3 px-2 font-medium text-center"></th>
+            <th class="pb-3 px-3 font-medium text-center whitespace-nowrap">{t('balancedEquation.colProductAtoms')}</th>
+            <th class="pb-3 px-3 font-medium whitespace-nowrap">{t('balancedEquation.colStandardWeight')}</th>
+            <th class="pb-3 pl-3 font-medium text-right whitespace-nowrap">{t('balancedEquation.colStatus')}</th>
           </tr>
         </thead>
         <tbody id="atom-audit-tbody" class="divide-y divide-[#ebebeb]/70 dark:divide-[#262626]">
@@ -129,21 +135,21 @@ const t = useTranslations(lang);
     <button
       type="button"
       id="toggle-steps-accordion-btn"
-      class="w-full px-6 py-4 bg-[#fafafa] dark:bg-[#171717] flex items-center justify-between text-left hover:bg-[#f2f2f2] dark:hover:bg-[#1f1f1f] transition-colors cursor-pointer"
+      class="w-full px-4 sm:px-6 py-3.5 sm:py-4 bg-[#fafafa] dark:bg-[#171717] flex items-center justify-between gap-3 text-left hover:bg-[#f2f2f2] dark:hover:bg-[#1f1f1f] transition-colors cursor-pointer"
     >
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-[#171717] dark:bg-white"></span>
-        <span class="text-xs font-mono font-semibold uppercase text-[#171717] dark:text-[#ededed] tracking-wider">
+      <div class="flex items-center gap-2 min-w-0">
+        <span class="w-2 h-2 rounded-full bg-[#171717] dark:bg-white shrink-0"></span>
+        <span class="text-xs font-mono font-semibold uppercase text-[#171717] dark:text-[#ededed] tracking-wider leading-snug">
           {t('balancedEquation.stepsTitle')}
         </span>
       </div>
-      <svg id="steps-chevron" class="w-4 h-4 text-[#8f8f8f] dark:text-[#737373] transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg id="steps-chevron" class="w-4 h-4 text-[#8f8f8f] dark:text-[#737373] shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg>
     </button>
 
-    <div id="steps-accordion-content" class="hidden p-6 space-y-5 border-t border-[#ebebeb] dark:border-[#262626] text-xs">
-      <div id="steps-list" class="space-y-4">
+    <div id="steps-accordion-content" class="hidden p-4 sm:p-6 space-y-4 sm:space-y-5 border-t border-[#ebebeb] dark:border-[#262626] text-xs">
+      <div id="steps-list" class="space-y-3 sm:space-y-4">
         <!-- Steps rendered via JS -->
       </div>
     </div>

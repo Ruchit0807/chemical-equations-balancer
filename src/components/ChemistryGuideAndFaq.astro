@@ -15,28 +15,28 @@ const faqSection = faqTranslations[lang] || faqTranslations.en;
 const faqJsonLd = getFaqJsonLd(lang);
 ---
 
-<section id="faq" class="mt-24 scroll-mt-20">
+<section id="faq" class="mt-14 sm:mt-24 mb-12 sm:mb-20 scroll-mt-20">
   <!-- JSON-LD FAQPage Schema Markup for SEO in current language -->
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqJsonLd, null, 2)} />
 
   <!-- Educational Reaction Guide Grid -->
-  <div class="mb-20">
+  <div class="mb-12 sm:mb-20">
     <div class="flex items-center gap-2 mb-1.5">
-      <span class="w-2 h-2 rounded-full bg-[#171717] dark:bg-white"></span>
+      <span class="w-2 h-2 rounded-full bg-[#171717] dark:bg-white shrink-0"></span>
       <span class="text-xs font-mono font-medium uppercase text-[#8f8f8f] dark:text-[#737373] tracking-wider">
         {reactionGuide.eyebrow}
       </span>
     </div>
-    <h2 class="text-2xl sm:text-3xl font-semibold text-[#171717] dark:text-[#ededed] tracking-[-1.28px]">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-[#171717] dark:text-[#ededed] tracking-tight sm:tracking-[-1.28px]">
       {reactionGuide.title}
     </h2>
-    <p class="text-xs sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] mt-1 max-w-xl">
+    <p class="text-[13px] sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] mt-1 max-w-xl leading-relaxed">
       {reactionGuide.subtitle}
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 mt-6 sm:mt-8">
       {reactionGuide.items.map((t) => (
-        <div class="p-5 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-colors">
+        <div class="p-4 sm:p-5 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-colors">
           <div>
             <div class="text-[11px] font-mono font-medium text-[#0070f3] dark:text-[#60a5fa] bg-[#d3e5ff]/50 dark:bg-[#1e3a8a]/40 px-2 py-0.5 rounded-full inline-block mb-2 border border-[#0070f3]/20 dark:border-[#3b82f6]/30">
               {t.formula}
@@ -44,9 +44,9 @@ const faqJsonLd = getFaqJsonLd(lang);
             <h3 class="text-sm font-semibold text-[#171717] dark:text-[#ededed]">{t.name}</h3>
             <p class="text-xs text-[#8f8f8f] dark:text-[#737373] mt-1.5 leading-relaxed">{t.desc}</p>
           </div>
-          <div class="mt-4 pt-3 border-t border-[#ebebeb]/60 dark:border-[#262626] flex items-center justify-between text-xs font-mono text-[#4d4d4d] dark:text-[#a1a1a1]">
-            <span class="text-[11px] text-[#8f8f8f] dark:text-[#737373]">Example:</span>
-            <span class="font-semibold text-[#171717] dark:text-white">{t.example}</span>
+          <div class="mt-4 pt-3 border-t border-[#ebebeb]/60 dark:border-[#262626] flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-[#4d4d4d] dark:text-[#a1a1a1]">
+            <span class="text-[11px] text-[#8f8f8f] dark:text-[#737373] shrink-0">Example:</span>
+            <span class="font-semibold text-[#171717] dark:text-white break-words">{t.example}</span>
           </div>
         </div>
       ))}
@@ -56,33 +56,33 @@ const faqJsonLd = getFaqJsonLd(lang);
   <!-- Primary Chemistry FAQ Section -->
   <div>
     <div class="flex items-center gap-2 mb-1.5">
-      <span class="w-2 h-2 rounded-full bg-[#171717] dark:bg-white"></span>
+      <span class="w-2 h-2 rounded-full bg-[#171717] dark:bg-white shrink-0"></span>
       <span class="text-xs font-mono font-medium uppercase text-[#8f8f8f] dark:text-[#737373] tracking-wider">
         {faqSection.eyebrow}
       </span>
     </div>
-    <h2 class="text-2xl sm:text-3xl font-semibold text-[#171717] dark:text-[#ededed] tracking-[-1.28px]">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-[#171717] dark:text-[#ededed] tracking-tight sm:tracking-[-1.28px]">
       {faqSection.title}
     </h2>
-    <p class="text-xs sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] mt-1 max-w-xl">
+    <p class="text-[13px] sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] mt-1 max-w-xl leading-relaxed">
       {faqSection.subtitle}
     </p>
 
     <!-- FAQ Accordion List -->
-    <div class="mt-8 space-y-3">
+    <div class="mt-6 sm:mt-8 space-y-2.5 sm:space-y-3">
       {faqSection.faqs.map((faq, index) => (
         <div class="faq-card border border-[#ebebeb] dark:border-[#262626] bg-white dark:bg-[#121212] rounded-xl overflow-hidden transition-all shadow-[0px_1px_1px_rgba(0,0,0,0.02)]">
           <button
             type="button"
-            class="faq-question-btn w-full px-5 py-4 text-left flex items-center justify-between gap-4 hover:bg-[#fafafa] dark:hover:bg-[#171717] transition-colors cursor-pointer"
+            class="faq-question-btn w-full px-4 sm:px-5 py-3.5 sm:py-4 text-left flex items-center justify-between gap-3 sm:gap-4 hover:bg-[#fafafa] dark:hover:bg-[#171717] transition-colors cursor-pointer"
             aria-expanded="false"
             data-index={index}
           >
-            <div class="flex items-center gap-3">
-              <span class="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-[#f2f2f2] dark:bg-[#1f1f1f] text-[#4d4d4d] dark:text-[#a1a1a1] border border-[#ebebeb] dark:border-[#333333]">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 min-w-0">
+              <span class="self-start sm:self-auto shrink-0 text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-[#f2f2f2] dark:bg-[#1f1f1f] text-[#4d4d4d] dark:text-[#a1a1a1] border border-[#ebebeb] dark:border-[#333333]">
                 {faq.category}
               </span>
-              <span class="text-sm font-semibold text-[#171717] dark:text-[#ededed]">
+              <span class="text-sm font-semibold text-[#171717] dark:text-[#ededed] leading-snug">
                 {faq.question}
               </span>
             </div>
@@ -90,7 +90,7 @@ const faqJsonLd = getFaqJsonLd(lang);
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="faq-answer hidden px-5 pb-5 pt-1 text-xs text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed border-t border-[#ebebeb]/60 dark:border-[#262626] prose prose-xs dark:prose-invert max-w-none">
+          <div class="faq-answer hidden px-4 sm:px-5 pb-4 sm:pb-5 pt-3 text-[13px] sm:text-xs text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed border-t border-[#ebebeb]/60 dark:border-[#262626] max-w-none">
             <Fragment set:html={faq.acceptedAnswer} />
           </div>
         </div>

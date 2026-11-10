@@ -12,40 +12,40 @@ const translatePath = useTranslatedPath('en');
   currentPath="/about-us"
   lang="en"
 >
-  <div class="relative py-12 md:py-20 border-b border-[#ebebeb] dark:border-[#262626] overflow-hidden">
+  <div class="relative py-8 sm:py-12 md:py-20 border-b border-[#ebebeb] dark:border-[#262626] overflow-hidden">
     <!-- Hero Mesh Glow -->
     <div class="absolute inset-0 hero-mesh-gradient pointer-events-none opacity-60"></div>
 
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Breadcrumb -->
-      <nav class="flex items-center gap-2 text-xs font-mono text-[#8f8f8f] dark:text-[#737373] mb-6">
+      <nav class="flex items-center gap-2 text-xs font-mono text-[#8f8f8f] dark:text-[#737373] mb-4 sm:mb-6">
         <a href={translatePath('/')} class="hover:text-[#171717] dark:hover:text-white transition-colors">Home</a>
         <span>/</span>
         <span class="text-[#171717] dark:text-[#ededed] font-medium">About Us</span>
       </nav>
 
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] text-[#171717] dark:text-[#ededed] text-xs font-mono font-medium mb-4 shadow-[0px_1px_1px_rgba(0,0,0,0.04)]">
-        <span class="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse"></span>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] text-[#171717] dark:text-[#ededed] text-[11px] sm:text-xs font-mono font-medium mb-4 shadow-[0px_1px_1px_rgba(0,0,0,0.04)]">
+        <span class="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse shrink-0"></span>
         <span>MISSION & SCIENTIFIC FOUNDATION</span>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-1.5px] text-[#171717] dark:text-white leading-tight">
+      <h1 class="text-[28px] sm:text-5xl font-semibold tracking-tight sm:tracking-[-1.5px] text-[#171717] dark:text-white leading-tight">
         Engineered for Mathematical & Chemical Precision
       </h1>
-      <p class="mt-4 text-base sm:text-lg text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed">
+      <p class="mt-3 sm:mt-4 text-sm sm:text-lg text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed">
         <strong>Balance Chemical Equation</strong> was founded to eliminate the guesswork from chemistry problem-solving. We build engineering-grade educational tools that combine exact linear algebra, IUPAC standard atomic weights, and lightning-fast client-side computing.
       </p>
     </div>
   </div>
 
   <!-- Content Section -->
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-10 sm:space-y-16">
     <!-- Origin Story -->
     <section class="space-y-4">
       <div class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0070f3]">
         01 / The Challenge & Solution
       </div>
-      <h2 class="text-2xl font-semibold tracking-tight text-[#171717] dark:text-white">
+      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717] dark:text-white">
         Moving Beyond Trial-and-Error Balancing
       </h2>
       <p class="text-sm sm:text-base text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed">
@@ -57,17 +57,17 @@ const translatePath = useTranslatedPath('en');
     </section>
 
     <!-- Core Pillars Grid -->
-    <section class="space-y-6">
+    <section class="space-y-5 sm:space-y-6">
       <div class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0070f3]">
         02 / Engineering Pillars
       </div>
-      <h2 class="text-2xl font-semibold tracking-tight text-[#171717] dark:text-white">
+      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717] dark:text-white">
         What Sets Us Apart
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-1 sm:pt-2">
         <!-- Card 1 -->
-        <div class="p-6 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] space-y-3">
+        <div class="p-4 sm:p-6 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] space-y-3">
           <div class="w-10 h-10 rounded-lg bg-[#0070f3]/10 dark:bg-[#0070f3]/20 text-[#0070f3] flex items-center justify-center font-mono font-bold text-lg">
             ⚡
           </div>
@@ -78,7 +78,7 @@ const translatePath = useTranslatedPath('en');
         </div>
 
         <!-- Card 2 -->
-        <div class="p-6 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] space-y-3">
+        <div class="p-4 sm:p-6 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] space-y-3">
           <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-mono font-bold text-lg">
             ∑
           </div>
@@ -89,7 +89,7 @@ const translatePath = useTranslatedPath('en');
         </div>
 
         <!-- Card 3 -->
-        <div class="p-6 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] space-y-3">
+        <div class="p-4 sm:p-6 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] space-y-3">
           <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center font-mono font-bold text-lg">
             ⚖
           </div>
@@ -100,7 +100,7 @@ const translatePath = useTranslatedPath('en');
         </div>
 
         <!-- Card 4 -->
-        <div class="p-6 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] space-y-3">
+        <div class="p-4 sm:p-6 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.04)] space-y-3">
           <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center font-mono font-bold text-lg">
             🎓
           </div>
@@ -117,10 +117,10 @@ const translatePath = useTranslatedPath('en');
       <div class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0070f3]">
         03 / Who We Serve
       </div>
-      <h2 class="text-2xl font-semibold tracking-tight text-[#171717] dark:text-white">
+      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717] dark:text-white">
         Built for the Entire Science Community
       </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 pt-2">
         <div class="p-4 rounded-lg bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#2e2e2e]">
           <h4 class="font-semibold text-sm text-[#171717] dark:text-white mb-1">High School & AP/IB Students</h4>
           <p class="text-xs text-[#8f8f8f] dark:text-[#737373] leading-relaxed">
@@ -143,7 +143,7 @@ const translatePath = useTranslatedPath('en');
     </section>
 
     <!-- Call to action card -->
-    <div class="p-8 rounded-2xl bg-gradient-to-r from-[#0070f3]/10 via-[#7928ca]/10 to-[#ff0080]/10 border border-[#0070f3]/20 flex flex-col sm:flex-row items-center justify-between gap-6">
+    <div class="p-5 sm:p-8 rounded-2xl bg-gradient-to-r from-[#0070f3]/10 via-[#7928ca]/10 to-[#ff0080]/10 border border-[#0070f3]/20 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
       <div class="space-y-1 text-center sm:text-left">
         <h3 class="text-lg font-semibold text-[#171717] dark:text-white">Ready to balance reactions?</h3>
         <p class="text-xs sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1]">
@@ -152,7 +152,7 @@ const translatePath = useTranslatedPath('en');
       </div>
       <a
         href={translatePath('/#balancer')}
-        class="inline-flex items-center justify-center text-sm font-medium text-white bg-[#0070f3] hover:bg-[#0761d1] px-5 py-2.5 rounded-full transition-colors shadow-sm whitespace-nowrap"
+        class="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center text-sm font-medium text-white bg-[#0070f3] hover:bg-[#0761d1] px-5 py-2.5 rounded-full transition-colors shadow-sm whitespace-nowrap shrink-0"
       >
         Open Equation Balancer →
       </a>

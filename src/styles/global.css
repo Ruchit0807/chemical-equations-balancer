@@ -76,3 +76,45 @@
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #555555;
 }
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Scoped rich formatting for FAQ answers */
+.faq-answer p + p {
+  margin-top: 0.625rem;
+}
+.faq-answer ol,
+.faq-answer ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.25rem;
+}
+.faq-answer ol {
+  list-style-type: decimal;
+}
+.faq-answer ul {
+  list-style-type: disc;
+}
+.faq-answer li + li {
+  margin-top: 0.35rem;
+}
+.faq-answer code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  background-color: #f2f2f2;
+  color: #171717;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.dark .faq-answer code {
+  background-color: #1f1f1f;
+  color: #ededed;
+}

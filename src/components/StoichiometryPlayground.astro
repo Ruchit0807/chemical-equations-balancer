@@ -11,57 +11,63 @@ const { lang = 'en' } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<div id="stoichiometry" class="mt-8 border border-[#ebebeb] dark:border-[#262626] bg-white dark:bg-[#121212] rounded-xl shadow-[0px_1px_1px_rgba(0,0,0,0.04)] overflow-hidden transition-colors">
+<div id="stoichiometry" class="mt-6 sm:mt-8 border border-[#ebebeb] dark:border-[#262626] bg-white dark:bg-[#121212] rounded-xl shadow-[0px_1px_1px_rgba(0,0,0,0.04)] overflow-hidden transition-colors scroll-mt-20">
   <!-- Section Header -->
-  <div class="px-6 py-4 bg-[#fafafa] dark:bg-[#171717] border-b border-[#ebebeb] dark:border-[#262626] flex flex-wrap items-center justify-between gap-4">
+  <div class="px-4 sm:px-6 py-4 bg-[#fafafa] dark:bg-[#171717] border-b border-[#ebebeb] dark:border-[#262626] flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
     <div>
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-[#0070f3]"></span>
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[#0070f3] shrink-0"></span>
         <h3 class="text-xs font-mono font-semibold uppercase text-[#171717] dark:text-[#ededed] tracking-wider">
           {t('stoichiometry.title')}
         </h3>
-        <span class="text-[11px] font-mono text-[#0070f3] dark:text-[#60a5fa] bg-[#d3e5ff]/60 dark:bg-[#1e3a8a]/40 px-2 py-0.5 rounded-full border border-[#0070f3]/20 dark:border-[#3b82f6]/30">
+        <span class="text-[11px] font-mono text-[#0070f3] dark:text-[#60a5fa] bg-[#d3e5ff]/60 dark:bg-[#1e3a8a]/40 px-2.5 py-0.5 rounded-full border border-[#0070f3]/20 dark:border-[#3b82f6]/30 whitespace-nowrap">
           {t('stoichiometry.badge')}
         </span>
       </div>
-      <p class="text-xs text-[#8f8f8f] dark:text-[#737373] mt-0.5">
+      <p class="text-xs text-[#8f8f8f] dark:text-[#737373] mt-1 leading-relaxed">
         {t('stoichiometry.subtitle')}
       </p>
     </div>
 
     <!-- Mode Switch: Proportional vs Limiting Reagent -->
-    <div class="flex items-center gap-1 bg-[#f2f2f2] dark:bg-[#1f1f1f] p-1 rounded-[8px] border border-[#ebebeb] dark:border-[#333333]">
+    <div class="w-full sm:w-auto grid grid-cols-2 sm:flex items-center gap-1 bg-[#f2f2f2] dark:bg-[#1f1f1f] p-1 rounded-[8px] border border-[#ebebeb] dark:border-[#333333] shrink-0">
       <button
         type="button"
         id="mode-proportional-btn"
-        class="stoich-mode-tab text-xs font-medium px-3 py-1 rounded-[6px] bg-white dark:bg-[#121212] text-[#171717] dark:text-white shadow-[0px_1px_1px_rgba(0,0,0,0.04)] transition-all cursor-pointer"
+        class="stoich-mode-tab text-[11px] sm:text-xs font-medium px-2.5 sm:px-3 py-2 sm:py-1 rounded-[6px] bg-white dark:bg-[#121212] text-[#171717] dark:text-white shadow-[0px_1px_1px_rgba(0,0,0,0.04)] transition-all cursor-pointer leading-tight text-center"
       >
         {t('stoichiometry.tabProportional')}
       </button>
       <button
         type="button"
         id="mode-limiting-btn"
-        class="stoich-mode-tab text-xs font-medium px-3 py-1 rounded-[6px] text-[#4d4d4d] dark:text-[#a1a1a1] hover:text-[#171717] dark:hover:text-white transition-all cursor-pointer"
+        class="stoich-mode-tab text-[11px] sm:text-xs font-medium px-2.5 sm:px-3 py-2 sm:py-1 rounded-[6px] text-[#4d4d4d] dark:text-[#a1a1a1] hover:text-[#171717] dark:hover:text-white transition-all cursor-pointer leading-tight text-center"
       >
         {t('stoichiometry.tabLimiting')}
       </button>
     </div>
   </div>
 
-  <!-- Mode 1: Proportional Stoichiometry Table View -->
-  <div id="proportional-view" class="p-6">
-    <div class="overflow-x-auto">
+  <!-- Mode 1: Proportional Stoichiometry View -->
+  <div id="proportional-view" class="p-4 sm:p-6">
+    <!-- Mobile Stoichiometry Cards (< md) -->
+    <div id="stoichiometry-mobile-cards" class="md:hidden space-y-3">
+      <!-- Populated dynamically via JS -->
+    </div>
+
+    <!-- Desktop Stoichiometry Table (>= md) -->
+    <div class="hidden md:block overflow-x-auto">
       <table class="w-full text-left text-xs">
         <thead>
           <tr class="border-b border-[#ebebeb] dark:border-[#262626] text-[#8f8f8f] dark:text-[#737373] font-mono uppercase text-[11px]">
-            <th class="pb-3 font-medium">{t('stoichiometry.colRole')}</th>
-            <th class="pb-3 font-medium">{t('stoichiometry.colCompound')}</th>
-            <th class="pb-3 font-medium">{t('stoichiometry.colRatio')}</th>
-            <th class="pb-3 font-medium">{t('stoichiometry.colMolarMass')}</th>
-            <th class="pb-3 font-medium min-w-48">{t('stoichiometry.colInput')}</th>
-            <th class="pb-3 font-medium">{t('stoichiometry.colMoles')}</th>
-            <th class="pb-3 font-medium">{t('stoichiometry.colMass')}</th>
-            <th class="pb-3 font-medium">{t('stoichiometry.colGas')}</th>
+            <th class="pb-3 pr-3 font-medium whitespace-nowrap">{t('stoichiometry.colRole')}</th>
+            <th class="pb-3 px-3 font-medium whitespace-nowrap">{t('stoichiometry.colCompound')}</th>
+            <th class="pb-3 px-3 font-medium whitespace-nowrap">{t('stoichiometry.colRatio')}</th>
+            <th class="pb-3 px-3 font-medium whitespace-nowrap">{t('stoichiometry.colMolarMass')}</th>
+            <th class="pb-3 px-3 font-medium min-w-48 whitespace-nowrap">{t('stoichiometry.colInput')}</th>
+            <th class="pb-3 px-3 font-medium whitespace-nowrap">{t('stoichiometry.colMoles')}</th>
+            <th class="pb-3 px-3 font-medium whitespace-nowrap">{t('stoichiometry.colMass')}</th>
+            <th class="pb-3 pl-3 font-medium whitespace-nowrap">{t('stoichiometry.colGas')}</th>
           </tr>
         </thead>
         <tbody id="stoichiometry-tbody" class="divide-y divide-[#ebebeb]/70 dark:divide-[#262626]">
@@ -70,7 +76,7 @@ const t = useTranslations(lang);
       </table>
     </div>
 
-    <div class="mt-4 pt-3 border-t border-[#ebebeb] dark:border-[#262626] flex flex-wrap items-center justify-between text-xs text-[#8f8f8f] dark:text-[#737373] font-mono">
+    <div class="mt-4 pt-3 border-t border-[#ebebeb] dark:border-[#262626] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] sm:text-xs text-[#8f8f8f] dark:text-[#737373] font-mono">
       <div>
         <span>{t('stoichiometry.stpNote')}</span>
       </div>
@@ -81,18 +87,18 @@ const t = useTranslations(lang);
   </div>
 
   <!-- Mode 2: Limiting Reagent & % Yield View -->
-  <div id="limiting-view" class="hidden p-6 bg-[#fafafa]/50 dark:bg-[#0a0a0a]/50">
-    <div id="limiting-reagent" class="mb-5 scroll-mt-20">
+  <div id="limiting-view" class="hidden p-4 sm:p-6 bg-[#fafafa]/50 dark:bg-[#0a0a0a]/50">
+    <div id="limiting-reagent" class="mb-4 sm:mb-5 scroll-mt-20">
       <h4 class="text-sm font-semibold text-[#171717] dark:text-[#ededed]">
         {t('stoichiometry.limitingTitle')}
       </h4>
-      <p class="text-xs text-[#8f8f8f] dark:text-[#737373] mt-0.5">
+      <p class="text-xs text-[#8f8f8f] dark:text-[#737373] mt-0.5 leading-relaxed">
         {t('stoichiometry.limitingSubtitle')}
       </p>
     </div>
 
     <!-- Limiting Reactant Inputs Grid -->
-    <div id="limiting-reactants-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+    <div id="limiting-reactants-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-5 sm:mb-6">
       <!-- Populated dynamically via JS -->
     </div>
 
@@ -102,8 +108,8 @@ const t = useTranslations(lang);
     </div>
 
     <!-- Optional Percent Yield Calculator Box -->
-    <div class="mt-6 p-4 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.03)] transition-colors">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div class="mt-5 sm:mt-6 p-4 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.03)] transition-colors">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div>
           <span class="text-xs font-mono uppercase font-semibold text-[#171717] dark:text-[#ededed] tracking-wider">
             {t('stoichiometry.percentYieldTitle')}
@@ -113,8 +119,8 @@ const t = useTranslations(lang);
           </p>
         </div>
 
-        <div class="flex flex-wrap items-center gap-2">
-          <label for="actual-yield-input" class="text-xs text-[#4d4d4d] dark:text-[#a1a1a1] font-mono">
+        <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+          <label for="actual-yield-input" class="text-xs text-[#4d4d4d] dark:text-[#a1a1a1] font-mono w-full sm:w-auto">
             {t('stoichiometry.actualYieldLabel')}
           </label>
           <input
@@ -123,12 +129,12 @@ const t = useTranslations(lang);
             step="any"
             min="0"
             placeholder="e.g. 85.5"
-            class="w-28 h-8 px-2.5 rounded-[6px] border border-[#ebebeb] dark:border-[#333333] bg-white dark:bg-[#171717] text-xs font-mono text-[#171717] dark:text-[#ededed] focus:outline-none focus:border-[#171717] dark:focus:border-white"
+            class="flex-1 min-w-0 sm:flex-none sm:w-28 h-10 sm:h-8 px-3 sm:px-2.5 rounded-[6px] border border-[#ebebeb] dark:border-[#333333] bg-white dark:bg-[#171717] text-base sm:text-xs font-mono text-[#171717] dark:text-[#ededed] focus:outline-none focus:border-[#171717] dark:focus:border-white"
           />
           <button
             type="button"
             id="calculate-yield-btn"
-            class="h-8 px-3 rounded-[6px] bg-[#171717] dark:bg-white text-white dark:text-black text-xs font-medium hover:bg-[#333333] dark:hover:bg-[#e5e5e5] transition-all cursor-pointer shadow-sm"
+            class="h-10 sm:h-8 px-4 sm:px-3 rounded-[6px] bg-[#171717] dark:bg-white text-white dark:text-black text-xs font-medium hover:bg-[#333333] dark:hover:bg-[#e5e5e5] transition-all cursor-pointer shadow-sm shrink-0"
           >
             {t('stoichiometry.calcYieldBtn')}
           </button>

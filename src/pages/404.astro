@@ -8,14 +8,14 @@ import Layout from '../layouts/Layout.astro';
   noindex={true}
   currentPath="/404"
 >
-  <div class="relative py-16 md:py-24 border-b border-[#ebebeb] dark:border-[#262626] overflow-hidden">
+  <div class="relative py-10 sm:py-16 md:py-24 border-b border-[#ebebeb] dark:border-[#262626] overflow-hidden">
     <!-- Subtle Background Glow -->
     <div class="absolute inset-0 hero-mesh-gradient pointer-events-none opacity-60"></div>
 
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <!-- Technical Eyebrow Badge -->
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-rose-700 dark:text-rose-300 text-xs font-mono font-medium mb-6 shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-rose-700 dark:text-rose-300 text-[11px] sm:text-xs font-mono font-medium mb-5 sm:mb-6 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping shrink-0"></span>
         <span>ERROR 404: REACTION_NOT_FOUND</span>
       </div>
 
@@ -31,16 +31,16 @@ import Layout from '../layouts/Layout.astro';
       </p>
 
       <!-- Chemistry Analogy Card -->
-      <div class="mt-8 max-w-xl mx-auto p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_2px_8px_rgba(0,0,0,0.04)] text-left">
-        <div class="flex items-center justify-between text-[11px] font-mono text-[#8f8f8f] dark:text-[#737373] pb-2 mb-2 border-b border-[#f2f2f2] dark:border-[#1f1f1f]">
+      <div class="mt-7 sm:mt-8 max-w-xl mx-auto p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_2px_8px_rgba(0,0,0,0.04)] text-left">
+        <div class="flex flex-wrap items-center justify-between gap-1.5 text-[11px] font-mono text-[#8f8f8f] dark:text-[#737373] pb-2 mb-2 border-b border-[#f2f2f2] dark:border-[#1f1f1f]">
           <span>UNBALANCED DECOMPOSITION</span>
           <span class="text-rose-600 dark:text-rose-400 font-semibold">COEFFICIENT = UNDEFINED</span>
         </div>
         <div class="font-mono text-xs sm:text-sm text-[#171717] dark:text-white font-medium overflow-x-auto py-1">
           RequestedPage<span class="text-[#8f8f8f]">(aq)</span> + BrokenLink<span class="text-[#8f8f8f]">(s)</span> ⟶ <span class="text-rose-600 dark:text-rose-400 font-bold">404</span><span class="text-[#8f8f8f]">(g)</span> + Null<span class="text-[#8f8f8f]">(l)</span>
         </div>
-        <div class="mt-2 text-[11px] text-[#8f8f8f] dark:text-[#737373] flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-amber-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="mt-2 text-[11px] text-[#8f8f8f] dark:text-[#737373] flex items-start sm:items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5 sm:mt-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span>Law of Conservation of Information violated. Please restore reactants to a valid path.</span>
@@ -48,20 +48,20 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Quick Chemical Equation Search Input -->
-      <div class="mt-8 max-w-lg mx-auto">
+      <div class="mt-7 sm:mt-8 max-w-lg mx-auto">
         <form action="/" method="GET" class="relative">
           <div class="p-1.5 rounded-full bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] shadow-sm flex items-center gap-2">
-            <span class="pl-3 text-[#0070f3] font-mono text-sm font-bold">⇌</span>
+            <span class="pl-3 text-[#0070f3] font-mono text-sm font-bold shrink-0">⇌</span>
             <input
               type="text"
               name="eq"
               placeholder="Search or enter equation (e.g. H2 + O2 -> H2O)..."
-              class="w-full h-9 px-2 text-xs sm:text-sm font-mono text-[#171717] dark:text-white placeholder:text-[#a1a1a1] bg-transparent focus:outline-none"
+              class="w-full min-w-0 h-10 sm:h-9 px-2 text-base sm:text-sm font-mono text-[#171717] dark:text-white placeholder:text-[#a1a1a1] bg-transparent focus:outline-none"
               autocomplete="off"
             />
             <button
               type="submit"
-              class="h-9 px-4 rounded-full bg-[#171717] dark:bg-white text-white dark:text-black text-xs font-semibold hover:bg-[#333333] dark:hover:bg-[#e5e5e5] transition-colors cursor-pointer shrink-0"
+              class="h-10 sm:h-9 px-4 rounded-full bg-[#171717] dark:bg-white text-white dark:text-black text-xs font-semibold hover:bg-[#333333] dark:hover:bg-[#e5e5e5] transition-colors cursor-pointer shrink-0"
             >
               Balance
             </button>
@@ -70,10 +70,10 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Quick Links Navigation Grid -->
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-2.5">
+      <div class="mt-7 sm:mt-8 flex flex-wrap items-center justify-center gap-2.5">
         <a
           href="/"
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#171717] dark:bg-white text-white dark:text-black font-semibold text-xs sm:text-sm hover:bg-[#333333] dark:hover:bg-[#e5e5e5] transition-all shadow-sm active:scale-95"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 min-h-[44px] sm:min-h-0 rounded-full bg-[#171717] dark:bg-white text-white dark:text-black font-semibold text-xs sm:text-sm hover:bg-[#333333] dark:hover:bg-[#e5e5e5] transition-all shadow-sm active:scale-95"
         >
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />

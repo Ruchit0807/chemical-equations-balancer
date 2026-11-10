@@ -19,24 +19,24 @@ const t = useTranslations(lang);
 
 <Layout lang={lang} currentPath={currentPath}>
   <!-- Hero Section with Primary Equation Input First -->
-  <section id="balancer" class="relative pt-6 pb-12 md:pt-10 md:pb-16 overflow-hidden border-b border-[#ebebeb] dark:border-[#262626] transition-colors">
+  <section id="balancer" class="relative pt-5 pb-8 sm:pt-8 sm:pb-12 md:pt-10 md:pb-16 overflow-hidden border-b border-[#ebebeb] dark:border-[#262626] transition-colors">
     <!-- Hero Mesh Gradient Background Glow -->
     <div class="absolute inset-0 hero-mesh-gradient pointer-events-none opacity-80"></div>
 
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- 1. Header & Technical Eyebrow -->
-      <div class="text-center mb-6">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] text-[#171717] dark:text-[#ededed] text-xs font-mono font-medium mb-3 shadow-[0px_1px_1px_rgba(0,0,0,0.04)]">
-          <span class="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse"></span>
+      <div class="text-center mb-5 sm:mb-6">
+        <div class="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 max-w-full px-3 py-1 rounded-full bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] text-[#171717] dark:text-[#ededed] text-[11px] sm:text-xs font-mono font-medium mb-3 shadow-[0px_1px_1px_rgba(0,0,0,0.04)]">
+          <span class="w-2 h-2 rounded-full bg-[#0070f3] animate-pulse shrink-0"></span>
           <span>{t('hero.eyebrow1')}</span>
-          <span class="text-[#8f8f8f] dark:text-[#737373]">|</span>
-          <span class="text-[#8f8f8f] dark:text-[#737373]">{t('hero.eyebrow2')}</span>
+          <span class="hidden sm:inline text-[#8f8f8f] dark:text-[#737373]">|</span>
+          <span class="hidden sm:inline text-[#8f8f8f] dark:text-[#737373]">{t('hero.eyebrow2')}</span>
         </div>
 
-        <h1 class="text-2xl sm:text-4xl md:text-5xl font-semibold text-[#171717] dark:text-white tracking-[-1.5px] sm:tracking-[-2px] leading-tight">
+        <h1 class="text-[26px] sm:text-4xl md:text-5xl font-semibold text-[#171717] dark:text-white tracking-tight sm:tracking-[-1.5px] md:tracking-[-2px] leading-[1.15] sm:leading-tight">
           {t('hero.title')}
         </h1>
-        <p class="mt-2 text-xs sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] max-w-2xl mx-auto leading-relaxed">
+        <p class="mt-2 text-[13px] sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] max-w-2xl mx-auto leading-relaxed">
           {t('hero.subtitle')}
         </p>
       </div>
@@ -44,9 +44,9 @@ const t = useTranslations(lang);
       <!-- 2. Primary Equation Input Field (Prominent & Front-and-Center) -->
       <div class="max-w-3xl mx-auto">
         <form id="equation-form" class="relative">
-          <div class="p-2 sm:p-2.5 rounded-2xl bg-white dark:bg-[#121212] border-2 border-[#171717] dark:border-[#ededed] shadow-[0px_4px_20px_rgba(0,0,0,0.06)] dark:shadow-[0px_4px_20px_rgba(255,255,255,0.04)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 transition-all">
-            <div class="relative flex-1 flex items-center">
-              <span class="pl-3.5 pr-1.5 text-[#0070f3] font-mono text-base font-bold select-none">⇌</span>
+          <div class="p-1.5 sm:p-2.5 rounded-2xl bg-white dark:bg-[#121212] border-2 border-[#171717] dark:border-[#ededed] shadow-[0px_4px_20px_rgba(0,0,0,0.06)] dark:shadow-[0px_4px_20px_rgba(255,255,255,0.04)] flex flex-col sm:flex-row items-stretch sm:items-center gap-2 transition-all">
+            <div class="relative flex-1 min-w-0 flex items-center">
+              <span class="pl-3 pr-1.5 text-[#0070f3] font-mono text-base font-bold select-none shrink-0">⇌</span>
               <input
                 type="text"
                 id="equation-input"
@@ -54,13 +54,12 @@ const t = useTranslations(lang);
                 placeholder={t('hero.inputPlaceholder')}
                 autocomplete="off"
                 spellcheck="false"
-                autofocus
-                class="w-full h-11 px-2 text-base sm:text-lg font-mono font-medium text-[#171717] dark:text-white placeholder:text-[#a1a1a1] dark:placeholder:text-[#525252] bg-transparent focus:outline-none"
+                class="w-full min-w-0 h-11 px-2 text-base sm:text-lg font-mono font-medium text-[#171717] dark:text-white placeholder:text-[#a1a1a1] dark:placeholder:text-[#525252] bg-transparent focus:outline-none"
               />
               <button
                 type="button"
                 id="clear-input-btn"
-                class="hidden mr-2 p-1.5 text-[#8f8f8f] dark:text-[#737373] hover:text-[#171717] dark:hover:text-white rounded-full hover:bg-[#f2f2f2] dark:hover:bg-[#252525] transition-colors cursor-pointer"
+                class="hidden mr-1 w-9 h-9 items-center justify-center shrink-0 text-[#8f8f8f] dark:text-[#737373] hover:text-[#171717] dark:hover:text-white rounded-full hover:bg-[#f2f2f2] dark:hover:bg-[#252525] transition-colors cursor-pointer"
                 title={t('hero.clearInput')}
               >
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -72,30 +71,30 @@ const t = useTranslations(lang);
             <button
               type="submit"
               id="submit-balance-btn"
-              class="h-11 px-6 rounded-full bg-[#171717] dark:bg-white hover:bg-[#333333] dark:hover:bg-[#e5e5e5] text-white dark:text-black font-semibold text-sm flex items-center justify-center gap-2 transition-all shadow-sm active:scale-[0.98] cursor-pointer"
+              class="min-h-[44px] w-full sm:w-auto px-5 sm:px-6 rounded-full bg-[#171717] dark:bg-white hover:bg-[#333333] dark:hover:bg-[#e5e5e5] text-white dark:text-black font-semibold text-sm flex items-center justify-center gap-2 transition-all shadow-sm active:scale-[0.98] cursor-pointer shrink-0"
             >
               <span>{t('hero.balanceBtn')}</span>
-              <span class="font-mono text-xs">↵</span>
+              <span class="hidden sm:inline font-mono text-xs">↵</span>
             </button>
           </div>
         </form>
 
         <!-- Quick Demo Reaction Pills -->
-        <div class="mt-3 flex flex-wrap items-center justify-center gap-1.5 text-xs text-[#4d4d4d] dark:text-[#a1a1a1]">
-          <span class="font-mono text-[11px] text-[#8f8f8f] dark:text-[#737373] mr-1">{t('hero.quickExamples')}</span>
-          <button type="button" class="quick-pill-btn px-2.5 py-1 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="H2 + O2 -> H2O">
+        <div class="mt-3 flex flex-wrap items-center justify-center gap-2 sm:gap-1.5 text-xs text-[#4d4d4d] dark:text-[#a1a1a1]">
+          <span class="w-full sm:w-auto text-center font-mono text-[11px] text-[#8f8f8f] dark:text-[#737373] sm:mr-1">{t('hero.quickExamples')}</span>
+          <button type="button" class="quick-pill-btn px-3 py-1.5 sm:px-2.5 sm:py-1 min-h-[34px] sm:min-h-0 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-xs sm:text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="H2 + O2 -> H2O">
             H2 + O2
           </button>
-          <button type="button" class="quick-pill-btn px-2.5 py-1 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="CH4 + O2 -> CO2 + H2O">
+          <button type="button" class="quick-pill-btn px-3 py-1.5 sm:px-2.5 sm:py-1 min-h-[34px] sm:min-h-0 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-xs sm:text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="CH4 + O2 -> CO2 + H2O">
             CH4 + O2 ({t('hero.combustionLabel')})
           </button>
-          <button type="button" class="quick-pill-btn px-2.5 py-1 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="Al + Fe2O3 -> Al2O3 + Fe">
+          <button type="button" class="quick-pill-btn px-3 py-1.5 sm:px-2.5 sm:py-1 min-h-[34px] sm:min-h-0 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-xs sm:text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="Al + Fe2O3 -> Al2O3 + Fe">
             {t('hero.thermiteLabel')}
           </button>
-          <button type="button" class="quick-pill-btn px-2.5 py-1 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="KMnO4 + HCl -> KCl + MnCl2 + Cl2 + H2O">
+          <button type="button" class="quick-pill-btn px-3 py-1.5 sm:px-2.5 sm:py-1 min-h-[34px] sm:min-h-0 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-xs sm:text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="KMnO4 + HCl -> KCl + MnCl2 + Cl2 + H2O">
             KMnO4 + HCl ({t('hero.redoxLabel')})
           </button>
-          <button type="button" class="quick-pill-btn px-2.5 py-1 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="Fe^2+ + Cr2O7^2- + H+ -> Fe^3+ + Cr^3+ + H2O">
+          <button type="button" class="quick-pill-btn px-3 py-1.5 sm:px-2.5 sm:py-1 min-h-[34px] sm:min-h-0 rounded-full bg-white dark:bg-[#171717] hover:bg-[#171717] dark:hover:bg-white hover:text-white dark:hover:text-black border border-[#ebebeb] dark:border-[#333333] text-xs sm:text-[11px] font-mono transition-colors shadow-[0px_1px_1px_rgba(0,0,0,0.02)] cursor-pointer" data-eq="Fe^2+ + Cr2O7^2- + H+ -> Fe^3+ + Cr^3+ + H2O">
             {t('hero.ionicLabel')}
           </button>
         </div>
@@ -105,7 +104,7 @@ const t = useTranslations(lang);
           <svg class="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
-          <div id="error-message" class="flex-1 font-mono">
+          <div id="error-message" class="flex-1 font-mono break-words">
             <!-- Dynamic error message -->
           </div>
         </div>
@@ -117,8 +116,8 @@ const t = useTranslations(lang);
   </section>
 
   <!-- Initial State Hint (Shown before user balances an equation) -->
-  <section id="initial-state-hint" class="max-w-3xl mx-auto px-4 py-8 text-center">
-    <div class="p-6 rounded-2xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.02)]">
+  <section id="initial-state-hint" class="max-w-3xl mx-auto px-4 py-5 sm:py-8 text-center">
+    <div class="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.02)]">
       <div class="w-10 h-10 rounded-full bg-[#f2f2f2] dark:bg-[#1a1a1a] text-[#171717] dark:text-[#ededed] flex items-center justify-center mx-auto mb-3 text-lg font-mono">
         💡
       </div>
@@ -166,6 +165,9 @@ const t = useTranslations(lang);
   let stoichActiveIndex = 0;
   let stoichActiveAmount = 100;
   let stoichActiveUnit: StoichiometryUnit = 'g';
+  let lastTheoreticalGrams = 0;
+  let lastCursorPos: number | null = null;
+  const isFinePointer = () => window.matchMedia('(pointer: fine) and (hover: hover)').matches;
 
   // DOM Elements
   const equationForm = document.getElementById('equation-form') as HTMLFormElement;
@@ -181,6 +183,7 @@ const t = useTranslations(lang);
   const reactionTypeBadge = document.getElementById('reaction-type-badge') as HTMLSpanElement;
   const reactionTypeExplanation = document.getElementById('reaction-type-explanation') as HTMLParagraphElement;
   const atomAuditTbody = document.getElementById('atom-audit-tbody') as HTMLTableSectionElement;
+  const atomAuditMobile = document.getElementById('atom-audit-mobile') as HTMLDivElement | null;
   const massBalancePill = document.getElementById('mass-balance-pill') as HTMLDivElement;
   const stepsList = document.getElementById('steps-list') as HTMLDivElement;
 
@@ -190,9 +193,11 @@ const t = useTranslations(lang);
   const proportionalView = document.getElementById('proportional-view') as HTMLDivElement;
   const limitingView = document.getElementById('limiting-view') as HTMLDivElement;
   const stoichiometryTbody = document.getElementById('stoichiometry-tbody') as HTMLTableSectionElement;
+  const stoichiometryMobileCards = document.getElementById('stoichiometry-mobile-cards') as HTMLDivElement | null;
   const limitingReactantsGrid = document.getElementById('limiting-reactants-grid') as HTMLDivElement;
   const limitingResultsContainer = document.getElementById('limiting-results-container') as HTMLDivElement;
   const actualYieldInput = document.getElementById('actual-yield-input') as HTMLInputElement;
+  const calculateYieldBtn = document.getElementById('calculate-yield-btn') as HTMLButtonElement | null;
   const percentYieldBadge = document.getElementById('percent-yield-badge') as HTMLDivElement;
 
   // Periodic Table Controls
@@ -200,6 +205,8 @@ const t = useTranslations(lang);
   const viewCompactBtn = document.getElementById('view-compact-btn') as HTMLButtonElement;
   const fullPtView = document.getElementById('full-periodic-table-view') as HTMLDivElement;
   const compactKeypadView = document.getElementById('compact-keypad-view') as HTMLDivElement;
+  const compactKeypadHeading = document.getElementById('compact-keypad-heading') as HTMLDivElement | null;
+  const defaultCompactHeadingText = compactKeypadHeading?.textContent || '';
   const ptBackspaceBtn = document.getElementById('pt-backspace-btn') as HTMLButtonElement;
   const ptClearBtn = document.getElementById('pt-clear-btn') as HTMLButtonElement;
   const elementTableFilter = document.getElementById('element-table-filter') as HTMLInputElement;
@@ -214,6 +221,26 @@ const t = useTranslations(lang);
   const toggleStepsBtn = document.getElementById('toggle-steps-accordion-btn') as HTMLButtonElement;
   const stepsContent = document.getElementById('steps-accordion-content') as HTMLDivElement;
   const stepsChevron = document.getElementById('steps-chevron') as unknown as SVGElement;
+
+  function setClearBtnVisible(visible: boolean) {
+    if (!clearInputBtn) return;
+    if (visible) {
+      clearInputBtn.classList.remove('hidden');
+      clearInputBtn.classList.add('flex');
+    } else {
+      clearInputBtn.classList.add('hidden');
+      clearInputBtn.classList.remove('flex');
+    }
+  }
+
+  // Track cursor position cleanly so keypad taps work without popping mobile keyboard
+  ['keyup', 'click', 'input'].forEach((evt) => {
+    equationInput?.addEventListener(evt, () => {
+      if (equationInput.selectionStart !== null) {
+        lastCursorPos = equationInput.selectionStart;
+      }
+    });
+  });
 
   // Toast feedback when inserting
   let toastTimer: any = null;
@@ -230,35 +257,51 @@ const t = useTranslations(lang);
   // Core Function: Insert Text at Cursor Position
   function insertAtCursor(text: string) {
     if (!equationInput) return;
-    const start = equationInput.selectionStart ?? equationInput.value.length;
-    const end = equationInput.selectionEnd ?? equationInput.value.length;
+    const wasFocused = document.activeElement === equationInput;
+    const start = wasFocused
+      ? (equationInput.selectionStart ?? equationInput.value.length)
+      : (lastCursorPos ?? equationInput.value.length);
+    const end = wasFocused ? (equationInput.selectionEnd ?? start) : start;
     const val = equationInput.value;
 
     equationInput.value = val.substring(0, start) + text + val.substring(end);
     const newPos = start + text.length;
-    equationInput.focus();
-    equationInput.setSelectionRange(newPos, newPos);
+    lastCursorPos = newPos;
 
-    if (clearInputBtn) clearInputBtn.classList.remove('hidden');
+    if (wasFocused || isFinePointer()) {
+      equationInput.focus();
+      equationInput.setSelectionRange(newPos, newPos);
+    }
+
+    setClearBtnVisible(true);
     showInsertFeedback(text.trim());
   }
 
   function backspaceAtCursor() {
     if (!equationInput) return;
-    const start = equationInput.selectionStart ?? equationInput.value.length;
-    const end = equationInput.selectionEnd ?? equationInput.value.length;
+    const wasFocused = document.activeElement === equationInput;
+    const start = wasFocused
+      ? (equationInput.selectionStart ?? equationInput.value.length)
+      : (lastCursorPos ?? equationInput.value.length);
+    const end = wasFocused ? (equationInput.selectionEnd ?? start) : start;
     const val = equationInput.value;
 
+    let newPos = start;
     if (start === end && start > 0) {
       equationInput.value = val.substring(0, start - 1) + val.substring(end);
-      equationInput.focus();
-      equationInput.setSelectionRange(start - 1, start - 1);
+      newPos = start - 1;
     } else if (start !== end) {
       equationInput.value = val.substring(0, start) + val.substring(end);
-      equationInput.focus();
-      equationInput.setSelectionRange(start, start);
+      newPos = start;
     }
-    if (!equationInput.value && clearInputBtn) clearInputBtn.classList.add('hidden');
+    lastCursorPos = newPos;
+
+    if (wasFocused || isFinePointer()) {
+      equationInput.focus();
+      equationInput.setSelectionRange(newPos, newPos);
+    }
+
+    if (!equationInput.value) setClearBtnVisible(false);
   }
 
   // Delegated Click Listener
@@ -283,7 +326,8 @@ const t = useTranslations(lang);
     }
 
     equationInput.value = query;
-    if (clearInputBtn) clearInputBtn.classList.remove('hidden');
+    lastCursorPos = query.length;
+    setClearBtnVisible(true);
 
     const result = balanceEquation(query);
 
@@ -342,24 +386,25 @@ const t = useTranslations(lang);
         .map((item) => {
           const coeffSpan =
             item.coefficient > 1
-              ? `<span class="inline-block px-2 py-0.5 rounded font-bold text-[#0070f3] dark:text-[#60a5fa] bg-[#d3e5ff]/50 dark:bg-[#1e3a8a]/40 border border-[#0070f3]/20 dark:border-[#3b82f6]/30 mr-1">${item.coefficient}</span>`
+              ? `<span class="inline-block px-1.5 sm:px-2 py-0.5 rounded font-bold text-[#0070f3] dark:text-[#60a5fa] bg-[#d3e5ff]/50 dark:bg-[#1e3a8a]/40 border border-[#0070f3]/20 dark:border-[#3b82f6]/30 mr-1">${item.coefficient}</span>`
               : '';
           const phaseSpan = item.compound.phase
             ? `<span class="text-xs text-[#8f8f8f] dark:text-[#737373] font-normal ml-0.5">(${item.compound.phase})</span>`
             : '';
-          return `<span class="inline-flex items-baseline">${coeffSpan}<span>${item.htmlFormula}</span>${phaseSpan}</span>`;
+          return `<span class="inline-flex items-baseline whitespace-nowrap">${coeffSpan}<span>${item.htmlFormula}</span>${phaseSpan}</span>`;
         })
-        .join('<span class="mx-2 text-[#8f8f8f] dark:text-[#737373] font-normal">+</span>');
+        .join('<span class="mx-1.5 sm:mx-2 text-[#8f8f8f] dark:text-[#737373] font-normal">+</span>');
     };
 
     const lhsHtml = formatTerms(res.reactants);
     const rhsHtml = formatTerms(res.products);
 
-    equationDisplay.innerHTML = `${lhsHtml} <span class="mx-3 text-[#171717] dark:text-white font-semibold">→</span> ${rhsHtml}`;
+    equationDisplay.innerHTML = `${lhsHtml} <span class="mx-2 sm:mx-3 text-[#171717] dark:text-white font-semibold">→</span> ${rhsHtml}`;
   }
 
   function renderAtomAudit(res: BalancedResult) {
     let rowsHtml = '';
+    let mobileCardsHtml = '';
     let totalLhsMass = 0;
     let totalRhsMass = 0;
     const statusEqualText = langStrings.balancedEquation?.statusEqual || '✓ Equal';
@@ -384,18 +429,35 @@ const t = useTranslations(lang);
 
       rowsHtml += `
         <tr class="hover:bg-[#fafafa] dark:hover:bg-[#171717] transition-colors">
-          <td class="py-2.5 font-mono font-semibold text-[#171717] dark:text-white">${elem}</td>
-          <td class="py-2.5 text-[#4d4d4d] dark:text-[#a1a1a1]">${name}</td>
-          <td class="py-2.5 font-mono text-center font-medium text-[#171717] dark:text-white">${lhsCount}</td>
-          <td class="py-2.5 text-center text-[#8f8f8f] dark:text-[#737373] font-mono">=</td>
-          <td class="py-2.5 font-mono text-center font-medium text-[#171717] dark:text-white">${rhsCount}</td>
-          <td class="py-2.5 font-mono text-[#4d4d4d] dark:text-[#a1a1a1]">${mass.toFixed(3)} g/mol</td>
-          <td class="py-2.5 text-right font-mono text-emerald-600 dark:text-emerald-400 font-medium">${statusEqualText}</td>
+          <td class="py-2.5 pr-3 font-mono font-semibold text-[#171717] dark:text-white">${elem}</td>
+          <td class="py-2.5 px-3 text-[#4d4d4d] dark:text-[#a1a1a1]">${name}</td>
+          <td class="py-2.5 px-3 font-mono text-center font-medium text-[#171717] dark:text-white">${lhsCount}</td>
+          <td class="py-2.5 px-2 text-center text-[#8f8f8f] dark:text-[#737373] font-mono">=</td>
+          <td class="py-2.5 px-3 font-mono text-center font-medium text-[#171717] dark:text-white">${rhsCount}</td>
+          <td class="py-2.5 px-3 font-mono text-[#4d4d4d] dark:text-[#a1a1a1] whitespace-nowrap">${mass.toFixed(3)} g/mol</td>
+          <td class="py-2.5 pl-3 text-right font-mono text-emerald-600 dark:text-emerald-400 font-medium whitespace-nowrap">${statusEqualText}</td>
         </tr>
+      `;
+
+      mobileCardsHtml += `
+        <div class="p-3 rounded-xl bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#262626] flex items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="w-9 h-9 rounded-lg bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#333333] flex items-center justify-center font-mono text-sm font-bold text-[#171717] dark:text-white shrink-0">${elem}</span>
+            <div class="min-w-0">
+              <div class="text-xs font-semibold text-[#171717] dark:text-white truncate">${name}</div>
+              <div class="text-[11px] font-mono text-[#8f8f8f] dark:text-[#737373]">${mass.toFixed(3)} g/mol</div>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <div class="font-mono text-xs font-semibold text-[#171717] dark:text-white">${lhsCount} <span class="text-[#8f8f8f] dark:text-[#737373] font-normal">=</span> ${rhsCount}</div>
+            <div class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-medium">${statusEqualText}</div>
+          </div>
+        </div>
       `;
     }
 
     atomAuditTbody.innerHTML = rowsHtml;
+    if (atomAuditMobile) atomAuditMobile.innerHTML = mobileCardsHtml;
     massBalancePill.innerHTML = `LHS: ${totalLhsMass.toFixed(2)} g/mol = RHS: ${totalRhsMass.toFixed(2)} g/mol ✓`;
   }
 
@@ -403,12 +465,12 @@ const t = useTranslations(lang);
     let stepsHtml = '';
     res.steps.forEach((step) => {
       stepsHtml += `
-        <div class="p-4 rounded-lg bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#262626]">
-          <h4 class="font-semibold text-[#171717] dark:text-white mb-1">${step.title}</h4>
-          <p class="text-[#4d4d4d] dark:text-[#a1a1a1] mb-2 leading-relaxed">${step.description}</p>
+        <div class="p-3.5 sm:p-4 rounded-lg bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#262626]">
+          <h4 class="text-[13px] sm:text-xs font-semibold text-[#171717] dark:text-white mb-1">${step.title}</h4>
+          <p class="text-xs text-[#4d4d4d] dark:text-[#a1a1a1] mb-2 leading-relaxed">${step.description}</p>
           ${
             step.math
-              ? `<pre class="p-2.5 rounded bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] font-mono text-xs text-[#171717] dark:text-white overflow-x-auto whitespace-pre-wrap">${step.math}</pre>`
+              ? `<pre class="p-2.5 rounded bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] font-mono text-[11px] sm:text-xs text-[#171717] dark:text-white overflow-x-auto whitespace-pre-wrap break-words">${step.math}</pre>`
               : ''
           }
         </div>
@@ -417,7 +479,94 @@ const t = useTranslations(lang);
     stepsList.innerHTML = stepsHtml;
   }
 
-  // Stoichiometry Table Rendering (Proportional View)
+  function formatStoichInputAmount(
+    item: { moles: number; massGrams: number; volumeStpLiters: number },
+    unit: StoichiometryUnit
+  ): string {
+    switch (unit) {
+      case 'kg':
+        return (item.massGrams / 1000).toFixed(4);
+      case 'mg':
+        return (item.massGrams * 1000).toFixed(1);
+      case 'mol':
+        return item.moles.toFixed(3);
+      case 'mmol':
+        return (item.moles * 1000).toFixed(2);
+      case 'L':
+        return item.volumeStpLiters.toFixed(2);
+      case 'g':
+      default:
+        return item.massGrams.toFixed(2);
+    }
+  }
+
+  function syncStoichiometryCalculations(sourceEl?: HTMLElement, syncSelects = false) {
+    if (!currentProfiles.length) return;
+
+    const activeProfile = currentProfiles[stoichActiveIndex];
+    const activeMoles = convertToMoles(stoichActiveAmount, stoichActiveUnit, activeProfile.molarMass);
+    const calculated = calculateReactionQuantitiesFromMoles(currentProfiles, stoichActiveIndex, activeMoles);
+
+    calculated.forEach((item, index) => {
+      const isSelected = index === stoichActiveIndex;
+      const formattedVal = isSelected
+        ? String(stoichActiveAmount)
+        : formatStoichInputAmount(item, stoichActiveUnit);
+
+      // Highlight desktop row
+      const row = stoichiometryTbody.querySelector(`tr[data-stoich-row="${index}"]`);
+      if (row) {
+        row.classList.toggle('bg-[#0070f3]/5', isSelected);
+        row.classList.toggle('dark:bg-[#0070f3]/10', isSelected);
+      }
+
+      // Highlight mobile card
+      const card = stoichiometryMobileCards?.querySelector(`div[data-stoich-card="${index}"]`);
+      if (card) {
+        if (isSelected) {
+          card.classList.add('bg-[#0070f3]/5', 'dark:bg-[#0070f3]/10', 'border-[#0070f3]/40', 'dark:border-[#60a5fa]/40');
+          card.classList.remove('bg-[#fafafa]', 'dark:bg-[#171717]', 'border-[#ebebeb]', 'dark:border-[#262626]');
+        } else {
+          card.classList.remove('bg-[#0070f3]/5', 'dark:bg-[#0070f3]/10', 'border-[#0070f3]/40', 'dark:border-[#60a5fa]/40');
+          card.classList.add('bg-[#fafafa]', 'dark:bg-[#171717]', 'border-[#ebebeb]', 'dark:border-[#262626]');
+        }
+      }
+
+      // Update numeric inputs without destroying active element (preserves mobile keyboard)
+      document.querySelectorAll(`.stoich-amount-input[data-stoich-index="${index}"]`).forEach((inp) => {
+        const inputEl = inp as HTMLInputElement;
+        if (inputEl !== sourceEl) {
+          inputEl.value = formattedVal;
+        }
+        if (isSelected) {
+          inputEl.classList.add('border-[#0070f3]', 'dark:border-[#60a5fa]', 'ring-1', 'ring-[#0070f3]');
+          inputEl.classList.remove('border-[#ebebeb]', 'dark:border-[#333333]');
+        } else {
+          inputEl.classList.remove('border-[#0070f3]', 'dark:border-[#60a5fa]', 'ring-1', 'ring-[#0070f3]');
+          inputEl.classList.add('border-[#ebebeb]', 'dark:border-[#333333]');
+        }
+      });
+
+      if (syncSelects) {
+        document.querySelectorAll(`.stoich-unit-select[data-stoich-unit-index="${index}"]`).forEach((sel) => {
+          (sel as HTMLSelectElement).value = stoichActiveUnit;
+        });
+      }
+
+      // Update read-only calculated outputs across table and mobile cards
+      document.querySelectorAll(`[data-stoich-moles="${index}"]`).forEach((el) => {
+        el.textContent = item.moles.toFixed(4);
+      });
+      document.querySelectorAll(`[data-stoich-mass="${index}"]`).forEach((el) => {
+        el.textContent = item.massGrams.toFixed(2);
+      });
+      document.querySelectorAll(`[data-stoich-gas="${index}"]`).forEach((el) => {
+        el.textContent = item.volumeStpLiters.toFixed(2);
+      });
+    });
+  }
+
+  // Stoichiometry Table & Mobile Cards Rendering (Proportional View)
   function renderStoichiometryTable() {
     if (!currentProfiles.length) return;
 
@@ -426,93 +575,174 @@ const t = useTranslations(lang);
     const calculated = calculateReactionQuantitiesFromMoles(currentProfiles, stoichActiveIndex, activeMoles);
     const reactantRoleLabel = langStrings.stoichiometry?.reactantRole || 'Reactant';
     const productRoleLabel = langStrings.stoichiometry?.productRole || 'Product';
+    const colMolesLabel = langStrings.stoichiometry?.colMoles || 'Moles (mol)';
+    const colMassLabel = langStrings.stoichiometry?.colMass || 'Mass (g)';
+    const colGasLabel = langStrings.stoichiometry?.colGas || 'Gas at STP (L)';
+
+    const renderUnitOptions = () => `
+      <option value="g" ${stoichActiveUnit === 'g' ? 'selected' : ''}>g</option>
+      <option value="kg" ${stoichActiveUnit === 'kg' ? 'selected' : ''}>kg</option>
+      <option value="mg" ${stoichActiveUnit === 'mg' ? 'selected' : ''}>mg</option>
+      <option value="mol" ${stoichActiveUnit === 'mol' ? 'selected' : ''}>mol</option>
+      <option value="mmol" ${stoichActiveUnit === 'mmol' ? 'selected' : ''}>mmol</option>
+      <option value="L" ${stoichActiveUnit === 'L' ? 'selected' : ''}>L (STP)</option>
+    `;
 
     let html = '';
+    let mobileHtml = '';
+
     calculated.forEach((item, index) => {
       const p = item.profile;
       const isSelected = index === stoichActiveIndex;
       const isReactant = p.isReactant;
+      const roleBadgeClass = isReactant
+        ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800'
+        : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800';
+      const roleLabel = isReactant ? reactantRoleLabel : productRoleLabel;
+      const inputValue = isSelected ? stoichActiveAmount : formatStoichInputAmount(item, stoichActiveUnit);
+      const inputRingClass = isSelected
+        ? 'border-[#0070f3] dark:border-[#60a5fa] ring-1 ring-[#0070f3]'
+        : 'border-[#ebebeb] dark:border-[#333333]';
 
       html += `
-        <tr class="hover:bg-[#fafafa] dark:hover:bg-[#171717] transition-colors ${isSelected ? 'bg-[#0070f3]/5 dark:bg-[#0070f3]/10' : ''}">
-          <td class="py-3 font-mono">
-            <span class="px-2 py-0.5 rounded text-[10px] uppercase font-semibold ${
-              isReactant
-                ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800'
-                : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
-            }">
-              ${isReactant ? reactantRoleLabel : productRoleLabel}
+        <tr data-stoich-row="${index}" class="hover:bg-[#fafafa] dark:hover:bg-[#171717] transition-colors ${isSelected ? 'bg-[#0070f3]/5 dark:bg-[#0070f3]/10' : ''}">
+          <td class="py-3 pr-3 font-mono">
+            <span class="px-2 py-0.5 rounded text-[10px] uppercase font-semibold ${roleBadgeClass}">
+              ${roleLabel}
             </span>
           </td>
-          <td class="py-3 font-mono font-semibold text-[#171717] dark:text-white text-sm">
+          <td class="py-3 px-3 font-mono font-semibold text-[#171717] dark:text-white text-sm whitespace-nowrap">
             ${p.coefficient > 1 ? `<span class="text-[#0070f3] dark:text-[#60a5fa]">${p.coefficient}</span> ` : ''}${p.cleanFormula}
           </td>
-          <td class="py-3 font-mono text-[#4d4d4d] dark:text-[#a1a1a1]">
+          <td class="py-3 px-3 font-mono text-[#4d4d4d] dark:text-[#a1a1a1] whitespace-nowrap">
             ${p.coefficient} mol
           </td>
-          <td class="py-3 font-mono text-[#4d4d4d] dark:text-[#a1a1a1]">
+          <td class="py-3 px-3 font-mono text-[#4d4d4d] dark:text-[#a1a1a1] whitespace-nowrap">
             ${p.molarMass.toFixed(3)} g/mol
           </td>
-          <td class="py-3">
+          <td class="py-3 px-3">
             <div class="flex items-center gap-1.5">
               <input
                 type="number"
+                inputmode="decimal"
                 step="any"
+                min="0"
                 data-stoich-index="${index}"
-                value="${isSelected ? stoichActiveAmount : (stoichActiveUnit === 'g' ? item.massGrams.toFixed(2) : (stoichActiveUnit === 'mol' ? item.moles.toFixed(3) : item.massGrams.toFixed(2)))}"
-                class="stoich-amount-input w-24 h-7 px-2 text-xs font-mono bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] rounded text-[#171717] dark:text-white focus:outline-none focus:border-[#171717] dark:focus:border-white ${isSelected ? 'border-[#0070f3] dark:border-[#60a5fa] ring-1 ring-[#0070f3]' : ''}"
+                value="${inputValue}"
+                class="stoich-amount-input w-24 h-8 px-2 text-xs font-mono bg-white dark:bg-[#171717] border ${inputRingClass} rounded text-[#171717] dark:text-white focus:outline-none focus:border-[#171717] dark:focus:border-white"
               />
               <select
                 data-stoich-unit-index="${index}"
-                class="stoich-unit-select h-7 px-1.5 text-xs font-mono bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] rounded text-[#4d4d4d] dark:text-[#ededed] focus:outline-none"
+                class="stoich-unit-select h-8 px-1.5 text-xs font-mono bg-white dark:bg-[#171717] border border-[#ebebeb] dark:border-[#333333] rounded text-[#4d4d4d] dark:text-[#ededed] focus:outline-none"
               >
-                <option value="g" ${stoichActiveUnit === 'g' ? 'selected' : ''}>g</option>
-                <option value="kg" ${stoichActiveUnit === 'kg' ? 'selected' : ''}>kg</option>
-                <option value="mg" ${stoichActiveUnit === 'mg' ? 'selected' : ''}>mg</option>
-                <option value="mol" ${stoichActiveUnit === 'mol' ? 'selected' : ''}>mol</option>
-                <option value="mmol" ${stoichActiveUnit === 'mmol' ? 'selected' : ''}>mmol</option>
-                <option value="L" ${stoichActiveUnit === 'L' ? 'selected' : ''}>L (STP)</option>
+                ${renderUnitOptions()}
               </select>
             </div>
           </td>
-          <td class="py-3 font-mono text-[#171717] dark:text-white font-medium">
+          <td data-stoich-moles="${index}" class="py-3 px-3 font-mono text-[#171717] dark:text-white font-medium whitespace-nowrap">
             ${item.moles.toFixed(4)}
           </td>
-          <td class="py-3 font-mono text-[#171717] dark:text-white font-medium">
+          <td data-stoich-mass="${index}" class="py-3 px-3 font-mono text-[#171717] dark:text-white font-medium whitespace-nowrap">
             ${item.massGrams.toFixed(2)}
           </td>
-          <td class="py-3 font-mono text-[#4d4d4d] dark:text-[#a1a1a1]">
+          <td data-stoich-gas="${index}" class="py-3 pl-3 font-mono text-[#4d4d4d] dark:text-[#a1a1a1] whitespace-nowrap">
             ${item.volumeStpLiters.toFixed(2)}
           </td>
         </tr>
       `;
+
+      mobileHtml += `
+        <div data-stoich-card="${index}" class="p-3.5 rounded-xl border transition-colors ${
+          isSelected
+            ? 'bg-[#0070f3]/5 dark:bg-[#0070f3]/10 border-[#0070f3]/40 dark:border-[#60a5fa]/40'
+            : 'bg-[#fafafa] dark:bg-[#171717] border-[#ebebeb] dark:border-[#262626]'
+        }">
+          <div class="flex items-start justify-between gap-2 mb-2.5">
+            <div class="flex flex-wrap items-center gap-2 min-w-0">
+              <span class="px-2 py-0.5 rounded text-[10px] font-mono uppercase font-semibold shrink-0 ${roleBadgeClass}">
+                ${roleLabel}
+              </span>
+              <span class="font-mono font-semibold text-sm text-[#171717] dark:text-white break-words">
+                ${p.coefficient > 1 ? `<span class="text-[#0070f3] dark:text-[#60a5fa]">${p.coefficient}</span> ` : ''}${p.cleanFormula}
+              </span>
+            </div>
+            <div class="text-right font-mono text-[11px] text-[#8f8f8f] dark:text-[#737373] shrink-0">
+              <div>${p.coefficient} mol</div>
+              <div>${p.molarMass.toFixed(2)} g/mol</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 mb-3">
+            <input
+              type="number"
+              inputmode="decimal"
+              step="any"
+              min="0"
+              data-stoich-index="${index}"
+              value="${inputValue}"
+              class="stoich-amount-input flex-1 min-w-0 h-10 px-3 text-base font-mono bg-white dark:bg-[#121212] border ${inputRingClass} rounded-md text-[#171717] dark:text-white focus:outline-none focus:border-[#171717] dark:focus:border-white"
+            />
+            <select
+              data-stoich-unit-index="${index}"
+              class="stoich-unit-select h-10 px-2.5 text-base font-mono bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#333333] rounded-md text-[#171717] dark:text-[#ededed] focus:outline-none shrink-0"
+            >
+              ${renderUnitOptions()}
+            </select>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 pt-2.5 border-t border-[#ebebeb]/80 dark:border-[#262626] font-mono">
+            <div class="min-w-0">
+              <div class="text-[10px] leading-tight text-[#8f8f8f] dark:text-[#737373]">${colMolesLabel}</div>
+              <div data-stoich-moles="${index}" class="text-xs font-semibold text-[#171717] dark:text-white mt-0.5 truncate">${item.moles.toFixed(4)}</div>
+            </div>
+            <div class="min-w-0">
+              <div class="text-[10px] leading-tight text-[#8f8f8f] dark:text-[#737373]">${colMassLabel}</div>
+              <div data-stoich-mass="${index}" class="text-xs font-semibold text-[#171717] dark:text-white mt-0.5 truncate">${item.massGrams.toFixed(2)}</div>
+            </div>
+            <div class="min-w-0">
+              <div class="text-[10px] leading-tight text-[#8f8f8f] dark:text-[#737373]">${colGasLabel}</div>
+              <div data-stoich-gas="${index}" class="text-xs font-medium text-[#4d4d4d] dark:text-[#a1a1a1] mt-0.5 truncate">${item.volumeStpLiters.toFixed(2)}</div>
+            </div>
+          </div>
+        </div>
+      `;
     });
 
     stoichiometryTbody.innerHTML = html;
+    if (stoichiometryMobileCards) stoichiometryMobileCards.innerHTML = mobileHtml;
 
-    // Attach listeners
-    stoichiometryTbody.querySelectorAll('.stoich-amount-input').forEach((input) => {
-      input.addEventListener('input', (e) => {
-        const target = e.target as HTMLInputElement;
-        const idx = parseInt(target.getAttribute('data-stoich-index') || '0', 10);
-        const val = parseFloat(target.value);
-        if (!isNaN(val) && val >= 0) {
+    const attachStoichListeners = (root: HTMLElement | null) => {
+      if (!root) return;
+
+      root.querySelectorAll('.stoich-amount-input').forEach((input) => {
+        input.addEventListener('input', (e) => {
+          const target = e.target as HTMLInputElement;
+          const idx = parseInt(target.getAttribute('data-stoich-index') || '0', 10);
+          const val = parseFloat(target.value);
           stoichActiveIndex = idx;
-          stoichActiveAmount = val;
-          renderStoichiometryTable();
-        }
+          stoichActiveAmount = !isNaN(val) && val >= 0 ? val : 0;
+          syncStoichiometryCalculations(target, false);
+        });
       });
-    });
 
-    stoichiometryTbody.querySelectorAll('.stoich-unit-select').forEach((sel) => {
-      sel.addEventListener('change', (e) => {
-        const target = e.target as HTMLSelectElement;
-        const idx = parseInt(target.getAttribute('data-stoich-unit-index') || '0', 10);
-        stoichActiveIndex = idx;
-        stoichActiveUnit = target.value as StoichiometryUnit;
-        renderStoichiometryTable();
+      root.querySelectorAll('.stoich-unit-select').forEach((sel) => {
+        sel.addEventListener('change', (e) => {
+          const target = e.target as HTMLSelectElement;
+          const idx = parseInt(target.getAttribute('data-stoich-unit-index') || '0', 10);
+          const pairedInput = target.parentElement?.querySelector('.stoich-amount-input') as HTMLInputElement | null;
+          const val = pairedInput ? parseFloat(pairedInput.value) : NaN;
+          stoichActiveIndex = idx;
+          if (!isNaN(val) && val >= 0) {
+            stoichActiveAmount = val;
+          }
+          stoichActiveUnit = target.value as StoichiometryUnit;
+          syncStoichiometryCalculations(undefined, true);
+        });
       });
-    });
+    };
+
+    attachStoichListeners(stoichiometryTbody);
+    attachStoichListeners(stoichiometryMobileCards);
   }
 
   // Limiting Reagent View Rendering
@@ -523,23 +753,25 @@ const t = useTranslations(lang);
     let inputsHtml = '';
     reactants.forEach((r, i) => {
       inputsHtml += `
-        <div class="p-4 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.02)]">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-mono font-semibold text-[#171717] dark:text-white">${r.cleanFormula}</span>
-            <span class="text-[11px] font-mono text-[#8f8f8f] dark:text-[#737373]">${r.molarMass.toFixed(2)} g/mol</span>
+        <div class="p-3.5 sm:p-4 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.02)]">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-mono font-semibold text-[#171717] dark:text-white break-words">${r.cleanFormula}</span>
+            <span class="text-[11px] font-mono text-[#8f8f8f] dark:text-[#737373] shrink-0">${r.molarMass.toFixed(2)} g/mol</span>
           </div>
-          <label class="block text-[11px] text-[#8f8f8f] dark:text-[#737373] mb-1">Available Quantity:</label>
-          <div class="flex items-center gap-1.5">
+          <label class="block text-[11px] text-[#8f8f8f] dark:text-[#737373] mb-1.5">Available Quantity:</label>
+          <div class="flex items-center gap-2 sm:gap-1.5">
             <input
               type="number"
+              inputmode="decimal"
               step="any"
+              min="0"
               data-limiting-input-index="${i}"
               value="${(i + 1) * 25}"
-              class="limiting-amount-field w-full h-8 px-2.5 bg-[#fafafa] dark:bg-[#1a1a1a] border border-[#ebebeb] dark:border-[#333333] rounded text-xs font-mono text-[#171717] dark:text-white focus:outline-none focus:border-[#171717] dark:focus:border-white"
+              class="limiting-amount-field flex-1 min-w-0 h-10 sm:h-8 px-3 sm:px-2.5 bg-[#fafafa] dark:bg-[#1a1a1a] border border-[#ebebeb] dark:border-[#333333] rounded-md text-base sm:text-xs font-mono text-[#171717] dark:text-white focus:outline-none focus:border-[#171717] dark:focus:border-white"
             />
             <select
               data-limiting-unit-index="${i}"
-              class="limiting-unit-field h-8 px-2 bg-[#fafafa] dark:bg-[#1a1a1a] border border-[#ebebeb] dark:border-[#333333] rounded text-xs font-mono text-[#4d4d4d] dark:text-[#ededed] focus:outline-none"
+              class="limiting-unit-field h-10 sm:h-8 px-2.5 sm:px-2 bg-[#fafafa] dark:bg-[#1a1a1a] border border-[#ebebeb] dark:border-[#333333] rounded-md text-base sm:text-xs font-mono text-[#4d4d4d] dark:text-[#ededed] focus:outline-none shrink-0"
             >
               <option value="g">g</option>
               <option value="mol">mol</option>
@@ -579,6 +811,8 @@ const t = useTranslations(lang);
           Please enter positive available amounts for all reactants to calculate the limiting reactant.
         </div>
       `;
+      lastTheoreticalGrams = 0;
+      calcPercentYield(0);
       return;
     }
 
@@ -586,8 +820,8 @@ const t = useTranslations(lang);
 
     let resultsHtml = `
       <div class="p-4 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.03)]">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0"></span>
           <span class="text-xs font-mono font-semibold uppercase text-[#171717] dark:text-white">
             ${limitingTitle}
           </span>
@@ -599,17 +833,55 @@ const t = useTranslations(lang);
           <strong>${result.limitingProfile.cleanFormula}</strong> produces the least amount of product and will be 100% consumed first. It limits the theoretical yield.
         </p>
 
-        <!-- Status Table -->
-        <div class="overflow-x-auto">
+        <!-- Mobile Reactant Consumption Cards (< sm) -->
+        <div class="sm:hidden space-y-2.5">
+          ${result.reactantsStatus
+            .map(
+              (s) => `
+            <div class="p-3 rounded-lg bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#262626] text-xs font-mono space-y-2">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-bold text-[#171717] dark:text-white">${s.profile.cleanFormula}</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-semibold ${
+                  s.isLimiting
+                    ? 'bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800'
+                    : 'bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800'
+                }">
+                  ${s.isLimiting ? 'Limiting Reagent' : 'Excess Reagent'}
+                </span>
+              </div>
+              <div class="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px] pt-1.5 border-t border-[#ebebeb]/70 dark:border-[#262626]">
+                <div>
+                  <span class="text-[#8f8f8f] dark:text-[#737373] block">Initial Mass</span>
+                  <span class="text-[#171717] dark:text-white font-medium">${s.initialGrams.toFixed(2)} g</span>
+                </div>
+                <div>
+                  <span class="text-[#8f8f8f] dark:text-[#737373] block">Consumed</span>
+                  <span class="text-[#171717] dark:text-white font-medium">${s.consumedGrams.toFixed(2)} g (${s.percentConsumed.toFixed(1)}%)</span>
+                </div>
+                <div class="col-span-2">
+                  <span class="text-[#8f8f8f] dark:text-[#737373]">Excess Leftover: </span>
+                  <span class="${s.isLimiting ? 'text-[#8f8f8f] dark:text-[#737373]' : 'text-amber-700 dark:text-amber-400 font-semibold'}">
+                    ${s.isLimiting ? '0.00 g (None)' : `${s.remainingGrams.toFixed(2)} g`}
+                  </span>
+                </div>
+              </div>
+            </div>
+          `
+            )
+            .join('')}
+        </div>
+
+        <!-- Desktop Status Table (>= sm) -->
+        <div class="hidden sm:block overflow-x-auto">
           <table class="w-full text-xs text-left">
             <thead>
               <tr class="border-b border-[#ebebeb] dark:border-[#262626] text-[#8f8f8f] dark:text-[#737373] font-mono text-[11px]">
-                <th class="pb-2 font-medium">Reactant</th>
-                <th class="pb-2 font-medium">Initial Mass</th>
-                <th class="pb-2 font-medium">Consumed</th>
-                <th class="pb-2 font-medium">Excess Leftover</th>
-                <th class="pb-2 font-medium">% Consumed</th>
-                <th class="pb-2 font-medium text-right">Status</th>
+                <th class="pb-2 pr-3 font-medium whitespace-nowrap">Reactant</th>
+                <th class="pb-2 px-3 font-medium whitespace-nowrap">Initial Mass</th>
+                <th class="pb-2 px-3 font-medium whitespace-nowrap">Consumed</th>
+                <th class="pb-2 px-3 font-medium whitespace-nowrap">Excess Leftover</th>
+                <th class="pb-2 px-3 font-medium whitespace-nowrap">% Consumed</th>
+                <th class="pb-2 pl-3 font-medium text-right whitespace-nowrap">Status</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-[#ebebeb]/60 dark:divide-[#262626] font-mono">
@@ -617,14 +889,14 @@ const t = useTranslations(lang);
                 .map(
                   (s) => `
                 <tr class="hover:bg-[#fafafa] dark:hover:bg-[#171717]">
-                  <td class="py-2.5 font-bold text-[#171717] dark:text-white">${s.profile.cleanFormula}</td>
-                  <td class="py-2.5 text-[#4d4d4d] dark:text-[#a1a1a1]">${s.initialGrams.toFixed(2)} g</td>
-                  <td class="py-2.5 text-[#4d4d4d] dark:text-[#a1a1a1]">${s.consumedGrams.toFixed(2)} g</td>
-                  <td class="py-2.5 ${s.isLimiting ? 'text-[#8f8f8f] dark:text-[#737373]' : 'text-amber-700 dark:text-amber-400 font-semibold'}">
+                  <td class="py-2.5 pr-3 font-bold text-[#171717] dark:text-white whitespace-nowrap">${s.profile.cleanFormula}</td>
+                  <td class="py-2.5 px-3 text-[#4d4d4d] dark:text-[#a1a1a1] whitespace-nowrap">${s.initialGrams.toFixed(2)} g</td>
+                  <td class="py-2.5 px-3 text-[#4d4d4d] dark:text-[#a1a1a1] whitespace-nowrap">${s.consumedGrams.toFixed(2)} g</td>
+                  <td class="py-2.5 px-3 whitespace-nowrap ${s.isLimiting ? 'text-[#8f8f8f] dark:text-[#737373]' : 'text-amber-700 dark:text-amber-400 font-semibold'}">
                     ${s.isLimiting ? '0.00 g (None)' : `${s.remainingGrams.toFixed(2)} g`}
                   </td>
-                  <td class="py-2.5 text-[#4d4d4d] dark:text-[#a1a1a1]">${s.percentConsumed.toFixed(1)}%</td>
-                  <td class="py-2.5 text-right font-semibold ${s.isLimiting ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400'}">
+                  <td class="py-2.5 px-3 text-[#4d4d4d] dark:text-[#a1a1a1] whitespace-nowrap">${s.percentConsumed.toFixed(1)}%</td>
+                  <td class="py-2.5 pl-3 text-right font-semibold whitespace-nowrap ${s.isLimiting ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400'}">
                     ${s.isLimiting ? 'Limiting Reagent' : 'Excess Reagent'}
                   </td>
                 </tr>
@@ -637,16 +909,16 @@ const t = useTranslations(lang);
       </div>
 
       <!-- Theoretical Yield Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         ${result.theoreticalYields
           .map(
             (y) => `
           <div class="p-4 rounded-xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_1px_rgba(0,0,0,0.02)]">
-            <div class="text-[11px] font-mono text-[#8f8f8f] dark:text-[#737373] uppercase">Theoretical Yield (${y.profile.cleanFormula})</div>
+            <div class="text-[11px] font-mono text-[#8f8f8f] dark:text-[#737373] uppercase break-words">Theoretical Yield (${y.profile.cleanFormula})</div>
             <div class="text-xl font-bold font-mono text-[#171717] dark:text-white mt-1">
               ${y.theoreticalGrams.toFixed(2)} <span class="text-sm font-normal text-[#8f8f8f] dark:text-[#737373]">grams</span>
             </div>
-            <div class="text-xs font-mono text-[#4d4d4d] dark:text-[#a1a1a1] mt-1 flex items-center gap-3">
+            <div class="text-xs font-mono text-[#4d4d4d] dark:text-[#a1a1a1] mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1">
               <span>${y.theoreticalMoles.toFixed(4)} mol</span>
               <span>•</span>
               <span>${y.theoreticalLiters.toFixed(2)} L (STP)</span>
@@ -659,7 +931,8 @@ const t = useTranslations(lang);
     `;
 
     limitingResultsContainer.innerHTML = resultsHtml;
-    calcPercentYield(result.theoreticalYields[0]?.theoreticalGrams || 0);
+    lastTheoreticalGrams = result.theoreticalYields[0]?.theoreticalGrams || 0;
+    calcPercentYield(lastTheoreticalGrams);
   }
 
   function calcPercentYield(theoreticalGrams: number) {
@@ -680,18 +953,15 @@ const t = useTranslations(lang);
   });
 
   equationInput.addEventListener('input', () => {
-    if (equationInput.value) {
-      if (clearInputBtn) clearInputBtn.classList.remove('hidden');
-    } else {
-      if (clearInputBtn) clearInputBtn.classList.add('hidden');
-    }
+    setClearBtnVisible(Boolean(equationInput.value));
   });
 
   if (clearInputBtn) {
     clearInputBtn.addEventListener('click', () => {
       equationInput.value = '';
-      clearInputBtn.classList.add('hidden');
-      equationInput.focus();
+      lastCursorPos = 0;
+      setClearBtnVisible(false);
+      if (isFinePointer()) equationInput.focus();
     });
   }
 
@@ -699,8 +969,9 @@ const t = useTranslations(lang);
   if (ptClearBtn) {
     ptClearBtn.addEventListener('click', () => {
       equationInput.value = '';
-      if (clearInputBtn) clearInputBtn.classList.add('hidden');
-      equationInput.focus();
+      lastCursorPos = 0;
+      setClearBtnVisible(false);
+      if (isFinePointer()) equationInput.focus();
     });
   }
 
@@ -725,7 +996,7 @@ const t = useTranslations(lang);
     });
   }
 
-  // Element Search in Periodic Table
+  // Element Search in Periodic Table & Compact Keypad
   if (elementTableFilter) {
     elementTableFilter.addEventListener('input', () => {
       const q = elementTableFilter.value.toLowerCase().trim();
@@ -742,6 +1013,43 @@ const t = useTranslations(lang);
           (cell as HTMLElement).style.transform = 'scale(0.95)';
         }
       });
+
+      const compactCells = document.querySelectorAll('.compact-element-cell');
+      const compactExtraCells = document.querySelectorAll('.compact-extra-cell');
+
+      compactCells.forEach((cell) => {
+        const sym = cell.getAttribute('data-symbol') || '';
+        const name = cell.getAttribute('data-name') || '';
+        const num = cell.getAttribute('data-number') || '';
+        const matches = !q || sym.includes(q) || name.includes(q) || num === q;
+        if (matches) {
+          cell.classList.remove('hidden');
+          cell.classList.add('flex');
+        } else {
+          cell.classList.add('hidden');
+          cell.classList.remove('flex');
+        }
+      });
+
+      compactExtraCells.forEach((cell) => {
+        const sym = cell.getAttribute('data-symbol') || '';
+        const name = cell.getAttribute('data-name') || '';
+        const num = cell.getAttribute('data-number') || '';
+        const matches = Boolean(q) && (sym.includes(q) || name.includes(q) || num === q);
+        if (matches) {
+          cell.classList.remove('hidden');
+          cell.classList.add('flex');
+        } else {
+          cell.classList.add('hidden');
+          cell.classList.remove('flex');
+        }
+      });
+
+      if (compactKeypadHeading) {
+        compactKeypadHeading.textContent = q
+          ? `${defaultCompactHeadingText.replace(/:$/, '')} (${q}):`
+          : defaultCompactHeadingText;
+      }
     });
   }
 
@@ -767,9 +1075,14 @@ const t = useTranslations(lang);
   });
 
   actualYieldInput.addEventListener('input', () => {
-    const theoretical = currentProfiles.find((p) => !p.isReactant)?.molarMass || 100;
-    calcPercentYield(theoretical);
+    calcPercentYield(lastTheoreticalGrams);
   });
+
+  if (calculateYieldBtn) {
+    calculateYieldBtn.addEventListener('click', () => {
+      calcPercentYield(lastTheoreticalGrams);
+    });
+  }
 
   // Quick Demo Pills
   document.querySelectorAll('.quick-pill-btn').forEach((pill) => {
@@ -828,11 +1141,13 @@ const t = useTranslations(lang);
   // Copy LaTeX Button
   copyLatexBtn.addEventListener('click', async () => {
     if (!currentResult) return;
+    const latexDefaultText = langStrings.balancedEquation?.copyLatex || 'Copy LaTeX';
+    const latexSuccessText = langStrings.balancedEquation?.copyLatexSuccess || 'LaTeX Copied!';
     try {
       await navigator.clipboard.writeText(currentResult.balancedEquationLatex);
-      copyLatexBtn.innerHTML = '<span class="font-mono text-[11px] text-emerald-600 dark:text-emerald-400">✓</span><span>Copied TeX</span>';
+      copyLatexBtn.innerHTML = `<span class="font-mono text-[11px] text-emerald-600 dark:text-emerald-400">✓</span><span>${latexSuccessText}</span>`;
       setTimeout(() => {
-        copyLatexBtn.innerHTML = '<span class="font-mono text-[11px] text-[#8f8f8f] dark:text-[#737373]">TeX</span><span>Copy LaTeX</span>';
+        copyLatexBtn.innerHTML = `<span class="font-mono text-[11px] text-[#8f8f8f] dark:text-[#737373]">TeX</span><span>${latexDefaultText}</span>`;
       }, 2000);
     } catch {}
   });
@@ -868,7 +1183,7 @@ const t = useTranslations(lang);
     const eqParam = params.get('eq');
     if (eqParam) {
       runBalance(eqParam);
-    } else {
+    } else if (isFinePointer()) {
       equationInput.focus();
     }
   });

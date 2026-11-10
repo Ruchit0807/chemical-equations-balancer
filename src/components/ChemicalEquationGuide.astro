@@ -12,27 +12,27 @@ const { lang = 'en' } = Astro.props;
 const guide = guideTranslations[lang] || guideTranslations.en;
 ---
 
-<section id="guide" class="mt-20 scroll-mt-20">
+<section id="guide" class="mt-14 sm:mt-20 scroll-mt-20">
   <!-- Section Eyebrow & Title -->
-  <div class="mb-10">
+  <div class="mb-6 sm:mb-10">
     <div class="flex items-center gap-2 mb-1.5">
-      <span class="w-2 h-2 rounded-full bg-[#171717] dark:bg-white"></span>
+      <span class="w-2 h-2 rounded-full bg-[#171717] dark:bg-white shrink-0"></span>
       <span class="text-xs font-mono font-medium uppercase text-[#8f8f8f] dark:text-[#737373] tracking-wider">
         {guide.eyebrow}
       </span>
     </div>
-    <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#171717] dark:text-[#ededed] tracking-[-1.5px]">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#171717] dark:text-[#ededed] tracking-tight sm:tracking-[-1.5px]">
       {guide.mainTitle}
     </h2>
-    <p class="text-xs sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] mt-2 max-w-3xl leading-relaxed">
+    <p class="text-[13px] sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] mt-2 max-w-3xl leading-relaxed">
       {guide.intro}
     </p>
   </div>
 
-  <div class="space-y-10">
+  <div class="space-y-6 sm:space-y-10">
     {guide.sections.map((section) => (
-      <article class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.02)] transition-colors">
-        <div class="flex items-center gap-2 text-xs font-mono text-[#0070f3] dark:text-[#60a5fa] font-medium mb-2">
+      <article class="p-4 sm:p-6 md:p-8 rounded-2xl bg-white dark:bg-[#121212] border border-[#ebebeb] dark:border-[#262626] shadow-[0px_1px_2px_rgba(0,0,0,0.02)] transition-colors">
+        <div class="flex flex-wrap items-center gap-2 text-xs font-mono text-[#0070f3] dark:text-[#60a5fa] font-medium mb-2">
           <span>{section.number}</span>
           <span>•</span>
           <span class="uppercase">{section.tag}</span>
@@ -40,7 +40,7 @@ const guide = guideTranslations[lang] || guideTranslations.en;
         <h3 class="text-lg sm:text-xl font-semibold text-[#171717] dark:text-white tracking-[-0.5px] mb-3">
           {section.title}
         </h3>
-        <div class="space-y-3 text-xs sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed">
+        <div class="space-y-3 text-[13px] sm:text-sm text-[#4d4d4d] dark:text-[#a1a1a1] leading-relaxed">
           {section.paragraphs.map((p) => (
             <p>{p}</p>
           ))}
@@ -52,7 +52,7 @@ const guide = guideTranslations[lang] || guideTranslations.en;
             {section.callouts.map((c) => (
               <div class="p-3.5 rounded-xl bg-[#fafafa] dark:bg-[#171717] border border-[#ebebeb] dark:border-[#2d2d2d]">
                 <span class="text-[11px] font-mono font-medium text-[#171717] dark:text-[#ededed] block mb-1">{c.title}</span>
-                <p class="text-xs text-[#8f8f8f] dark:text-[#737373]">{c.desc}</p>
+                <p class="text-xs text-[#8f8f8f] dark:text-[#737373] leading-relaxed">{c.desc}</p>
               </div>
             ))}
           </div>
@@ -64,19 +64,19 @@ const guide = guideTranslations[lang] || guideTranslations.en;
             <table class="w-full text-left text-xs font-mono">
               <thead>
                 <tr class="border-b border-[#ebebeb] dark:border-[#262626] text-[#8f8f8f] dark:text-[#737373] text-[11px] uppercase">
-                  <th class="pb-2">Phase</th>
-                  <th class="pb-2">Notation</th>
-                  <th class="pb-2">Physical Description</th>
-                  <th class="pb-2">Example</th>
+                  <th class="pb-2 pr-4 font-medium whitespace-nowrap">Phase</th>
+                  <th class="pb-2 pr-4 font-medium whitespace-nowrap">Notation</th>
+                  <th class="pb-2 pr-4 font-medium whitespace-nowrap">Physical Description</th>
+                  <th class="pb-2 font-medium whitespace-nowrap">Example</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-[#ebebeb]/60 dark:divide-[#262626]">
                 {section.phaseTable.map((row) => (
                   <tr class="hover:bg-[#fafafa] dark:hover:bg-[#171717]">
-                    <td class="py-2 text-[#171717] dark:text-[#ededed] font-medium">{row.phase}</td>
-                    <td class="py-2 text-[#0070f3] dark:text-[#60a5fa] font-bold">{row.symbol}</td>
-                    <td class="py-2 text-[#4d4d4d] dark:text-[#a1a1a1] font-sans">{row.desc}</td>
-                    <td class="py-2 text-[#8f8f8f] dark:text-[#737373]">{row.example}</td>
+                    <td class="py-2.5 pr-4 text-[#171717] dark:text-[#ededed] font-medium whitespace-nowrap">{row.phase}</td>
+                    <td class="py-2.5 pr-4 text-[#0070f3] dark:text-[#60a5fa] font-bold whitespace-nowrap">{row.symbol}</td>
+                    <td class="py-2.5 pr-4 text-[#4d4d4d] dark:text-[#a1a1a1] font-sans min-w-[180px]">{row.desc}</td>
+                    <td class="py-2.5 text-[#8f8f8f] dark:text-[#737373] whitespace-nowrap">{row.example}</td>
                   </tr>
                 ))}
               </tbody>
